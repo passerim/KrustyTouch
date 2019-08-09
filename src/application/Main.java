@@ -3,6 +3,7 @@ package application;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -24,16 +25,20 @@ public class Main extends Application {
 			Pane root= FXMLLoader.load(getClass().getResource("Scena.fxml"));
 
 
+
+
 			Scene scene = new Scene(root);
+			root.getStylesheets().addAll(this.getClass().getResource("Application.css").toExternalForm());
 			SpongebobManager thread = new SpongebobManager(root);
 			thread.start();
 			SpawnerPlanktonManager SpawnerManager = new SpawnerPlanktonManager(root);
 			SpawnerManager.start();
 
-
-			PrimaryStage.setHeight(1000);
-			PrimaryStage.setWidth(500);
-			PrimaryStage.setResizable(false);
+			PrimaryStage.setMaxHeight(1000);
+			PrimaryStage.setMaxWidth(500);
+			PrimaryStage.setMinHeight(800);
+			PrimaryStage.setMinWidth(400);
+			PrimaryStage.setResizable(true);
 			PrimaryStage.setScene(scene);
 			PrimaryStage.sizeToScene();
 			PrimaryStage.show();

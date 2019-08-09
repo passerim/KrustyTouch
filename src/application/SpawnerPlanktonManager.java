@@ -4,6 +4,7 @@ package application;
 
 //import javafx.fxml.FXML;
 import javafx.application.Platform;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public class SpawnerPlanktonManager extends Thread{

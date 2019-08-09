@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point3D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
@@ -25,6 +26,9 @@ public class SpongebobManager extends Thread {
 	}
 	public void run() {
 		Spongebob.setImage(new Image("Images/walking_spongebob_1.png"));
+		Spongebob.setPreserveRatio(true);
+		Spongebob.setFitHeight(188);
+		Spongebob.setFitWidth(227);
 		Spongebob.setLayoutX(0);
 		Spongebob.setLayoutY(695);
 		Spongebob.setVisible(true);
