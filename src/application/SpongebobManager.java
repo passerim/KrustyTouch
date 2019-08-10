@@ -30,7 +30,7 @@ public class SpongebobManager extends Thread {
 		Spongebob.setFitHeight(188);
 		Spongebob.setFitWidth(227);
 		Spongebob.setLayoutX(0);
-		Spongebob.setLayoutY(695);
+		Spongebob.setLayoutY(root.getPrefHeight()*0.6);
 		Spongebob.setVisible(true);
 		this.root.getChildren().add(Spongebob);
 
