@@ -2,31 +2,23 @@ package testprogetto;
 
 import java.awt.Point;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.Map.Entry;
 
 public class ComparatorThread extends Thread {
 	
 	private final int x, y;
 	private int[][] matrix; // m for the y , n for the x ,, m by n matrix
 	private ArrayList<Point> points = new ArrayList<Point>();
-	private ArrayList<String> imgToLoad = new ArrayList<String>();
 	private double value = 1;
 	private Point center = new Point();
-	private ImgToMatrixLoader loader;
-    
+	    
 	
-	public ComparatorThread(final int height, final int width, final ImgToMatrixLoader loader) {
+	public ComparatorThread(final int height, final int width) {
 		x = width;
 		y = height;
-		this.loader = loader;
 		center.x = x/2;
 	    center.y = y/2;
 		matrix = new int[y][x];
@@ -70,60 +62,12 @@ public class ComparatorThread extends Thread {
 	    System.out.println(Arrays.deepToString(pointsSeq.computeSequence()));
 	    
 	    // Getting reference images sequences
-	    int fi = 0;
-	    for (File image : loader.getFiles()) {
-	    	
-	    	// Load image and sample + debug
-	    	int[][] loadedImgMatrix = null;
-	    	loadedImgMatrix = copyOfMatrix(loader.getMatrix(fi));
-	    	img0.changeMatrix(loadedImgMatrix);
-	    	img0.debugImg("RedScaledone");
-	    	ArrayList<Point> matrixPoints = new ArrayList<Point>();
-		    for (int i = 0; i < loadedImgMatrix.length; i++) {
-					for (int j = 0; j < loadedImgMatrix[i].length; j++) {
-						if (loadedImgMatrix[i][j] == 1) {
-							Point p = new Point();
-							p.x = j;
-							p.y = i;
-							matrixPoints.add(p);
-						}
-					}
-			}
-		    while (matrixPoints.size() > points.size()) {
-		    	int r = (int) (Math.random()*matrixPoints.size());
-		    	img0.modifyMatrix(matrixPoints.get(r).y, matrixPoints.get(r).x, 0);
-		    	matrixPoints.remove(r);
-		    }
-		    img0.debugImg("RedScaledonex");
-		    fi++;
-		    
-		    // Debug stuff
-	    	/*System.out.println(points.size()+", "+matrixPoints.size());*/
-	    	System.out.println(image.getName());
-			/*printOutput(points, System.getProperty("user.dir") + "/output1.txt");
-			printOutput(matrixPoints, System.getProperty("user.dir") + "/output2.txt");*/ 
-	    	
-	    	// sorting ref points with radial scanning
-	    	Map<Double, Point> mapRef = new HashMap<Double, Point>();
-	    	for (int i=0; i<matrixPoints.size(); i++) {
-	    		int deltaX = matrixPoints.get(i).x - 0;
-	    		int deltaY = matrixPoints.get(i).y - 0;
-	    		double thetaDeg = Math.toDegrees(Math.atan2(deltaY, deltaX));
-	    		if (thetaDeg < 0) thetaDeg =   180 + (180+thetaDeg);
-	    		mapRef.put(thetaDeg, matrixPoints.get(i));
-		    }
-	    	Map<Double, Point> sortedMapRef = new TreeMap<Double, Point>(mapRef);
-	    	int k = 0;
-	    	for (Entry<Double, Point> entry : sortedMapRef.entrySet()) {
-				matrixPoints.set(k, entry.getValue());
-				k++;
-			}
+	    //for (File image : loader.getFiles()) {
 		    
 		    // Get sequence
-		    Sequencer refSeq = new Sequencer(matrixPoints);
-		    System.out.println(Arrays.deepToString(refSeq.computeSequence()));
-			if (image.getName() == "line.jpg") break;
-	    }
+		    //Sequencer refSeq = new Sequencer(matrixPoints);
+		    //System.out.println(Arrays.deepToString(refSeq.computeSequence()));
+	    //}
 	}
 	
 	
@@ -141,47 +85,6 @@ public class ComparatorThread extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	private int[][] copyOfMatrix(int[][] source) {
-		int cols = 0, rows = 0;
-		double tmp;
-		while(true) {
-			try {
-				tmp = source[rows][cols];
-				rows++;
-			} catch (Exception e) {
-				break;
-			}
-		}
-		while(true) {
-			try {
-				tmp = source[0][cols];
-				cols++;
-			} catch (Exception e) {
-				break;
-			}
-		}	
-		System.out.println(rows + "	" + cols);
-		int[][] dest = new int[rows][cols];
-		for (int i=0; i<rows; i++){
-			for (int j=0; j<cols; j++){
-				dest[i][j] = source[i][j];
-				tmp = dest[i][j];
-			}
-		}
-		return dest;
-	}
-
-	private double mod(double[] a, double[] b) {
-		if (a.length == b.length) {
-			double sum = 0;
-			for (int i = 0; i< a.length; i++) {
-				sum += (a[i] - b[i]) * (a[i] - b[i]);
-			}
-			return Math.sqrt(sum);
-		}
-		return -1;
 	}
 
 	private double DTWDistance(double[] a, double[] b) {
@@ -213,10 +116,6 @@ public class ComparatorThread extends Thread {
 	public double getValue() {
 		return value;
 	}
-	
-	public void addImgToList(String str) {
-		imgToLoad.add(str);
-	} 
 	
 	public void add(int toX, int toY) {
 		matrix[toY][toX] = 1;

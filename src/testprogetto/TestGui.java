@@ -10,7 +10,6 @@ public class TestGui {
 
 	public static void main(String[] args) {
 		ShowGui gui = new ShowGui();
-		ImgToMatrixLoader imgLoader = new ImgToMatrixLoader(gui.getPanel().getWidth(),gui.getPanel().getHeight());
 		MouseListener listener = new MouseListener(){
 			
 			ComparatorThread th;
@@ -21,10 +20,8 @@ public class TestGui {
 
 				@Override
 				public void mouseDragged(MouseEvent e) {
-					//System.out.println("moved");
-					//System.out.println(e.getX() + " " +e.getY());
+					i++;
 					th.add(e.getX(), e.getY());
-					//System.out.println(++i);
 				}
 
 				@Override
@@ -38,13 +35,13 @@ public class TestGui {
 
 			public void mousePressed(MouseEvent e) {
 				pressed = true;
-				th = new ComparatorThread(gui.getPanel().getHeight(),gui.getPanel().getWidth(), imgLoader);
-				th.addImgToList(gui.getValue());
+				th = new ComparatorThread(gui.getPanel().getHeight(),gui.getPanel().getWidth());
 				gui.getPanel().addMouseMotionListener(l);
 				i = 0;
 			}
 
 			public void mouseReleased(MouseEvent e) {
+				System.out.println(i);
 				if (th.getState()!=Thread.State.RUNNABLE&&th.getState()!=Thread.State.TERMINATED) {
 					gui.getPanel().removeMouseMotionListener(l);
 					th.start();
@@ -56,17 +53,14 @@ public class TestGui {
 						}
 					}
 					JOptionPane.showMessageDialog(gui.getFrame(), Double.toString((th.getValue())));
-					//gui.getLabel().setText(Double.toString((th.getValue())));
 				}
 				pressed = false;
 			}
 
 			public void mouseClicked(MouseEvent e) {	
-				//System.out.println("ciao");
 			}
 
 			public void mouseEntered(MouseEvent e) {
-				//System.out.println("hey");
 			}
 		};
 		gui.getPanel().addMouseListener(listener);
