@@ -18,19 +18,18 @@ public class SpongebobManager extends Thread {
 	@FXML
 	
 	ImageView Spongebob=new ImageView();
-	Pane root;
+	AnchorPane root;
 	private int walking_position=0;
 	TranslateTransition movements = new TranslateTransition();
-	public SpongebobManager (Pane base) {
+	public SpongebobManager (AnchorPane base) {
 		this.root = base;
 	}
 	public void run() {
 		Spongebob.setImage(new Image("Images/walking_spongebob_1.png"));
 		Spongebob.setPreserveRatio(true);
-		Spongebob.setFitHeight(188);
-		Spongebob.setFitWidth(227);
+
 		Spongebob.setLayoutX(0);
-		Spongebob.setLayoutY(root.getPrefHeight()*0.6);
+		Spongebob.setLayoutY((root.getPrefHeight()*75)/100);
 		Spongebob.setVisible(true);
 		this.root.getChildren().add(Spongebob);
 

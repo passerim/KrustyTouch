@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.media.Media;
@@ -24,8 +25,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage PrimaryStage) {
 		try {
-			Pane root= FXMLLoader.load(getClass().getResource("Scena.fxml"));
+			AnchorPane root= FXMLLoader.load(getClass().getResource("Scena.fxml"));
 			Scene scene = new Scene(root);
+
 
 			//starting the adaptive background image
 			ImageView background = new ImageView(new Image("Images/sfondo_FINALE.png"));
@@ -38,6 +40,7 @@ public class Main extends Application {
 
 
 
+
 			//starting spongebob
 			SpongebobManager spongebob = new SpongebobManager(root);
 			spongebob.start();
@@ -46,17 +49,34 @@ public class Main extends Application {
 			SpawnerPlanktonManager SpawnerManager = new SpawnerPlanktonManager(root);
 			SpawnerManager.start();
 
+			root.heightProperty().addListener(new ChangeListener<Number>() {
+				@Override
+				public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+					double height= (double) newValue;
+					double NewHeight = ((scene.getHeight()/1000)*100);
+					double NewWidth = ((scene.getWidth()/500)*100);
+					spongebob.Spongebob.setLayoutY((height*75)/100);
+					spongebob.Spongebob.setFitHeight(227*NewHeight/100);
+					spongebob.Spongebob.setFitWidth(188*NewWidth/100);
+					System.out.println(spongebob.Spongebob.getFitHeight());
+					System.out.println(spongebob.Spongebob.getFitWidth());
+					System.out.println("altezza della finestra "+root.heightProperty().get());
+					System.out.println("larghezza della finestra "+root.widthProperty().get());
 
+
+				}
+			});
 
 			root.setMaxSize(500,1000);
 			root.setMinSize(400,800);
-			root.setPrefHeight(1000);
-			root.setPrefWidth(500);
-			PrimaryStage.setMaxHeight(1000);
-			PrimaryStage.setMaxWidth(500);
-			PrimaryStage.setMinHeight(800);
-			PrimaryStage.setMinWidth(400);
+			PrimaryStage.setTitle("Krusty Touch");
+			PrimaryStage.setMaxHeight(1039);
+			PrimaryStage.setMaxWidth(516);
+			PrimaryStage.setMinHeight(839);
+			PrimaryStage.setMinWidth(416);
 			PrimaryStage.setResizable(true);
+
+
 
 			root.getChildren().add(background);
 			PrimaryStage.setScene(scene);
@@ -69,7 +89,6 @@ public class Main extends Application {
 
 			PrimaryStage.show();
 
-
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -80,3 +99,4 @@ public class Main extends Application {
 		launch(args);
 	}
 }
+

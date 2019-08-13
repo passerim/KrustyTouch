@@ -9,11 +9,11 @@ import javafx.scene.layout.Pane;
 
 public class SpawnerPlanktonManager extends Thread{
 	
-Pane root;
+AnchorPane root;
 
 
 //PlanktonManager thread2;
-	public SpawnerPlanktonManager(Pane base) {
+	public SpawnerPlanktonManager(AnchorPane base) {
 		this.root=base;
 	}
 	@Override
@@ -34,7 +34,7 @@ while(true) {
 
 		//thread2.start();
 	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
+
 		e.printStackTrace();
 	}
 

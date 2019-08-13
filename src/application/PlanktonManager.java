@@ -13,13 +13,13 @@ import org.omg.CORBA.TRANSACTION_MODE;
 
 public class PlanktonManager extends Thread {
 	@FXML	
-	private Pane root;
+	private AnchorPane root;
 	public ImageView Plankton= new ImageView(new Image("Images/plankton4.png"));
 	private int interchanger=0;
 	private boolean exit=false;
 
 	//constructor used in order to obtain the main panel.
-	public PlanktonManager(Pane base) {
+	public PlanktonManager(AnchorPane base) {
 		this.root=base;
 
 	}

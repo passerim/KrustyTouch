@@ -4,12 +4,17 @@
     <list default="true" id="8b73fbe2-b0f0-4901-bbfa-31b41b9a64b1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/application/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/PlanktonManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/PlanktonManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/application/Scena.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Scena.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/SpawnerPlanktonManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/SpawnerPlanktonManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/application/SpongebobManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/SpongebobManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/application.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/StageController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/PlanktonManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/PlanktonManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/Scena.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Scena.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/SpawnerPlanktonManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/SpawnerPlanktonManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/SpongebobManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/SpongebobManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/StageController.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -27,12 +32,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/application/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="32" column="45" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
+            <state relative-caret-position="332">
+              <caret line="72" column="42" selection-start-line="72" selection-start-column="42" selection-end-line="72" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2013#2014#0" expanded="true" />
-                <element signature="e#2032#2033#0" expanded="true" />
+                <element signature="e#3175#3176#0" expanded="true" />
+                <element signature="e#3194#3195#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -41,20 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/SpongebobManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="35" selection-start-line="35" selection-end-line="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/SpawnerPlanktonManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="340">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -62,8 +55,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/PlanktonManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+            <state relative-caret-position="442">
+              <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="106" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -74,8 +67,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/Scena.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="122" selection-start-line="4" selection-start-column="122" selection-end-line="4" selection-end-column="122" />
+            <state relative-caret-position="102">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -91,15 +84,16 @@
       <list>
         <option value="$PROJECT_DIR$/src/application/Scena.fxml" />
         <option value="$PROJECT_DIR$/src/application/CharacterHandler.java" />
-        <option value="$PROJECT_DIR$/src/application/SpawnerPlanktonManager.java" />
         <option value="$PROJECT_DIR$/src/application/application.css" />
+        <option value="$PROJECT_DIR$/src/application/SpawnerPlanktonManager.java" />
         <option value="$PROJECT_DIR$/src/application/PlanktonManager.java" />
+        <option value="$PROJECT_DIR$/src/application/StageController.java" />
         <option value="$PROJECT_DIR$/src/application/SpongebobManager.java" />
         <option value="$PROJECT_DIR$/src/application/Main.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1057" />
@@ -180,15 +174,22 @@
       <workItem from="1565343530122" duration="666000" />
       <workItem from="1565352383122" duration="6775000" />
       <workItem from="1565421046197" duration="7044000" />
-      <workItem from="1565438451977" duration="5372000" />
+      <workItem from="1565438451977" duration="6386000" />
+      <workItem from="1565450629738" duration="2512000" />
+      <workItem from="1565507374658" duration="5972000" />
+      <workItem from="1565525190514" duration="10605000" />
+      <workItem from="1565537215542" duration="1569000" />
+      <workItem from="1565679947467" duration="255000" />
+      <workItem from="1565680344781" duration="6937000" />
+      <workItem from="1565697523561" duration="1122000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77378000" />
+    <option name="totallyTimeSpent" value="107364000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="953" y="0" width="974" height="1057" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.36041668" />
@@ -200,7 +201,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49895832" visible="true" weight="0.30575916" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49895832" visible="true" weight="0.307611" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39581153" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -230,13 +231,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="745" column="16" selection-start-line="745" selection-start-column="16" selection-end-line="745" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Runnable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -595,13 +589,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/StageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/stage/Window.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -743,27 +730,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/SpongebobManager.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Runnable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        <state relative-caret-position="499">
+          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/StageController.java" />
     <entry file="file://$PROJECT_DIR$/src/application/SpawnerPlanktonManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="136">
+          <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="72" column="42" selection-start-line="72" selection-start-column="42" selection-end-line="72" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3175#3176#0" expanded="true" />
+            <element signature="e#3194#3195#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/SpongebobManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/application/PlanktonManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+        <state relative-caret-position="442">
+          <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="106" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -772,23 +779,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/Scena.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="122" selection-start-line="4" selection-start-column="122" selection-end-line="4" selection-end-column="122" />
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="32" column="45" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2013#2014#0" expanded="true" />
-            <element signature="e#2032#2033#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
   </component>
 </project>
