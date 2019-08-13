@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import org.omg.CORBA.TRANSACTION_MODE;
+
 
 public class PlanktonManager extends Thread {
 	@FXML	
@@ -17,6 +17,7 @@ public class PlanktonManager extends Thread {
 	public ImageView Plankton= new ImageView(new Image("Images/plankton4.png"));
 	private int interchanger=0;
 	private boolean exit=false;
+	TranslateTransition translate= new TranslateTransition();
 
 	//constructor used in order to obtain the main panel.
 	public PlanktonManager(AnchorPane base) {
@@ -27,10 +28,10 @@ public class PlanktonManager extends Thread {
 	//main function, after waiting a couple of seconds it randomly spawn a plankton
 	public void run() {
 		RandomSpawn();
-		TranslateTransition translate= new TranslateTransition();
+		double transition= (root.getMaxHeight()*60)/100;
 		translate.setNode(Plankton);
 		translate.setFromY(0);
-		translate.setToY(600);
+		translate.setToY(transition);
 		translate.setDuration(Duration.millis(5000));
 		translate.play();
 		translate.setOnFinished((event) -> Platform.runLater(()->root.getChildren().remove(this.Plankton)));
@@ -62,7 +63,9 @@ public class PlanktonManager extends Thread {
 
 	//a function to set a random location of spawning
 	public void RandomSpawn() {
-		int location=(int) ((Math.random()*450) +50);
+		double lowerBound = (root.getMaxHeight()*10)/100;
+		double upperBound = (root.getMaxHeight()*70)/100;
+		int location=(int) ((Math.random()*(lowerBound+upperBound)) +lowerBound);
 		this.Plankton.setLayoutX(location);
 		this.Plankton.setLayoutY(0);
 		this.Plankton.setVisible(true);

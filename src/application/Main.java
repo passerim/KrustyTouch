@@ -32,7 +32,7 @@ public class Main extends Application {
 			//starting the adaptive background image
 			ImageView background = new ImageView(new Image("Images/sfondo_FINALE.png"));
 
-			background.setPreserveRatio(false);
+			background.setPreserveRatio(true);
 			background.setSmooth(true);
 			background.setVisible(true);
 			background.fitWidthProperty().bind(root.widthProperty());
@@ -58,6 +58,8 @@ public class Main extends Application {
 					spongebob.Spongebob.setLayoutY((height*75)/100);
 					spongebob.Spongebob.setFitHeight(227*NewHeight/100);
 					spongebob.Spongebob.setFitWidth(188*NewWidth/100);
+					SpawnerManager.rearrange(NewHeight,NewWidth);
+
 					System.out.println(spongebob.Spongebob.getFitHeight());
 					System.out.println(spongebob.Spongebob.getFitWidth());
 					System.out.println("altezza della finestra "+root.heightProperty().get());
