@@ -21,7 +21,7 @@ public class SpawnerPlanktonManager extends Thread {
 	public SpawnerPlanktonManager(AnchorPane base) {
 		this.root = base;
 	}
-
+	Set<PlanktonManager> prova;
 	@Override
 	public void run() {
 
@@ -31,6 +31,7 @@ public class SpawnerPlanktonManager extends Thread {
 				Thread.sleep(2000);
 				Platform.runLater(() -> {
 					PlanktonManager plankton = new PlanktonManager(root);
+					prova.add(plankton);
 					root.getChildren().add(plankton.Plankton);
 					plankton.start();
 
@@ -50,18 +51,8 @@ public class SpawnerPlanktonManager extends Thread {
 	}
 
 	public void rearrange(double NewHeight, double NewWidth) {
-
-		Set<Node> prova;
-		Iterator ciccia;
-		Node priscilla;
-		prova=root.getChildren()
-				.stream()
-				.filter(e->equals(""))
-				.collect(Collectors.toSet());
-		ciccia=prova.iterator();
-		prova.forEach(nodo->nodo.prefHeight(NewHeight));
-		prova.forEach(nodo->nodo.prefWidth(NewWidth));
-
+		prova.forEach(elem->elem.Plankton.setFitWidth(162*NewWidth/100));
+		prova.forEach(elem->elem.Plankton. setFitHeight(142*NewHeight/100));
 
 	}
 }

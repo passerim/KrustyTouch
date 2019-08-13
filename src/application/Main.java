@@ -49,25 +49,7 @@ public class Main extends Application {
 			SpawnerPlanktonManager SpawnerManager = new SpawnerPlanktonManager(root);
 			SpawnerManager.start();
 
-			root.heightProperty().addListener(new ChangeListener<Number>() {
-				@Override
-				public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-					double height= (double) newValue;
-					double NewHeight = ((scene.getHeight()/1000)*100);
-					double NewWidth = ((scene.getWidth()/500)*100);
-					spongebob.Spongebob.setLayoutY((height*75)/100);
-					spongebob.Spongebob.setFitHeight(227*NewHeight/100);
-					spongebob.Spongebob.setFitWidth(188*NewWidth/100);
-					SpawnerManager.rearrange(NewHeight,NewWidth);
 
-					System.out.println(spongebob.Spongebob.getFitHeight());
-					System.out.println(spongebob.Spongebob.getFitWidth());
-					System.out.println("altezza della finestra "+root.heightProperty().get());
-					System.out.println("larghezza della finestra "+root.widthProperty().get());
-
-
-				}
-			});
 
 			root.setMaxSize(500,1000);
 			root.setMinSize(400,800);
@@ -90,7 +72,25 @@ public class Main extends Application {
 			musica.play();
 
 			PrimaryStage.show();
+			root.heightProperty().addListener(new ChangeListener<Number>() {
+				@Override
+				public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+					double height= (double) newValue;
+					double NewHeight = ((scene.getHeight()/1000)*100);
+					double NewWidth = ((scene.getWidth()/500)*100);
+					spongebob.Spongebob.setLayoutY((height*75)/100);
+					spongebob.Spongebob.setFitHeight(227*NewHeight/100);
+					spongebob.Spongebob.setFitWidth(188*NewWidth/100);
+					SpawnerManager.rearrange(NewHeight,NewWidth);
 
+					System.out.println(spongebob.Spongebob.getFitHeight());
+					System.out.println(spongebob.Spongebob.getFitWidth());
+					System.out.println("altezza della finestra "+root.heightProperty().get());
+					System.out.println("larghezza della finestra "+root.widthProperty().get());
+
+
+				}
+			});
 			
 		} catch(Exception e) {
 			e.printStackTrace();
