@@ -5,16 +5,14 @@ import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.TextFormatter;
+
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
+
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+
 import java.io.File;
 
 import javafx.scene.image.Image;
@@ -22,6 +20,10 @@ import javafx.scene.image.ImageView;
 
 
 public class Main extends Application {
+
+	public static SpawnerPlanktonManager SpawnerManager;
+	public static SpongebobManager spongebob;
+	public BonusSpawner bonus;
 	@Override
 	public void start(Stage PrimaryStage) {
 		try {
@@ -38,16 +40,20 @@ public class Main extends Application {
 			background.fitWidthProperty().bind(root.widthProperty());
 			background.fitHeightProperty().bind(root.heightProperty());
 
-
+			//starting plankton
+			SpawnerManager = new SpawnerPlanktonManager(root);
+			SpawnerManager.start();
 
 
 			//starting spongebob
-			SpongebobManager spongebob = new SpongebobManager(root);
+			spongebob = new SpongebobManager(root);
 			spongebob.start();
 
-			//starting plankton
-			SpawnerPlanktonManager SpawnerManager = new SpawnerPlanktonManager(root);
-			SpawnerManager.start();
+			//starting bonus spawner
+			bonus=new BonusSpawner(root);
+			bonus.start();
+
+
 
 
 
@@ -65,13 +71,15 @@ public class Main extends Application {
 			root.getChildren().add(background);
 			PrimaryStage.setScene(scene);
 			PrimaryStage.sizeToScene();
-			MediaPlayer musica = new MediaPlayer(new Media(new File("src/Images/SpongeBob_Soundtrack.mp3").toURI().toString()));
 
-			musica.setVolume(100);
-
-			musica.play();
 
 			PrimaryStage.show();
+
+			MediaPlayer music = new MediaPlayer(new Media(new File("src/Images/SpongeBob_Soundtrack.mp3").toURI().toString()));
+
+			music.setVolume(100);
+
+			music.play();
 			root.heightProperty().addListener(new ChangeListener<Number>() {
 				@Override
 				public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -81,7 +89,7 @@ public class Main extends Application {
 					spongebob.Spongebob.setLayoutY((height*75)/100);
 					spongebob.Spongebob.setFitHeight(227*NewHeight/100);
 					spongebob.Spongebob.setFitWidth(188*NewWidth/100);
-					SpawnerManager.rearrange(NewHeight,NewWidth);
+
 
 					System.out.println(spongebob.Spongebob.getFitHeight());
 					System.out.println(spongebob.Spongebob.getFitWidth());

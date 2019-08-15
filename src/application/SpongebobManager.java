@@ -16,14 +16,19 @@ import javafx.util.Duration;
 
 public class SpongebobManager extends Thread {
 	@FXML
-	
+	//class fields
 	ImageView Spongebob=new ImageView();
 	AnchorPane root;
 	private int walking_position=0;
 	TranslateTransition movements = new TranslateTransition();
+
+
+	//class builder
 	public SpongebobManager (AnchorPane base) {
 		this.root = base;
 	}
+
+	//run method of songebobManager
 	public void run() {
 		Spongebob.setImage(new Image("Images/walking_spongebob_1.png"));
 		Spongebob.setPreserveRatio(true);
@@ -75,16 +80,7 @@ public class SpongebobManager extends Thread {
 		movements.setOnFinished((event)->move_to_the_left());
 		movements.play();
 	}
-	private void MovementAlgorithm() {
-		int increments=(int) ((Math.random()*201) -100);
-    	if(increments>=0) {
 
-    		Spongebob.setLayoutX(Spongebob.getLayoutX()+increments);
-    	}else {
-
-        	Spongebob.setLayoutX(Spongebob.getLayoutX()+increments);
-    	}
-	}
 	}
 
 
