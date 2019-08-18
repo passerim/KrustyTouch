@@ -4,4 +4,5 @@ public interface Bonus {
 
      void Spawn();
      void action();
+     void Move();
 }

@@ -31,26 +31,23 @@ public class BonusSpawner extends Thread {
         System.out.println(bonusSelector);
             switch (bonusSelector) {
                 case 0:
-                    MrKrabManager MrKrab = new MrKrabManager(root);
-                    root.getChildren().add(MrKrab.MrKrab);
-                    MrKrab.Spawn();
+                    Thread MrKrab = new Thread(new MrKrabManager(root));
+                   MrKrab.start();
+
                     break;
                 case 1:
-                    PatrickManager Patrick = new PatrickManager(root);
-                    Patrick.Spawn();
-                    root.getChildren().add(Patrick.Patrick);
+                    Thread Patrick = new Thread(new PatrickManager(root));
+                    Patrick.start();
 
                     break;
                 case 2:
-                    KrabbyPattyManager KrabbyPatty = new KrabbyPattyManager(root);
-                    KrabbyPatty.Spawn();
-                    root.getChildren().add(KrabbyPatty.KrabbyPatty);
+                    Thread KrabbyPatty = new Thread(new KrabbyPattyManager(root));
+                   KrabbyPatty.start();
 
                     break;
                 case 3:
-                    GaryManager Gary = new GaryManager(root);
-                    root.getChildren().add(Gary.Gary);
-                    Gary.Spawn();
+                    Thread Gary = new Thread(new GaryManager(root));
+                    Gary.start();
                     break;
             }
     }

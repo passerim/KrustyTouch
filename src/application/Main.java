@@ -75,11 +75,11 @@ public class Main extends Application {
 
 			PrimaryStage.show();
 
-			MediaPlayer music = new MediaPlayer(new Media(new File("src/Images/SpongeBob_Soundtrack.mp3").toURI().toString()));
+			/*MediaPlayer music = new MediaPlayer(new Media(new File("src/Images/SpongeBob_Soundtrack.mp3").toURI().toString()));
 
 			music.setVolume(100);
 
-			music.play();
+			music.play();*/
 			root.heightProperty().addListener(new ChangeListener<Number>() {
 				@Override
 				public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
