@@ -1,28 +1,27 @@
 package application;
 
 
-import javafx.animation.TranslateTransition;
+
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 
-public class MrKrabManager implements Bonus,Runnable{
+
+public class MrKrabManager extends Bonus implements Runnable {
    ImageView MrKrab = new ImageView(new Image("Images/mrkrab_finale.png"));
    AnchorPane root;
-   TranslateTransition movement = new TranslateTransition();
-   public MrKrabManager(AnchorPane base){
+
+    public MrKrabManager(AnchorPane base){
        this.root=base;
 
-   }
+    }
 
-    @Override
     public void Spawn() {
         MrKrab.setFitWidth(74);
         MrKrab.setFitHeight(62.5);
         MrKrab.setLayoutY(0);
-        MrKrab.setLayoutX(250);
+        MrKrab.setLayoutX(RandomPosition());
         MrKrab.setVisible(true);
         Platform.runLater(()->root.getChildren().add(MrKrab));
     }
@@ -35,19 +34,9 @@ public class MrKrabManager implements Bonus,Runnable{
         }
 
     @Override
-    public void Move() {
-        movement.setNode(MrKrab);
-        movement.setDuration(Duration.millis(3000));
-        movement.setFromY(0);
-        movement.setToY((root.getHeight()*55)/100);
-        movement.setOnFinished((event)-> root.getChildren().remove(this.MrKrab));
-        movement.play();
-    }
-
-    @Override
     public void run() {
             Spawn();
-            Move();
+            Move(MrKrab);
             MrKrab.setOnMouseClicked((event)->action());
 
 

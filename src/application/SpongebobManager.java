@@ -17,14 +17,20 @@ import javafx.util.Duration;
 public class SpongebobManager extends Thread {
 	@FXML
 	//class fields
+	private static  SpongebobManager istanza = null;
 	ImageView Spongebob=new ImageView();
 	AnchorPane root;
 	private int walking_position=0;
 	TranslateTransition movements = new TranslateTransition();
 
-
+	public static synchronized SpongebobManager getSpongebobManager(AnchorPane base){
+		if(istanza == null){
+			istanza= new SpongebobManager(base);
+		}
+		return istanza;
+	}
 	//class builder
-	public SpongebobManager (AnchorPane base) {
+	private SpongebobManager (AnchorPane base) {
 		this.root = base;
 	}
 

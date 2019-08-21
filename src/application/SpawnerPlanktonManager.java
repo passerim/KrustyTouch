@@ -4,11 +4,7 @@ package application;
 
 
 import javafx.application.Platform;
-
 import javafx.scene.layout.AnchorPane;
-
-
-import java.time.Duration;
 import java.util.ArrayList;
 
 

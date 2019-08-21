@@ -1,17 +1,17 @@
 package application;
 
-import javafx.animation.TranslateTransition;
+
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 
-public class KrabbyPattyManager implements Bonus, Runnable {
+
+public class KrabbyPattyManager extends Bonus implements Runnable {
 
     AnchorPane root;
     ImageView KrabbyPatty= new ImageView(new Image("Images/KrabbyPatty.png"));
-    TranslateTransition movement = new TranslateTransition();
+
 
     public KrabbyPattyManager(AnchorPane base){
         this.root=base;
@@ -22,7 +22,7 @@ public class KrabbyPattyManager implements Bonus, Runnable {
         KrabbyPatty.setFitHeight(61);
         KrabbyPatty.setFitWidth(61);
         KrabbyPatty.setLayoutY(0);
-        KrabbyPatty.setLayoutX(250);
+        KrabbyPatty.setLayoutX(RandomPosition());
         KrabbyPatty.setVisible(true);
         Platform.runLater(()->root.getChildren().add(KrabbyPatty));
 
@@ -34,19 +34,9 @@ public class KrabbyPattyManager implements Bonus, Runnable {
     }
 
     @Override
-    public void Move() {
-        movement.setNode(KrabbyPatty);
-        movement.setDuration(Duration.millis(3000));
-        movement.setFromY(0);
-        movement.setToY((root.getHeight()*55)/100);
-        movement.setOnFinished((event)-> root.getChildren().remove(this.KrabbyPatty));
-        movement.play();
-    }
-
-    @Override
     public void run() {
             Spawn();
-            Move();
+            Move(KrabbyPatty);
             KrabbyPatty.setOnMouseClicked((event)->action());
 
     }

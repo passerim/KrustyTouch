@@ -2,6 +2,8 @@ package application;
 
 import javafx.scene.layout.AnchorPane;
 
+import java.util.concurrent.TimeUnit;
+
 import static java.lang.Thread.*;
 
 public class BonusSpawner extends Thread {
@@ -16,7 +18,7 @@ public class BonusSpawner extends Thread {
     public void run(){
         while(true) {
             try {
-                sleep(5000);
+                TimeUnit.MILLISECONDS.sleep(250);
                 RandomChoice();
             } catch (Exception e) {
 
@@ -25,10 +27,10 @@ public class BonusSpawner extends Thread {
         
         
     }
-    public void RandomChoice() {
-        System.out.println("selecting a random bonus to spawn");
+    private void RandomChoice() {
+            System.out.println("selecting a random bonus to spawn");
             int bonusSelector = (int) (Math.random() * 4);
-        System.out.println(bonusSelector);
+            System.out.println(bonusSelector);
             switch (bonusSelector) {
                 case 0:
                     Thread MrKrab = new Thread(new MrKrabManager(root));
@@ -51,4 +53,6 @@ public class BonusSpawner extends Thread {
                     break;
             }
     }
+
+
 }

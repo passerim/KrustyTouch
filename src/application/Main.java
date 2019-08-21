@@ -24,10 +24,11 @@ public class Main extends Application {
 	public static SpawnerPlanktonManager SpawnerManager;
 	public static SpongebobManager spongebob;
 	public BonusSpawner bonus;
+	public static AnchorPane root;
 	@Override
 	public void start(Stage PrimaryStage) {
 		try {
-			AnchorPane root= FXMLLoader.load(getClass().getResource("Scena.fxml"));
+			root= FXMLLoader.load(getClass().getResource("Scena.fxml"));
 			Scene scene = new Scene(root);
 
 
@@ -46,7 +47,7 @@ public class Main extends Application {
 
 
 			//starting spongebob
-			spongebob = new SpongebobManager(root);
+			spongebob = SpongebobManager.getSpongebobManager(root);
 			spongebob.start();
 
 			//starting bonus spawner
@@ -104,7 +105,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}

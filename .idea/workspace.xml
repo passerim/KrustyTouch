@@ -3,20 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="8b73fbe2-b0f0-4901-bbfa-31b41b9a64b1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Images/gary.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Images/krabby_patty.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Images/mrkrab.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Images/patrick_stella.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/BonusSpawner.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/BonusSpawner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/GaryManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/GaryManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/KrabbyPattyManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/KrabbyPattyManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/MrKrabManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/MrKrabManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/PatrickManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/PatrickManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Images/gary.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Images/krabby_patty.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Images/mrkrab.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Images/patrick_stella.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Images/palloncino.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/Bonus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/BonusSpawner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/GaryManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/KrabbyPattyManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/Main$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/MrKrabManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/PatrickManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/PlanktonManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/SpawnerPlanktonManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/application/SpongebobManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/SpongebobManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Images/palloncino.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/Bonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Bonus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/BonusSpawner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/BonusSpawner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/GaryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/GaryManager.java" afterDir="false" />
@@ -24,7 +23,9 @@
       <change beforePath="$PROJECT_DIR$/src/application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/MrKrabManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/MrKrabManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/PatrickManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/PatrickManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/PlanktonManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/PlanktonManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/application/SpawnerPlanktonManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/SpawnerPlanktonManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/SpongebobManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/SpongebobManager.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -42,12 +43,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="81" column="27" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
+            <state relative-caret-position="180">
+              <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2890#2891#0" expanded="true" />
-                <element signature="e#2909#2910#0" expanded="true" />
+                <element signature="e#2945#2946#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -56,8 +56,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/BonusSpawner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="29" column="58" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
+            <state relative-caret-position="136">
+              <caret line="35" column="72" selection-start-line="35" selection-start-column="72" selection-end-line="35" selection-end-column="72" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -65,14 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/application/SpawnerPlanktonManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="489">
-              <caret line="38" column="19" lean-forward="true" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="119">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -80,17 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/Bonus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/MrKrabManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="51" selection-start-line="51" selection-end-line="51" />
+            <state relative-caret-position="187">
+              <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -101,26 +89,34 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/PatrickManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
+            <state relative-caret-position="170">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#879#880#0" expanded="true" />
-                <element signature="e#915#916#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/KrabbyPattyManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="46" column="23" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
+            <state relative-caret-position="34">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#888#889#0" expanded="true" />
-                <element signature="e#930#931#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/MrKrabManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="20" lean-forward="true" selection-start-column="20" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -129,10 +125,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/GaryManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="54" column="59" selection-start-line="54" selection-start-column="59" selection-end-line="54" selection-end-column="59" />
+            <state relative-caret-position="119">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#466#467#0" expanded="true" />
+                <element signature="e#496#497#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -164,26 +161,25 @@
         <option value="$PROJECT_DIR$/src/application/CharacterHandler.java" />
         <option value="$PROJECT_DIR$/src/application/application.css" />
         <option value="$PROJECT_DIR$/src/application/StageController.java" />
-        <option value="$PROJECT_DIR$/src/application/SpongebobManager.java" />
         <option value="$PROJECT_DIR$/src/application/Try.java" />
-        <option value="$PROJECT_DIR$/src/application/PlanktonManager.java" />
         <option value="$PROJECT_DIR$/src/application/RandomBonus.java" />
+        <option value="$PROJECT_DIR$/src/application/SpongebobManager.java" />
+        <option value="$PROJECT_DIR$/src/application/PlanktonManager.java" />
         <option value="$PROJECT_DIR$/src/application/Main.java" />
-        <option value="$PROJECT_DIR$/src/application/Bonus.java" />
         <option value="$PROJECT_DIR$/src/application/BonusSpawner.java" />
-        <option value="$PROJECT_DIR$/src/application/SpawnerPlanktonManager.java" />
+        <option value="$PROJECT_DIR$/src/application/MrKrabManager.java" />
         <option value="$PROJECT_DIR$/src/application/GaryManager.java" />
         <option value="$PROJECT_DIR$/src/application/KrabbyPattyManager.java" />
         <option value="$PROJECT_DIR$/src/application/PatrickManager.java" />
-        <option value="$PROJECT_DIR$/src/application/MrKrabManager.java" />
+        <option value="$PROJECT_DIR$/src/application/Bonus.java" />
+        <option value="$PROJECT_DIR$/src/application/SpawnerPlanktonManager.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="976" />
-    <option name="height" value="1066" />
+    <option name="x" value="952" />
+    <option name="width" value="975" />
+    <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -278,12 +274,14 @@
       <workItem from="1565870481814" duration="10306000" />
       <workItem from="1565884952999" duration="598000" />
       <workItem from="1566111807983" duration="8222000" />
-      <workItem from="1566130587420" duration="10582000" />
+      <workItem from="1566130587420" duration="10935000" />
+      <workItem from="1566218830495" duration="599000" />
+      <workItem from="1566370785975" duration="13854000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167393000" />
+    <option name="totallyTimeSpent" value="182199000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -298,7 +296,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49895832" visible="true" weight="0.2910995" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49895832" weight="0.2910995" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39581153" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -308,7 +306,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32984293" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50104165" side_tool="true" weight="0.30575916" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32879582" />
+      <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.32879582" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -319,37 +317,6 @@
       <window_info anchor="right" id="Capture Analysis" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.36041668" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49895832" visible="true" weight="0.29424083" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39581153" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32984293" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50104165" side_tool="true" weight="0.30575916" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32879582" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Database" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Maven" order="6" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -795,12 +762,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/StageController.java" />
     <entry file="file://$PROJECT_DIR$/src/application/Scena.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="15" selection-start-column="15" selection-end-column="15" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/RandomBonus.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Thread.java">
@@ -812,8 +779,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/PlanktonManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-89">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        <state relative-caret-position="153">
+          <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/BonusSpawner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="35" column="72" selection-start-line="35" selection-start-column="72" selection-end-line="35" selection-end-column="72" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -822,64 +799,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/SpongebobManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/Bonus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        <state relative-caret-position="-381">
+          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+          <folding>
+            <element signature="e#827#828#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="81" column="27" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
+        <state relative-caret-position="180">
+          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2890#2891#0" expanded="true" />
-            <element signature="e#2909#2910#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/BonusSpawner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="29" column="58" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/SpawnerPlanktonManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="38" column="19" lean-forward="true" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2945#2946#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/GaryManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="54" column="59" selection-start-line="54" selection-start-column="59" selection-end-line="54" selection-end-column="59" />
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#466#467#0" expanded="true" />
+            <element signature="e#496#497#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/MrKrabManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        <state>
+          <caret column="20" lean-forward="true" selection-start-column="20" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/KrabbyPattyManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -888,25 +851,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/PatrickManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="170">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#879#880#0" expanded="true" />
-            <element signature="e#915#916#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/KrabbyPattyManager.java">
+    <entry file="file://$PROJECT_DIR$/src/application/Bonus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="46" column="23" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
+        <state relative-caret-position="187">
+          <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#888#889#0" expanded="true" />
-            <element signature="e#930#931#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/SpawnerPlanktonManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>

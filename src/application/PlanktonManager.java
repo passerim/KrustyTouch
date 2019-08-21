@@ -10,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 
 import javafx.util.Duration;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class PlanktonManager extends Thread {
 	@FXML	
@@ -35,7 +37,7 @@ public class PlanktonManager extends Thread {
 
 			while(true){
 				try {
-					sleep(250);
+					TimeUnit.MILLISECONDS.sleep(250); // mantengo  questo per il momento
 					if(interchanger==0){
 						Plankton.setImage(new Image("Images/plankton5.png"));
 						interchanger=1;
