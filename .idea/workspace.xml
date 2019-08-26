@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8b73fbe2-b0f0-4901-bbfa-31b41b9a64b1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Images/palloncino.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/Bonus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/BonusSpawner.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/GaryManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/KrabbyPattyManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/Main$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/MrKrabManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/PatrickManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/PlanktonManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/SpawnerPlanktonManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/application/SpongebobManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/application/SpongebobManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Images/palloncino.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/Bonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Bonus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/BonusSpawner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/BonusSpawner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/GaryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/GaryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/KrabbyPattyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/KrabbyPattyManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/MrKrabManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/MrKrabManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/PatrickManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/PatrickManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/PlanktonManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/PlanktonManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/SpawnerPlanktonManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/SpawnerPlanktonManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/SpongebobManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/SpongebobManager.java" afterDir="false" />
-    </list>
+    <list default="true" id="8b73fbe2-b0f0-4901-bbfa-31b41b9a64b1" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -276,12 +251,12 @@
       <workItem from="1566111807983" duration="8222000" />
       <workItem from="1566130587420" duration="10935000" />
       <workItem from="1566218830495" duration="599000" />
-      <workItem from="1566370785975" duration="13854000" />
+      <workItem from="1566370785975" duration="14454000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182199000" />
+    <option name="totallyTimeSpent" value="182799000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
