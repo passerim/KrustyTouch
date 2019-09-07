@@ -1,10 +1,12 @@
 package testprogetto;
 
 import java.awt.Point;
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.OptionalDouble;
 
 public class ComparatorThread extends Thread {
@@ -12,14 +14,11 @@ public class ComparatorThread extends Thread {
     private final int x, y;
     private final int[][] matrix; // m for the y , n for the x ,, m by n matrix
     private final ArrayList<Point> points = new ArrayList<Point>();
-    private OptionalDouble value = OptionalDouble.empty();
-    //private final Point center;
-
+    private Optional<String> value = Optional.empty();
 
     public ComparatorThread(final int height, final int width) {
         this.x = width;
         this.y = height;
-        //this.center = new Point(x/2, y/2);
         this.matrix = new int[y][x];
         for (int i=0; i<y; i++){
             for (int j=0; j<x; j++){
@@ -60,56 +59,48 @@ public class ComparatorThread extends Thread {
         Sequencer pointsSeq = new Sequencer(points);
         final Integer[] pointSequence = pointsSeq.computeSequence();
         System.out.println(Arrays.deepToString(pointSequence));
-
+        List<Double> valList = new ArrayList<>();
         for (RefModels model: RefModels.values()) {
-            System.out.println(model.getName() + ": " + DTWDistance(pointSequence, model.getSeq()));
+            /*final String modelSeq = Arrays.deepToString(model.getSeq()).chars().mapToObj(i->(char)i)
+                    .filter(ch->ch != '[' && ch != ']' && ch != ',' && ch != ' ')
+                    .map(cha->String.valueOf(cha))
+                    .reduce(String::concat).get();
+            final String pointSqnc = Arrays.deepToString(pointSequence).chars().mapToObj(i->(char)i)
+                    .filter(ch->ch != '[' && ch != ']' && ch != ',' && ch != ' ')
+                    .map(cha->String.valueOf(cha))
+                    .reduce(String::concat).get();*/
+            //System.out.println(model.getName() + ": " + ModelUtils.computeLevenshteinDistance(pointSqnc, modelSeq));
+            //System.out.println(model.getName() + ": " + ModelUtils.DTWDistance(pointSequence, model.getSeq()));
+            //System.out.println(model.getName() + ": " + new ModelComparator(pointSequence, model).getResult());
+            valList.add((double) new ModelComparator(pointSequence, model).getResult());
+        }
+        valList = softmax(valList);
+        double v = 0;
+        int i = 0;
+        for (RefModels model: RefModels.values()) {
+            if (valList.get(i)>v) {
+                v = valList.get(i);
+                this.value = Optional.of(model.getName());
+            }
+            i++;
         }
     }
 
-
-
-    /*private static <X> void printOutput(List<X> list, String filename) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(System.getProperty("user.dir") 
-                + System.getProperty("file.separator") + filename));)
-        {
-            for (X p : list) {
-                //writer.write("" + p.x + "       " + p.y + "\n");
-                writer.write(p.toString());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    private List<Double> softmax(List<Double> valList) {
+        final List<Double> ret = new ArrayList<Double>();
+        Double sum = (double) 0;
+        for (int i = 0; i < valList.size(); i++) {
+            sum += 1/Math.exp(10*valList.get(i));
         }
-    }*/
-
-    private Integer DTWDistance(Integer[] a, Integer[] b) {
-        int n = a.length, m = b.length;
-        System.out.println(n + "	" + m);
-        Integer[][] DTW = new Integer[n][m];
-        for (int i = 1 ; i < n; i++) {
-            for (int j = 1 ; j < m; j++) {
-                DTW[i][j] = Integer.MAX_VALUE;
-            }
+        for (int i = 0; i < valList.size(); i++) {
+            ret.add((1/Math.exp(10*valList.get(i))/sum));
         }
-        DTW[0][0] = 0;
-        for (int i = 1; i < n; i++) {
-            for  (int j = 1 ; j < m; j++) {
-                //System.out.println(i + "	" + j);
-                Integer cost = Math.abs(a[i-1] - b[j-1]);
-                DTW[i][j] = cost + Math.min(DTW[i-1][j], Math.min(DTW[i][j-1],DTW[i-1][j-1]));
-            }
-        }
-        return DTW[n-1][m-1];
+        return ret;
     }
 
-    /*private double distance(int x2, int x3, int y2, int y3) {
-        double d;
-        d = Math.sqrt(Math.pow(x2-x3, 2) + Math.pow(y2-y3, 2));
-        return d;
-    }*/
-
-    public double getValue() {
+    public String getValue() {
         if (this.value.isPresent()) {
-            return this.value.getAsDouble();
+            return this.value.get();
         } else {
             throw new IllegalStateException("ComparatorThread: " + this.getId() + ", value is not available!");
         }

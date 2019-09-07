@@ -26,7 +26,7 @@ public enum RefModels {
         this.name = name;
         this.seq = seq;
         this.prop = prop;
-        this.circular = false;
+        this.circular = circular;
         this.map = getFeaturesMapList();
     }
 

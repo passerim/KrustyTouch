@@ -68,7 +68,7 @@ public class ShowGui {
                                     ex.printStackTrace();
                                 }
                             }
-                            //JOptionPane.showMessageDialog(getFrame(), Double.toString((th.getValue())));
+                            JOptionPane.showMessageDialog(getFrame(), ((th.getValue())));
                         }
                         pressed = false;
                         points.clear();
