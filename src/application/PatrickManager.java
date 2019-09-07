@@ -9,22 +9,21 @@ import javafx.scene.layout.AnchorPane;
 
 public class PatrickManager extends Bonus implements Runnable{
 
-   AnchorPane root;
-   ImageView Patrick = new ImageView(new Image("Images/patrickstella.png"));
-
-
-    public PatrickManager(AnchorPane base){this.root=base;}
+    public PatrickManager(AnchorPane base){
+        this.root=base;
+        this.image = new ImageView(new Image("Images/patrickstella.png"));
+    }
 
     @Override
-    public void Spawn() {
+    public void spawn() {
 
-        Patrick.setPreserveRatio(true);
-        Patrick.setFitWidth(110);
-        Patrick.setFitHeight(79);
-        Patrick.setLayoutY(0);
-        Patrick.setLayoutX(RandomPosition());
-        Patrick.setVisible(true);
-        Platform.runLater(()->root.getChildren().add(Patrick));
+        this.image.setPreserveRatio(true);
+        this.image.setFitWidth(110);
+        this.image.setFitHeight(79);
+        this.image.setLayoutY(0);
+        this.image.setLayoutX(randomPosition());
+        this.image.setVisible(true);
+        Platform.runLater(()->root.getChildren().add(this.image));
     }
 
     @Override
@@ -36,9 +35,9 @@ public class PatrickManager extends Bonus implements Runnable{
     @Override
     public void run() {
 
-            Spawn();
-            Move(Patrick);
-            Patrick.setOnMouseClicked((event)->action());
+        spawn();
+        move();
+        this.image.setOnMouseClicked((event)->action());
 
 
     }

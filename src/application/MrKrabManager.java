@@ -9,36 +9,37 @@ import javafx.scene.layout.AnchorPane;
 
 
 public class MrKrabManager extends Bonus implements Runnable {
-   ImageView MrKrab = new ImageView(new Image("Images/mrkrab_finale.png"));
-   AnchorPane root;
-
+    
     public MrKrabManager(AnchorPane base){
-       this.root=base;
-
+        this.root=base;
+        this.image = new ImageView(new Image("Images/mrkrab_finale.png"));
     }
 
-    public void Spawn() {
-        MrKrab.setFitWidth(74);
-        MrKrab.setFitHeight(62.5);
-        MrKrab.setLayoutY(0);
-        MrKrab.setLayoutX(RandomPosition());
-        MrKrab.setVisible(true);
-        Platform.runLater(()->root.getChildren().add(MrKrab));
+    @Override
+    public void spawn() {
+        this.image.setFitWidth(74);
+        this.image.setFitHeight(62.5);
+        this.image.setLayoutY(0);
+        this.image.setLayoutX(randomPosition());
+        this.image.setVisible(true);
+        Platform.runLater(()->root.getChildren().add(this.image));
     }
 
+    @Override
     public void action(){
         Main.SpawnerManager.planktonCollector.forEach(elem->this.root.getChildren().remove(elem.Plankton));
         System.out.println("Ciao");
-        Platform.runLater(()->root.getChildren().remove(MrKrab));
+        Platform.runLater(()->root.getChildren().remove(this.image));
 
-        }
+    }
 
     @Override
     public void run() {
-            Spawn();
-            Move(MrKrab);
-            MrKrab.setOnMouseClicked((event)->action());
+        spawn();
+        move();
+        this.image.setOnMouseClicked((event)->action());
 
 
     }
+
 }

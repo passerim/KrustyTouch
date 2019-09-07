@@ -9,31 +9,29 @@ import javax.swing.Timer;
 
 public class GaryManager extends Bonus implements  Runnable {
 
-    AnchorPane root;
-    ImageView Gary = new ImageView(new Image("Images/gary_finale.png"));
-
 
     public GaryManager(AnchorPane base){
         this.root=base;
+        this.image = new ImageView(new Image("Images/gary_finale.png"));
     }
 
     @Override
-    public void Spawn() {
-        Gary.setFitWidth(98.7);
-        Gary.setFitHeight(83.3);
-        Gary.setLayoutY(0);
-        Gary.setLayoutX(RandomPosition());
-        Gary.setVisible(true);
-        Platform.runLater(()->root.getChildren().add(Gary));
+    public void spawn() {
+        this.image.setFitWidth(98.7);
+        this.image.setFitHeight(83.3);
+        this.image.setLayoutY(0);
+        this.image.setLayoutX(this.randomPosition());
+        this.image.setVisible(true);
+        Platform.runLater(()->root.getChildren().add(this.image));
     }
 
     @Override
     public void action() {
-            Main.SpawnerManager.time=10000;
-            Timer timer = new Timer(200000,(event)->Main.SpawnerManager.time=1000);
-            timer.setRepeats(false);
-            timer.start();
-        Platform.runLater(()->root.getChildren().remove(Gary));
+        Main.SpawnerManager.time=10000;
+        Timer timer = new Timer(200000,(event)->Main.SpawnerManager.time=1000);
+        timer.setRepeats(false);
+        timer.start();
+        Platform.runLater(()->root.getChildren().remove(this.image));
         System.out.println("Ciao");
     }
 
@@ -41,8 +39,8 @@ public class GaryManager extends Bonus implements  Runnable {
 
     @Override
     public void run() {
-            Spawn();
-            Move(Gary);
-            this.Gary.setOnMouseClicked((event)->action());
+        this.spawn();
+        this.move();
+        this.image.setOnMouseClicked((event)->action());
     }
 }

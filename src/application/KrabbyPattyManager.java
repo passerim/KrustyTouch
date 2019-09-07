@@ -9,22 +9,19 @@ import javafx.scene.layout.AnchorPane;
 
 public class KrabbyPattyManager extends Bonus implements Runnable {
 
-    AnchorPane root;
-    ImageView KrabbyPatty= new ImageView(new Image("Images/KrabbyPatty.png"));
-
-
     public KrabbyPattyManager(AnchorPane base){
         this.root=base;
+        this.image = new ImageView(new Image("Images/KrabbyPatty.png"));
     }
 
     @Override
-    public void Spawn() {
-        KrabbyPatty.setFitHeight(61);
-        KrabbyPatty.setFitWidth(61);
-        KrabbyPatty.setLayoutY(0);
-        KrabbyPatty.setLayoutX(RandomPosition());
-        KrabbyPatty.setVisible(true);
-        Platform.runLater(()->root.getChildren().add(KrabbyPatty));
+    public void spawn() {
+        this.image.setFitHeight(61);
+        this.image.setFitWidth(61);
+        this.image.setLayoutY(0);
+        this.image.setLayoutX(randomPosition());
+        this.image.setVisible(true);
+        Platform.runLater(()->root.getChildren().add(this.image));
 
     }
 
@@ -35,9 +32,9 @@ public class KrabbyPattyManager extends Bonus implements Runnable {
 
     @Override
     public void run() {
-            Spawn();
-            Move(KrabbyPatty);
-            KrabbyPatty.setOnMouseClicked((event)->action());
+        spawn();
+        move();
+        this.image.setOnMouseClicked((event)->action());
 
     }
 }
