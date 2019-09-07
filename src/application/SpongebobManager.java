@@ -8,6 +8,7 @@ package application;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Point3D;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -85,7 +86,11 @@ public class SpongebobManager extends Thread {
 		movements.setOnFinished((event)->move_to_the_left());
 		movements.play();
 	}
+	
+    public ImageView getSpongebob() {
+        return this.Spongebob;
+    }
 
-	}
+}
 
 
