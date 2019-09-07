@@ -13,6 +13,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.File;
 
 import javafx.scene.image.Image;
@@ -57,14 +59,18 @@ public class Main extends Application {
 
 
 
-
-			root.setMaxSize(500,1000);
-			root.setMinSize(400,800);
+			Dimension ScreenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
+			root.setMaxHeight((ScreenSize.getHeight()*90)/100);
+			root.setMaxWidth((root.getMaxHeight()/2));
+			root.setMinHeight((ScreenSize.getHeight()*40)/100);
+			root.setMinWidth(root.getMinHeight()/2);
+			root.setPrefHeight((ScreenSize.getHeight()*90)/100);
+			root.setPrefWidth((root.getMaxHeight()/2));
 			PrimaryStage.setTitle("Krusty Touch");
-			PrimaryStage.setMaxHeight(1039);
-			PrimaryStage.setMaxWidth(516);
-			PrimaryStage.setMinHeight(839);
-			PrimaryStage.setMinWidth(416);
+			PrimaryStage.setMaxHeight(((ScreenSize.getHeight()*90)/100)+39);
+			PrimaryStage.setMaxWidth(PrimaryStage.getMaxHeight()/2);
+			PrimaryStage.setMinHeight(((ScreenSize.getHeight()*40)/100)+16);
+			PrimaryStage.setMinWidth(PrimaryStage.getMinHeight()/2);
 			PrimaryStage.setResizable(true);
 
 
