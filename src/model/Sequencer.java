@@ -1,4 +1,4 @@
-package testprogetto;
+package model;
 
 import java.awt.Point;
 import java.util.ArrayList;

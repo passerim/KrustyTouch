@@ -1,4 +1,4 @@
-package testprogetto;
+package model;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -46,25 +46,25 @@ public class ImgToMatrixLoader {
 	}
 	
 	private BufferedImage resizeImg(BufferedImage image,int width,int height) {
-		ImageFilter colorfilter = new ReplicateScaleFilter(width,height);
+	    ImageFilter colorfilter = new ReplicateScaleFilter(width,height);
 	    Image img = Toolkit.getDefaultToolkit().createImage(new FilteredImageSource(image.getSource(), colorfilter));
 	    BufferedImage bi = new BufferedImage(img.getWidth(null),img.getHeight(null),BufferedImage.TYPE_INT_RGB);
 	    Graphics bg = bi.getGraphics();
-        bg.drawImage(img, 0, 0, null);
-        bg.dispose();
-		return bi;
+	    bg.drawImage(img, 0, 0, null);
+	    bg.dispose();
+	    return bi;
 	}
 	
 	private int[][] bufferedImgToMatrix(BufferedImage loadedImg) {
-		int[][] matr = new int[loadedImg.getHeight()][loadedImg.getWidth()];
-		for (int i = 0; i < matr.length; i++) {
-			for (int j = 0; j < matr[0].length; j++) {
-				//matr[i][j]  = 0;
-				if (((loadedImg.getRGB(j, i)>>16)&0xff) > 250) matr[i][j] = 1;
-			}
-		}
-		//System.out.println(matr[0][0]);
-		return matr;
+	    int[][] matr = new int[loadedImg.getHeight()][loadedImg.getWidth()];
+	    for (int i = 0; i < matr.length; i++) {
+	        for (int j = 0; j < matr[0].length; j++) {
+	            //matr[i][j]  = 0;
+	            if (((loadedImg.getRGB(j, i)>>16)&0xff) > 250) matr[i][j] = 1;
+	        }
+	    }
+	    //System.out.println(matr[0][0]);
+	    return matr;
 	}
 	
 	public int[][] getMatrix(int index) {

@@ -1,4 +1,4 @@
-package testprogetto;
+package model;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
