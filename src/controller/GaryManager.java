@@ -7,8 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javax.swing.Timer;
 
-import controller.Main;
-
 public class GaryManager extends Bonus implements  Runnable {
 
 
@@ -29,8 +27,8 @@ public class GaryManager extends Bonus implements  Runnable {
 
     @Override
     public void action() {
-        Main.SpawnerManager.time=10000;
-        Timer timer = new Timer(200000,(event)->Main.SpawnerManager.time=1000);
+        SpawnerPlanktonManager.getPlanktonSpawner(root).setTime(10000);
+        Timer timer = new Timer(200000,(event)->SpawnerPlanktonManager.getPlanktonSpawner(root).setTime(1000));
         timer.setRepeats(false);
         timer.start();
         Platform.runLater(()->root.getChildren().remove(this.image));

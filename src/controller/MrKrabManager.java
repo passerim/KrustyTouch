@@ -1,8 +1,5 @@
 package controller;
 
-
-
-import controller.Main;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,7 +7,7 @@ import javafx.scene.layout.AnchorPane;
 
 
 public class MrKrabManager extends Bonus implements Runnable {
-    
+
     public MrKrabManager(AnchorPane base){
         this.root=base;
         this.image = new ImageView(new Image("Images/mrkrab_finale.png"));
@@ -28,7 +25,7 @@ public class MrKrabManager extends Bonus implements Runnable {
 
     @Override
     public void action(){
-        Main.SpawnerManager.planktonCollector.forEach(elem->this.root.getChildren().remove(elem.Plankton));
+        SpawnerPlanktonManager.getPlanktonSpawner(root).getPlanktonCollector().forEach(elem->this.root.getChildren().remove(elem.Plankton));
         System.out.println("Ciao");
         Platform.runLater(()->root.getChildren().remove(this.image));
 
