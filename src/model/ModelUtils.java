@@ -7,13 +7,7 @@ import java.util.List;
 
 public final class ModelUtils {
 
-    public static final ModelUtils UTILS = new ModelUtils();
-
-    public ModelUtils() {
-    }
-
-    public static ModelUtils getUtils() {
-        return UTILS;
+    private ModelUtils() {
     }
 
     public static double distance(int x1, int x2, int y1, int y2) {
