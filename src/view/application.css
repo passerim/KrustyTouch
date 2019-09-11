@@ -1,8 +1,8 @@
 #pane{
     -fx-background-image: url("../Images/sfondo_FINALE.png");
     -fx-background-repeat: stretch;
-    -fx-background-size: 500 1000;
-    -fx-background-size: 500 1000;
+    -fx-background-size: 500 500;
+    -fx-background-size: 500 500;
     -fx-background-position: center center;
 
 

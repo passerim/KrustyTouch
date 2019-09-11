@@ -2,22 +2,24 @@ package controller;
 
 import javafx.application.Platform;
 import javafx.scene.layout.AnchorPane;
+
 import java.util.ArrayList;
 
 public class SpawnerPlanktonManager extends Thread {
 
     private AnchorPane root;
     private ArrayList<PlanktonManager> planktonCollector = new ArrayList<>();
-    private int time=1000;
     private static SpawnerPlanktonManager SINGLETON = null;
+    private SpongebobGameController controller;
     
-    private SpawnerPlanktonManager(AnchorPane base) {
+    private SpawnerPlanktonManager(AnchorPane base, SpongebobGameController controller) {
         this.root = base;
+        this.controller = controller;
     }
 
-    public static synchronized SpawnerPlanktonManager getPlanktonSpawner(AnchorPane base) {
+    public static synchronized SpawnerPlanktonManager getPlanktonSpawner(AnchorPane base, SpongebobGameController controller) {
         if (SINGLETON == null) {
-            SINGLETON = new SpawnerPlanktonManager(base);
+            SINGLETON = new SpawnerPlanktonManager(base, controller);
         }
         return SINGLETON;
     }
@@ -26,12 +28,14 @@ public class SpawnerPlanktonManager extends Thread {
     public void run() {
         while (true) {
             try {
-                Thread.sleep(time);
+                Thread.sleep(this.controller.getModel().getPlanktonRate());
+                PlanktonManager plankton = new PlanktonManager(root, this.controller.getModel().getPlanktonTime());
+                plankton.start();
                 Platform.runLater(() -> {
-                    PlanktonManager plankton = new PlanktonManager(root);
+                    
                     root.getChildren().add(plankton.Plankton);
-                    planktonCollector.add(plankton);
-                    plankton.start();
+                    //planktonCollector.add(plankton);
+                    
                 });
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -47,11 +51,4 @@ public class SpawnerPlanktonManager extends Thread {
         this.planktonCollector = collector;
     }
     
-    public void setTime(int t) {
-        this.time = t;
-    }
-    
-    public int getTime() {
-        return this.time;
-    }
 }

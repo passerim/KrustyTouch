@@ -9,9 +9,9 @@ import javafx.scene.layout.AnchorPane;
 
 public class KrabbyPattyManager extends Bonus implements Runnable {
 
-    public KrabbyPattyManager(AnchorPane base){
-        this.root=base;
-        this.image = new ImageView(new Image("Images/KrabbyPatty.png"));
+    public KrabbyPattyManager(AnchorPane base, final int duration){
+        super(base, duration);
+        this.image = new ImageView(new Image(ClassLoader.getSystemResource("images/KrabbyPatty.png").toString()));
     }
 
     @Override

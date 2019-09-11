@@ -17,7 +17,7 @@ public class SpongebobGameImpl implements SpongebobGame {
 	    this.points = 0;
 	    this.bonusDuration = 4000;
 	    this.bonusRate = 5000;
-	    this.planktonRate = 250;
+	    this.planktonRate = 1000;
 	    this.planktonDuration = 1500;
 	}
 	

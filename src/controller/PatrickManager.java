@@ -9,9 +9,9 @@ import javafx.scene.layout.AnchorPane;
 
 public class PatrickManager extends Bonus implements Runnable{
 
-    public PatrickManager(AnchorPane base){
-        this.root=base;
-        this.image = new ImageView(new Image("Images/patrickstella.png"));
+    public PatrickManager(AnchorPane base, final int duration){
+        super(base, duration);
+        this.image = new ImageView(new Image(ClassLoader.getSystemResource("images/patrickstella.png").toString()));
     }
 
     @Override

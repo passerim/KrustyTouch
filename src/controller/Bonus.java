@@ -8,16 +8,21 @@ import javafx.util.Duration;
 
 public abstract class Bonus {
     
+    private static final int RIGHTOFFSET = 100;
+    private static final int LEFTOFFSET = 0;
+    private static final int LIMIT = 100;
     protected AnchorPane root;
     protected ImageView image;
+    private int bonusDuration;
     
-    /*public Bonus(AnchorPane root) {
-        this.root = root;
-    }*/
+    public Bonus(AnchorPane base, final int duration) {
+        this.root = base;
+        this.bonusDuration = duration;
+    }
 
     protected double randomPosition(){
-        double MaxBound=(this.root.getWidth()*75)/100;
-        double MinBound=(this.root.getWidth()*15)/100;
+        double MaxBound=(this.root.getWidth()*RIGHTOFFSET)/100;
+        double MinBound=(this.root.getWidth()*LEFTOFFSET)/100;
         double location =(Math.random()*(MaxBound-MinBound))+MinBound;
         return location;
     }
@@ -25,9 +30,9 @@ public abstract class Bonus {
     protected void  move(){
         TranslateTransition movement= new TranslateTransition();
         movement.setNode(this.image);
-        movement.setDuration(Duration.millis(3000));
+        movement.setDuration(Duration.millis(this.bonusDuration));
         movement.setFromY(0);
-        movement.setToY((this.root.getHeight()*55)/100);
+        movement.setToY((this.root.getHeight()*LIMIT)/100);
         movement.setOnFinished((event)-> this.root.getChildren().remove(this.image));
         movement.play();
     }

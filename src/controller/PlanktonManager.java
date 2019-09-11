@@ -16,14 +16,17 @@ import java.util.concurrent.TimeUnit;
 public class PlanktonManager extends Thread {
     @FXML	
     private AnchorPane root;
-    public ImageView Plankton= new ImageView(new Image("Images/plankton4.png"));
-    private int interchanger=0;
-    TranslateTransition transition = new TranslateTransition();
+    public ImageView Plankton = new ImageView(new Image(ClassLoader.getSystemResource("images/plankton4.png").toString()));
+    private int interchanger = 0;
+    private TranslateTransition transition = new TranslateTransition();
+    private int duration;
+    private static final int ANIMATION_TIME = 250;
+    private static final int LIMIT = 70;
 
     //constructor used in order to obtain the main panel.
-    public PlanktonManager(AnchorPane base) {
-        this.root=base;
-
+    public PlanktonManager(AnchorPane base, final int duration) {
+        this.root = base;
+        this.duration = duration;
     }
 
     //main function, after waiting a couple of seconds it randomly spawn a plankton
@@ -35,12 +38,12 @@ public class PlanktonManager extends Thread {
 
         while(true){
             try {
-                TimeUnit.MILLISECONDS.sleep(250); // mantengo  questo per il momento
+                TimeUnit.MILLISECONDS.sleep(ANIMATION_TIME); // mantengo  questo per il momento
                 if(interchanger==0){
-                    Plankton.setImage(new Image("Images/plankton5.png"));
+                    Plankton.setImage(new Image(ClassLoader.getSystemResource("images/plankton5.png").toString()));
                     interchanger=1;
                 }else{
-                    Plankton.setImage(new Image("Images/plankton4.png"));
+                    Plankton.setImage(new Image(ClassLoader.getSystemResource("images/plankton4.png").toString()));
                     interchanger=0;
                 }
             } catch (InterruptedException e) {
@@ -51,9 +54,9 @@ public class PlanktonManager extends Thread {
 
     //a function to set a random location of spawning
     public void RandomSpawn() {
-        double lowerBound = (root.getMaxHeight()*10)/100;
-        double upperBound = (root.getMaxHeight()*70)/100;
-        int location=(int) ((Math.random()*(lowerBound+upperBound)) +lowerBound);
+        double lowerBound = (root.getWidth()*10)/100;
+        double upperBound = (root.getWidth()*70)/100;
+        int location = (int) ((Math.random()*(upperBound-lowerBound))+lowerBound);
         this.Plankton.setLayoutX(location);
         this.Plankton.setLayoutY(0);
         this.Plankton.setVisible(true);
@@ -63,11 +66,14 @@ public class PlanktonManager extends Thread {
     public void SetTransition(){
         transition.setNode(this.Plankton);
         transition.setFromY(0);
-        transition.setToY((root.getMaxHeight()*60)/100);
-        transition.setDuration(Duration.millis(5000));
+        transition.setToY((root.getHeight()*LIMIT)/100);
+        transition.setDuration(Duration.millis(this.duration));
         transition.play();
-        transition.setOnFinished((event)->Platform.runLater(()->root.getChildren().remove(this.Plankton)));
-        transition.setOnFinished((event)->Platform.runLater(()->root.getChildren().removeAll(this.Plankton)));
+        transition.setOnFinished((event)->Platform.runLater(()-> {
+                                                                    root.getChildren().remove(this.Plankton);
+                                                                    this.stop();
+                                                                    }));
+        //transition.setOnFinished((event)->Platform.runLater(()->root.getChildren().removeAll(this.Plankton)));
     }
     
     public void Stermination(){

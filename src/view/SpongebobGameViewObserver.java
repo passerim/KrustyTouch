@@ -4,7 +4,7 @@ import javafx.scene.layout.AnchorPane;
 
 public interface SpongebobGameViewObserver {
     
-        void startCharacters(AnchorPane root);
+        void newGame(AnchorPane root) throws IllegalAccessException;
 	
 	void newAttempt(int n);
 	

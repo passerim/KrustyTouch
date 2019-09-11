@@ -1,13 +1,10 @@
 package model;
 
 import java.awt.Point;
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalDouble;
 
 public class ComparatorThread extends Thread {
 

@@ -2,10 +2,10 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -19,43 +19,31 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
     private SpongebobGameViewObserver observer;
     private AnchorPane root;
     private Stage PrimaryStage;
+    private Scene scene;
 
     public SpongebobGameViewImpl(Stage PrimaryStage, SpongebobGameViewObserver observer) {
         this.PrimaryStage = PrimaryStage;
         this.observer = observer;
         try {
-            root = FXMLLoader.load(getClass().getResource("Scena.fxml"));
-            Scene scene = new Scene(root);
-            root.setMaxSize(500,1000);
-            root.setMinSize(400,800);
+            root = new AnchorPane();
             Dimension ScreenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
-            root.setMaxHeight((ScreenSize.getHeight()*90)/100);
-            root.setMaxWidth((root.getMaxHeight()/2));
-            root.setMinHeight((ScreenSize.getHeight()*40)/100);
-            root.setMinWidth(root.getMinHeight()/2);
-            root.setPrefHeight((ScreenSize.getHeight()*90)/100);
-            root.setPrefWidth((root.getMaxHeight()/2));
-            //starting the adaptive background image
+            scene = new Scene(root, (ScreenSize.getHeight()*90)/100/16*9, (ScreenSize.getHeight()*90)/100);
             ImageView background = new ImageView(new Image("images/sfondo_FINALE.png"));
-            background.setPreserveRatio(true);
+            background.setPreserveRatio(false);
             background.setSmooth(true);
             background.setVisible(true);
             background.fitWidthProperty().bind(root.widthProperty());
             background.fitHeightProperty().bind(root.heightProperty());
             root.getChildren().add(background);
-            this.observer.startCharacters(root);
+            root.addEventFilter(MouseEvent.DRAG_DETECTED, new SequencePainter(root));
+            this.observer.newGame(root);
             this.PrimaryStage.setTitle(FRAME_NAME);
-            this.PrimaryStage.setMaxHeight(((ScreenSize.getHeight()*90)/100)+39);
-            this.PrimaryStage.setMaxWidth(this.PrimaryStage.getMaxHeight()/2);
-            this.PrimaryStage.setMinHeight(((ScreenSize.getHeight()*40)/100)+16);
-            this.PrimaryStage.setMinWidth(this.PrimaryStage.getMinHeight()/2);
-            this.PrimaryStage.setResizable(true);
+            this.PrimaryStage.setResizable(false);
             this.PrimaryStage.centerOnScreen();
             this.PrimaryStage.setFullScreen(false);
             this.PrimaryStage.setMaximized(false);
             this.PrimaryStage.setOnCloseRequest(we->System.exit(0));
             this.PrimaryStage.setScene(scene);
-            this.PrimaryStage.sizeToScene();
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -63,6 +51,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
 
     public void start(){
         this.PrimaryStage.show();
+        System.out.println(root.getHeight() + "    " + root.getWidth());
     }
 
     private boolean confirmDialog(String question, String name){

@@ -32,7 +32,7 @@ public class SpongebobManager extends Thread {
 
     //run method of songebobManager
     public void run() {
-        Spongebob.setImage(new Image("Images/walking_spongebob_1.png"));
+        Spongebob.setImage(new Image(ClassLoader.getSystemResource("images/walking_spongebob_1.png").toString()));
         Spongebob.setPreserveRatio(true);
         Spongebob.setLayoutX(0);
         Spongebob.setLayoutY((root.getPrefHeight()*75)/100);
@@ -50,15 +50,16 @@ public class SpongebobManager extends Thread {
             }
         });
         movements.setNode(Spongebob);
-        move_to_the_left();
+        //move_to_the_left();
+        firstMove();
         while(true) {
             try {
                 sleep(250);
                 if (walking_position == 0) {
-                    Spongebob.setImage(new Image("Images/walking_spongebob_2.png"));
+                    Spongebob.setImage(new Image(ClassLoader.getSystemResource("images/walking_spongebob_2.png").toString()));
                     walking_position = 1;
                 } else {
-                    Spongebob.setImage(new Image("Images/walking_spongebob_1.png"));
+                    Spongebob.setImage(new Image(ClassLoader.getSystemResource("images/walking_spongebob_1.png").toString()));
                     walking_position = 0;
                 }
             } catch (InterruptedException e) {
@@ -67,23 +68,33 @@ public class SpongebobManager extends Thread {
         }
     }
     
-    private void move_to_the_left(){
+    private void firstMove(){
         Spongebob.setRotate(0);
         Spongebob.setRotationAxis(new Point3D(0, 0, 1));
         movements.setFromX(0);
-        movements.setToX(300);
-        movements.setDuration(Duration.millis(10000));
-        movements.setOnFinished((event)->move_to_the_right());
+        movements.setToX(0);
+        movements.setDuration(Duration.millis(1000));
+        movements.setOnFinished((event)->moveRight());
         movements.play();
     }
     
-    private void move_to_the_right(){
+    private void moveRight(){
+        Spongebob.setRotate(0);
+        Spongebob.setRotationAxis(new Point3D(0, 0, 1));
+        movements.setFromX(0);
+        movements.setToX(root.getWidth()-this.Spongebob.getFitWidth());
+        movements.setDuration(Duration.millis(10000));
+        movements.setOnFinished((event)->moveLeft());
+        movements.play();
+    }
+    
+    private void moveLeft(){
         Spongebob.setRotate(180);
         Spongebob.setRotationAxis(new Point3D(0, 180, 1));
-        movements.setFromX(300);
+        movements.setFromX(root.getWidth()-this.Spongebob.getFitWidth());
         movements.setToX(0);
         movements.setDuration(Duration.millis(10000));
-        movements.setOnFinished((event)->move_to_the_left());
+        movements.setOnFinished((event)->moveRight());
         movements.play();
     }
 
