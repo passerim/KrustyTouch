@@ -22,11 +22,14 @@ public class PlanktonManager extends Thread {
     private int duration;
     private static final int ANIMATION_TIME = 250;
     private static final int LIMIT = 70;
-
+    private  Image[] InterImages= new Image[2];
+    
     //constructor used in order to obtain the main panel.
-    public PlanktonManager(AnchorPane base, final int duration) {
+    public PlanktonManager(AnchorPane base, final int duration, Image[] images) {
         this.root = base;
         this.duration = duration;
+        this.InterImages=images;
+        this.Plankton= new ImageView(InterImages[0]);   
     }
 
     //main function, after waiting a couple of seconds it randomly spawn a plankton
@@ -40,10 +43,10 @@ public class PlanktonManager extends Thread {
             try {
                 TimeUnit.MILLISECONDS.sleep(ANIMATION_TIME); // mantengo  questo per il momento
                 if(interchanger==0){
-                    Plankton.setImage(new Image(ClassLoader.getSystemResource("images/plankton5.png").toString()));
+                    Plankton.setImage(InterImages[0]);
                     interchanger=1;
                 }else{
-                    Plankton.setImage(new Image(ClassLoader.getSystemResource("images/plankton4.png").toString()));
+                    Plankton.setImage(InterImages[1]);
                     interchanger=0;
                 }
             } catch (InterruptedException e) {
