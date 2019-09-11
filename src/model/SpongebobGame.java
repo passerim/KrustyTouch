@@ -8,8 +8,6 @@ public interface SpongebobGame {
     
 	void reset();
 	
-	DrawResult attempt(int n) throws AttemptsLimitReachedException;
-
         void addPoints(Integer diffPoints);
 
         Integer getPoints();

@@ -50,10 +50,6 @@ public class SpongebobGameImpl implements SpongebobGame {
 	public void reset() {
 	}
 
-	public DrawResult attempt(int n) throws AttemptsLimitReachedException {
-            return null;	
-	}
-
     @Override
     public long getBonusRate() {
         this.computeBonusRate();
