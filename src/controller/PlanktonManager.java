@@ -16,14 +16,16 @@ import java.util.concurrent.TimeUnit;
 public class PlanktonManager extends Thread {
     @FXML	
     private AnchorPane root;
-    public ImageView Plankton= new ImageView(new Image("Images/plankton4.png"));
+    public ImageView Plankton;
     private int interchanger=0;
     TranslateTransition transition = new TranslateTransition();
+    private  Image[] InterImages= new Image[2];
 
     //constructor used in order to obtain the main panel.
-    public PlanktonManager(AnchorPane base) {
+    public PlanktonManager(AnchorPane base,Image[] images) {
         this.root=base;
-
+        this.InterImages=images;
+        this.Plankton= new ImageView(InterImages[0]);
     }
 
     //main function, after waiting a couple of seconds it randomly spawn a plankton
@@ -37,10 +39,10 @@ public class PlanktonManager extends Thread {
             try {
                 TimeUnit.MILLISECONDS.sleep(250); // mantengo  questo per il momento
                 if(interchanger==0){
-                    Plankton.setImage(new Image("Images/plankton5.png"));
+                    Plankton.setImage(InterImages[0]);
                     interchanger=1;
                 }else{
-                    Plankton.setImage(new Image("Images/plankton4.png"));
+                    Plankton.setImage(InterImages[1]);
                     interchanger=0;
                 }
             } catch (InterruptedException e) {
