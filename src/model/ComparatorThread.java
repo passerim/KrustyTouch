@@ -96,8 +96,7 @@ public class ComparatorThread extends Thread {
         if (this.value.isPresent()) {
             System.out.println(this.value.get());
             //System.out.println(this.controller.getModel().getMap());
-            final int k = (int) (Math.random()*this.controller.getModel().getMap().get(this.value.get()).size());
-            if (this.controller.getModel().getMap().get(this.value.get()).size()!=0) {
+            if (this.controller.getModel().canRemove(this.value.get())) {
                 PlanktonManager p = this.controller.getModel().getMap().get(this.value.get()).get(0);
                 p.stop();
                 this.controller.getModel().getMap().get(this.value.get()).remove(p);

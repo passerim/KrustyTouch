@@ -57,7 +57,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
             this.PrimaryStage.setFullScreen(false);
             this.PrimaryStage.setMaximized(false);
             this.PrimaryStage.setOnCloseRequest(we->this.observer.quit());
-            this.PrimaryStage.setScene(scene);
+            //this.PrimaryStage.setScene(scene);
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -70,6 +70,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
 
     @Override
     public void start(){
+        this.PrimaryStage.setScene(scene);
         this.PrimaryStage.show();
         System.out.println(root.getHeight() + "    " + root.getWidth());
     }

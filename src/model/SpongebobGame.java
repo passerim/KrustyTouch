@@ -6,28 +6,32 @@ import java.util.Map;
 import controller.PlanktonManager;
 
 public interface SpongebobGame {
-	
-        void setStartTime() throws IllegalAccessException;
-        
-        long getElapsedTime() throws IllegalAccessException;
-    
-	void reset();
-	
-        void addPoints(Integer diffPoints);
 
-        Integer getPoints();
+    void setStartTime() throws IllegalAccessException;
 
-        long getBonusRate();
+    long getElapsedTime() throws IllegalAccessException;
 
-        int getBonusDuration();
+    void reset();
 
-        long getPlanktonRate();
+    Integer getScore();
 
-        int getPlanktonTime();
+    long getBonusRate();
 
-        void delayBonus(int oldTime);
+    int getBonusDuration();
 
-        void addToMap(RefModels model, PlanktonManager plank);
+    long getPlanktonRate();
 
-        Map<RefModels, List<PlanktonManager>> getMap();
+    int getPlanktonTime();
+
+    void delayBonus(int oldTime);
+
+    void addToMap(RefModels model, PlanktonManager plank);
+
+    Map<RefModels, List<PlanktonManager>> getMap();
+
+    boolean canRemove(RefModels model);
+
+    void incrementScore();
+
+    void setScoreBonus();
 }

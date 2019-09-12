@@ -7,18 +7,15 @@ import view.SpongebobGameViewObserver;
 
 public class SpongebobGameControllerImpl implements SpongebobGameViewObserver, SpongebobGameController {
     
-    private SpongebobGame model;
+    private final SpongebobGame model;
 
     public SpongebobGameControllerImpl() {
         this.model = new SpongebobGameImpl();
     }
 
-    private void startCharacters(AnchorPane root) {
-        //starting plankton
+    private void startCharacters(final AnchorPane root) {
         SpawnerPlanktonManager.getPlanktonSpawner(root, this).start();
-        //starting spongebob
         SpongebobManager.getSpongebobManager(root).start();
-        //starting bonus spawner
         BonusSpawner.getBonusSpawner(root, this).start();
 
     }
@@ -29,7 +26,7 @@ public class SpongebobGameControllerImpl implements SpongebobGameViewObserver, S
     }
 
     @Override
-    public void newGame(AnchorPane root) throws IllegalAccessException {
+    public void newGame(final AnchorPane root) throws IllegalAccessException {
         this.model.setStartTime();
         this.startCharacters(root);
     }

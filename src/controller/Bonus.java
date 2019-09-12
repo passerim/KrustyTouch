@@ -15,7 +15,7 @@ public abstract class Bonus implements Runnable {
     protected ImageView image;
     private int bonusDuration;
     
-    public Bonus(AnchorPane base, final int duration) {
+    public Bonus(final AnchorPane base, final int duration) {
         this.root = base;
         this.bonusDuration = duration;
     }
