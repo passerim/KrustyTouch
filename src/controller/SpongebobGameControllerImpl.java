@@ -1,16 +1,22 @@
 package controller;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.SpongebobGame;
 import model.SpongebobGameImpl;
+import view.SpongebobGameView;
+import view.SpongebobGameViewImpl;
 import view.SpongebobGameViewObserver;
 
 public class SpongebobGameControllerImpl implements SpongebobGameViewObserver, SpongebobGameController {
     
     private final SpongebobGame model;
+    private final SpongebobGameView view;
 
-    public SpongebobGameControllerImpl() {
+    public SpongebobGameControllerImpl(final Stage PrimaryStage) {
         this.model = new SpongebobGameImpl();
+        this.view = new SpongebobGameViewImpl(PrimaryStage, (SpongebobGameViewObserver) this);
+        this.view.start();
     }
 
     private void startCharacters(final AnchorPane root) {
@@ -34,6 +40,12 @@ public class SpongebobGameControllerImpl implements SpongebobGameViewObserver, S
     @Override
     public SpongebobGame getModel() {
         return this.model;
+    }
+
+    @Override
+    public void updateScore() {
+        this.model.incrementScore();
+        this.view.setScore(this.model.getScore());
     }
 
 }

@@ -81,6 +81,7 @@ public class PlanktonManager extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println("exiting...");
             this.controller.quit();
         }));
     }

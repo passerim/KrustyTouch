@@ -7,5 +7,7 @@ public interface SpongebobGameController {
     SpongebobGame getModel();
     
     void quit();
+    
+    void updateScore();
 
 }

@@ -75,6 +75,7 @@ public class ComparatorThread extends Thread {
                 p.stopTransition();
                 this.controller.getModel().getMap().get(this.value.get()).remove(p);
                 Platform.runLater(() -> {
+                    this.controller.updateScore();
                     this.root.getChildren().remove(p.Plankton);
                     if (!this.controller.getModel().getMap().get(this.value.get()).contains(p)) {
                         System.out.println("removed: " + this.value.get());
