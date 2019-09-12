@@ -4,16 +4,12 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import model.SpongebobGame;
 
 public class PatrickManager extends Bonus implements Runnable{
-    
-    private SpongebobGame model;
 
-    public PatrickManager(AnchorPane base, final SpongebobGame model){
-        super(base, model.getBonusDuration());
+    public PatrickManager(final AnchorPane base, final SpongebobGameController controller){
+        super(base, controller.getModel().getBonusDuration());
         this.image = new ImageView(new Image(ClassLoader.getSystemResource("images/patrickstella.png").toString()));
-        this.model = model;
     }
 
     @Override

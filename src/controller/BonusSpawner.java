@@ -37,19 +37,19 @@ public class BonusSpawner extends Thread {
         int bonusSelector = (int) (Math.random() * 4);
         switch (bonusSelector) {
         case 0:
-            Thread MrKrab = new Thread(new MrKrabManager(root, this.controller.getModel()));
+            Thread MrKrab = new Thread(new MrKrabManager(root, this.controller));
             MrKrab.start();
             break;
         case 1:
-            Thread Patrick = new Thread(new PatrickManager(root, this.controller.getModel()));
+            Thread Patrick = new Thread(new PatrickManager(root, this.controller));
             Patrick.start();
             break;
         case 2:
-            Thread KrabbyPatty = new Thread(new KrabbyPattyManager(root, this.controller.getModel()));
+            Thread KrabbyPatty = new Thread(new KrabbyPattyManager(root, this.controller));
             KrabbyPatty.start();
             break;
         case 3:
-            Thread Gary = new Thread(new GaryManager(root, this.controller.getModel()));
+            Thread Gary = new Thread(new GaryManager(root, this.controller));
             Gary.start();
             break;
         }

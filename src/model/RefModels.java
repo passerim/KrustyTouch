@@ -5,7 +5,6 @@ import java.util.List;
 
 public enum RefModels {
     
-    //OBLIQUE("oblique", new Integer[] {5}, false, new Double[] {1.}),
     VERTICAL("vertical", new Integer[] {2}, false, new Double[] {1.}),
     HORIZONTAL("horizontal", new Integer[] {4}, false, new Double[] {1.}),
     GRATERTHAN("greaterthan", new Integer[] {5,7}, false, new Double[] {1.,1.}),
@@ -15,8 +14,7 @@ public enum RefModels {
     TRIANGLE("triangle", new Integer[] {3,5,0}, true, new Double[] {1.,1.,1.}),
     DOUBLEW("doublew", new Integer[] {5,3,5,3}, false, new Double[] {1.,.7,.7,1.}),
     ZETA("zeta", new Integer[] {4,7,4}, false, new Double[] {1.,1.4,1.});
-    //SEVEN("seven", new Integer[] {4,7}, false, new Double[] {1.,1.4});
-
+    
     private final String name;
     private final Integer[] seq; 
     private final Double[] prop; 

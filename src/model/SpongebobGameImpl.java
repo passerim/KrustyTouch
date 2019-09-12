@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import controller.Bonus;
 import controller.PlanktonManager;
 
 public class SpongebobGameImpl implements SpongebobGame {
@@ -19,8 +20,9 @@ public class SpongebobGameImpl implements SpongebobGame {
     private long planktonRate;
     private boolean delayBonus = false;
     private int scoreMultiplier = 1;
-    private  Map<RefModels, List<PlanktonManager>> map = new HashMap<>();
+    private Map<RefModels, List<PlanktonManager>> map = new HashMap<>();
     private boolean scoreBonus = false;
+    private final List<Bonus> bonuses = new LinkedList<>();
 
     {
         for (RefModels m : RefModels.values()) {
@@ -54,9 +56,6 @@ public class SpongebobGameImpl implements SpongebobGame {
             throw new IllegalAccessException();
         }
         return ((System.currentTimeMillis() - this.startTime.get()) / 1000);
-    }
-
-    public void reset() {
     }
 
     @Override
@@ -145,6 +144,12 @@ public class SpongebobGameImpl implements SpongebobGame {
             this.scoreBonus = false;
             this.scoreMultiplier = 1;
         }
+    }
+    
+    @Override
+    public void freeze() {
+        this.map.entrySet().stream().flatMap(m->m.getValue().stream()).forEach(p->p.stopTransition());
+        this.bonuses.stream().forEach(b->b.stopTransition());
     }
 
 }

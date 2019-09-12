@@ -6,17 +6,16 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import model.SpongebobGame;
 
 public class KrabbyPattyManager extends Bonus implements Runnable {
     
     private static final int BONUS_DURATION = 5000;
-    private SpongebobGame model;
+    private SpongebobGameController controller;
 
-    public KrabbyPattyManager(final AnchorPane base, final SpongebobGame model){
-        super(base, model.getBonusDuration());
+    public KrabbyPattyManager(final AnchorPane base, final SpongebobGameController controller){
+        super(base, controller.getModel().getBonusDuration());
         this.image = new ImageView(new Image(ClassLoader.getSystemResource("images/KrabbyPatty.png").toString()));
-        this.model = model;
+        this.controller = controller;
     }
 
     @Override
@@ -31,8 +30,8 @@ public class KrabbyPattyManager extends Bonus implements Runnable {
 
     @Override
     public void action() {
-        this.model.setScoreBonus();
-        final Timer timer = new Timer(BONUS_DURATION,(event)->this.model.setScoreBonus());
+        this.controller.getModel().setScoreBonus();
+        final Timer timer = new Timer(BONUS_DURATION,(event)->this.controller.getModel().setScoreBonus());
         timer.setRepeats(false);
         timer.start();
         System.out.println("Ciao");

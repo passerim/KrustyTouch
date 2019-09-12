@@ -4,16 +4,15 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import model.SpongebobGame;
 
 public class MrKrabManager extends Bonus implements Runnable {
-    
-    private SpongebobGame model;
 
-    public MrKrabManager(AnchorPane base, final SpongebobGame model){
-        super(base, model.getBonusDuration());
+    private SpongebobGameController controller;
+
+    public MrKrabManager(AnchorPane base, final SpongebobGameController controller){
+        super(base, controller.getModel().getBonusDuration());
         this.image = new ImageView(new Image(ClassLoader.getSystemResource("images/mrkrab_finale.png").toString()));
-        this.model = model;
+        this.controller = controller;
     }
 
     @Override
@@ -28,7 +27,7 @@ public class MrKrabManager extends Bonus implements Runnable {
 
     @Override
     public void action(){
-        model.getMap().entrySet().stream().flatMap(e->e.getValue().stream()).forEach(elem->this.root.getChildren().remove(elem.Plankton));
+        this.controller.getModel().getMap().entrySet().stream().flatMap(e->e.getValue().stream()).forEach(elem->this.root.getChildren().remove(elem.Plankton));
         System.out.println("Ciao");
         Platform.runLater(()->root.getChildren().remove(this.image));
     }

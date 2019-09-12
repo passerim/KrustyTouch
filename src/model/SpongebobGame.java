@@ -11,8 +11,6 @@ public interface SpongebobGame {
 
     long getElapsedTime() throws IllegalAccessException;
 
-    void reset();
-
     Integer getScore();
 
     long getBonusRate();
@@ -34,4 +32,6 @@ public interface SpongebobGame {
     void incrementScore();
 
     void setScoreBonus();
+
+    void freeze();
 }

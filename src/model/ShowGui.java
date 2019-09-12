@@ -19,24 +19,20 @@ public class ShowGui {
     ShowGui(){
         final JPanel panel = new JPanel() {
             private static final long serialVersionUID = -3881289804519169474L;
-            ArrayList<Point> points = new ArrayList<Point>();
+            final ArrayList<Point> points = new ArrayList<Point>();
             {
                 addMouseListener( new MouseListener(){
 
                     ComparatorThread th;
-                    int i;
 
                     private boolean pressed = false;
-                    MouseMotionListener l = new MouseMotionListener() {
+                    final MouseMotionListener l = new MouseMotionListener() {
 
                         @Override
                         public void mouseDragged(MouseEvent e) {
-                            //System.out.println("dragged");
-                            i++;
                             th.add(e.getX(), e.getY());
                             points.add(e.getPoint());
                             repaint();
-
                         }
 
                         @Override
@@ -45,19 +41,19 @@ public class ShowGui {
                     };
 
                     public void mouseExited(MouseEvent e) {
-                        if (pressed) {mouseReleased(e);}
+                        if (pressed) {
+                            mouseReleased(e);
+                        }
                     }
 
                     public void mousePressed(MouseEvent e) {
                         pressed = true;
                         //th = new ComparatorThread(400,400);
                         addMouseMotionListener(l);
-                        i = 0;
                         points.add(e.getPoint());
                     }
 
                     public void mouseReleased(MouseEvent e) {
-                        System.out.println(i);
                         if (th.getState()!=Thread.State.RUNNABLE&&th.getState()!=Thread.State.TERMINATED) {
                             removeMouseMotionListener(l);
                             th.start();
@@ -79,7 +75,6 @@ public class ShowGui {
 
                     public void mouseEntered(MouseEvent e) {
                     }
-
                 });
             }
             public void paint(Graphics g) {
@@ -92,24 +87,26 @@ public class ShowGui {
                 }
             }
         };
-        frame.setTitle("gui");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400,400);
-        frame.setResizable(false);
-        frame.getContentPane().add(panel);
-        frame.setLocationByPlatform(true);
-        frame.setVisible(true);
+
+        this.frame.setTitle("gui");
+        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame.setSize(400,400);
+        this.frame.setResizable(false);
+        this.frame.getContentPane().add(panel);
+        this.frame.setLocationByPlatform(true);
+        this.frame.setVisible(true);
     }
 
     public JFrame getFrame() {
-        return frame;
+        return this.frame;
     }
 
     public JPanel getPanel() {
-        return panel;
+        return this.panel;
     }
-
+    /*
     public static void main(String[] args) {
         new ShowGui();
     }
+     */       
 }

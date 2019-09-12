@@ -16,26 +16,22 @@ import javafx.stage.Stage;
 public class SpongebobGameViewImpl implements SpongebobGameView {
 
     private static final String FRAME_NAME = "Krusty Touch";
-
-    static{
-    }
-
     private SpongebobGameViewObserver observer;
     private AnchorPane root;
-    private Stage PrimaryStage;
+    private final Stage PrimaryStage;
     private Scene scene;
-    private SpongebobGameController controller;
+    private final SpongebobGameController controller;
     private final Label score = new Label();
 
-    public SpongebobGameViewImpl(Stage PrimaryStage, SpongebobGameViewObserver observer) {
+    public SpongebobGameViewImpl(final Stage PrimaryStage, final SpongebobGameViewObserver observer) {
         this.controller = (SpongebobGameController) observer;
         this.PrimaryStage = PrimaryStage;
         this.observer = observer;
         try {
             root = new AnchorPane();
-            Dimension ScreenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
+            final Dimension ScreenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
             scene = new Scene(root, (ScreenSize.getHeight()*90)/100/16*9, (ScreenSize.getHeight()*90)/100);
-            ImageView background = new ImageView(new Image("images/sfondo_FINALE.png"));
+            final ImageView background = new ImageView(new Image("images/sfondo_FINALE.png"));
             background.setPreserveRatio(false);
             background.setSmooth(true);
             background.setVisible(true);

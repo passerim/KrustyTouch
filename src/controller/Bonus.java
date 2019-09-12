@@ -14,6 +14,7 @@ public abstract class Bonus implements Runnable {
     protected AnchorPane root;
     protected ImageView image;
     private final int bonusDuration;
+    private TranslateTransition movement= new TranslateTransition();
     
     public Bonus(final AnchorPane base, final int duration) {
         this.root = base;
@@ -27,14 +28,17 @@ public abstract class Bonus implements Runnable {
         return location;
     }
 
-    protected void  move(){
-        TranslateTransition movement= new TranslateTransition();
-        movement.setNode(this.image);
-        movement.setDuration(Duration.millis(this.bonusDuration));
-        movement.setFromY(0);
-        movement.setToY((this.root.getHeight()*LIMIT)/100);
-        movement.setOnFinished((event)-> this.root.getChildren().remove(this.image));
-        movement.play();
+    protected void move(){
+        this.movement.setNode(this.image);
+        this.movement.setDuration(Duration.millis(this.bonusDuration));
+        this.movement.setFromY(0);
+        this.movement.setToY((this.root.getHeight()*LIMIT)/100);
+        this.movement.setOnFinished((event)-> this.root.getChildren().remove(this.image));
+        this.movement.play();
+    }
+    
+    public void stopTransition() {
+        this.movement.stop();
     }
 
     protected abstract void spawn();

@@ -22,14 +22,16 @@ public class PlanktonManager extends Thread {
     private int duration;
     private static final int ANIMATION_TIME = 250;
     private static final int LIMIT = 70;
-    private  Image[] InterImages= new Image[2];
+    private final Image[] InterImages;
+    private SpongebobGameController controller;
     
     //constructor used in order to obtain the main panel.
-    public PlanktonManager(AnchorPane base, final int duration, Image[] images) {
+    public PlanktonManager(final AnchorPane base, final SpongebobGameController controller, final Image[] images) {
         this.root = base;
-        this.duration = duration;
-        this.InterImages=images;
-        this.Plankton= new ImageView(InterImages[0]);   
+        this.duration = controller.getModel().getPlanktonTime();
+        this.InterImages = images;
+        this.Plankton = new ImageView(InterImages[0]);   
+        this.controller = controller;
     }
 
     //main function, after waiting a couple of seconds it randomly spawn a plankton
@@ -73,11 +75,19 @@ public class PlanktonManager extends Thread {
         transition.setDuration(Duration.millis(this.duration));
         transition.play();
         transition.setOnFinished((event)->Platform.runLater(()-> {
-                                                                    root.getChildren().remove(this.Plankton);
-                                                                    this.stop();
-                                                                    }));
-        //transition.setOnFinished((event)->Platform.runLater(()->root.getChildren().removeAll(this.Plankton)));
+            this.controller.getModel().freeze();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            this.controller.quit();
+        }));
     }
+    
+    public void stopTransition() {
+        this.transition.stop();
+    }   
     
     public void Stermination(){
         Platform.runLater(()-> this.root.getChildren().removeAll(this.Plankton));

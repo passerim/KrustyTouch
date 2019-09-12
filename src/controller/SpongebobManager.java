@@ -14,7 +14,7 @@ public class SpongebobManager extends Thread {
     private static SpongebobManager istanza = null;
     private final ImageView Spongebob = new ImageView();
     private final AnchorPane root;
-    private int walking_position=0;
+    private int walking_position = 0;
     private final TranslateTransition movements = new TranslateTransition();
 
     public static synchronized SpongebobManager getSpongebobManager(final AnchorPane base){

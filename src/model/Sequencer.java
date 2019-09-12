@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class Sequencer {
 
-    private ArrayList<Integer> pointsDirections = new ArrayList<Integer>();
-    private Point[] points;
+    private final ArrayList<Integer> pointsDirections = new ArrayList<Integer>();
+    private final Point[] points;
 
-    public Sequencer(ArrayList<Point> inputPoints) {
+    public Sequencer(final ArrayList<Point> inputPoints) {
         int i = 0;
         this.points = new Point[inputPoints.size()];
         for (Point p : inputPoints) {
@@ -51,7 +51,7 @@ public class Sequencer {
                 currString = currString.replace(", ", "");
                 String nextString = new String();
                 nextString = currString.concat(Integer.toString(dir));
-                int gain = computeLevenshteinDistance(currString, nextString);
+                int gain = ModelUtils.computeLevenshteinDistance(currString, nextString);
                 cost += distMod8(prevDir, dir);
                 if (cost > gain) {
                     cost = 0;
@@ -63,7 +63,7 @@ public class Sequencer {
         return listToArray(pointsDirections);
     }
 
-    private Integer[] listToArray(ArrayList<Integer> directions) {
+    private Integer[] listToArray(final ArrayList<Integer> directions) {
         Integer[] intArray = new Integer[directions.size()]; 
         int i = 0;
         for (Integer d : directions) {
@@ -73,13 +73,13 @@ public class Sequencer {
         return intArray;
     }
 
-    private int distMod8(int a,int b)
+    private int distMod8(final int a, final int b)
     {
         int diff = Math.abs( b - a );
         return ( diff < 4 ) ? diff : 8 - diff;
     }
-
-    private int computeLevenshteinDistance(CharSequence lhs, CharSequence rhs) {      
+    /*
+    private int computeLevenshteinDistance(final CharSequence lhs, final CharSequence rhs) {      
         int[][] distance = new int[lhs.length() + 1][rhs.length() + 1];        
 
         for (int i = 0; i <= lhs.length(); i++)                                 
@@ -96,8 +96,8 @@ public class Sequencer {
 
         return distance[lhs.length()][rhs.length()];                           
     }
-
-    private double computeAngle(Point prec, Point succ) {
+     */
+    private double computeAngle(final Point prec, final Point succ) {
         int deltaX = prec.x - succ.x;
         int deltaY = prec.y - succ.y;
         double thetaDeg = Math.toDegrees(Math.atan2(deltaY, deltaX));

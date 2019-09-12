@@ -30,13 +30,11 @@ public class SpawnerPlanktonManager extends Thread {
             try {
                 final int n = this.Random_Selector();
                 Thread.sleep(this.controller.getModel().getPlanktonRate());
-                PlanktonManager plankton = new PlanktonManager(root, this.controller.getModel().getPlanktonTime(), this.images.clone());
-                this.controller.getModel().addToMap(RefModels.values()[n-2], plankton);
+                PlanktonManager plankton = new PlanktonManager(root, this.controller, this.images.clone());
+                this.controller.getModel().addToMap(RefModels.values()[n], plankton);
                 plankton.start();
                 Platform.runLater(() -> {
-                    
                     this.root.getChildren().add(plankton.Plankton);
-                    
                 });
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -45,50 +43,46 @@ public class SpawnerPlanktonManager extends Thread {
     }
     
     public int Random_Selector() {
-        final int choice = (int) (Math.random()*9) + 2;
+        final int choice = (int) (Math.random()*9);
         switch (choice) {
-        case 1: 
-            images[0]= new Image(ClassLoader.getSystemResource("images/plankton1_e_palloncino1.png").toString());
-            images[1]= new Image(ClassLoader.getSystemResource("images/plankton2_e_palloncino1.png").toString());
-            break;
-        case 2: 
+        case 0: 
             images[0]= new Image(ClassLoader.getSystemResource("images/plankton1_e_palloncino2.png").toString());
             images[1]= new Image(ClassLoader.getSystemResource("images/plankton2_e_palloncino2.png").toString());
             break;
-        case 3:
+        case 1:
             images[0]= new Image(ClassLoader.getSystemResource("images/plankton1_e_palloncino3.png").toString());
             images[1]= new Image(ClassLoader.getSystemResource("images/plankton2_e_palloncino3.png").toString());
             break;
-        case 4:
+        case 2:
             images[0]= new Image(ClassLoader.getSystemResource("images/plankton1_e_palloncino4.png").toString());
             images[1]= new Image(ClassLoader.getSystemResource("images/plankton2_e_palloncino4.png").toString());
             break;
-        case 5:
+        case 3:
             images[0]= new Image(ClassLoader.getSystemResource("images/plankton1_e_palloncino5.png").toString());
             images[1]= new Image(ClassLoader.getSystemResource("images/plankton2_e_palloncino5.png").toString());
             break;
-        case 6:
+        case 4:
             images[0]= new Image(ClassLoader.getSystemResource("images/plankton1_e_palloncino6.png").toString());
             images[1]= new Image(ClassLoader.getSystemResource("images/plankton2_e_palloncino6.png").toString());
             break;
-        case 7:
+        case 5:
             images[0]= new Image(ClassLoader.getSystemResource("images/plankton1_e_palloncino7.png").toString());
             images[1]= new Image(ClassLoader.getSystemResource("images/plankton2_e_palloncino7.png").toString());
             break;       
-        case 8:
+        case 6:
             images[0]= new Image(ClassLoader.getSystemResource("images/plankton1_e_palloncino8.png").toString());
             images[1]= new Image(ClassLoader.getSystemResource("images/plankton2_e_palloncino8.png").toString());
             break;
-        case 9:
+        case 7:
             images[0]= new Image(ClassLoader.getSystemResource("images/plankton1_e_palloncino9.png").toString());
             images[1]= new Image(ClassLoader.getSystemResource("images/plankton2_e_palloncino9.png").toString());
             break;
-        case 10:
+        case 8:
             images[0]= new Image(ClassLoader.getSystemResource("images/plankton1_e_palloncino10.png").toString());
             images[1]= new Image(ClassLoader.getSystemResource("images/plankton2_e_palloncino10.png").toString());
             break;   
         default: 
-            System.out.println("error encoutered during the random choosing of the plankton");        
+            throw new IllegalStateException();      
         }
         return choice;
     }

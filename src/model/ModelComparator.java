@@ -8,7 +8,7 @@ public class ModelComparator {
     private final Integer[] refModelSeq;
     private Integer result;
 
-    public ModelComparator( final Integer[] pointsSeq, final RefModels refModel) {
+    public ModelComparator(final Integer[] pointsSeq, final RefModels refModel) {
         this.pointsSeq = pointsSeq;
         this.refModelSeq = refModel.getSeq();
         this.result = ModelUtils.DTWDistance(this.pointsSeq, this.refModelSeq);
@@ -64,5 +64,4 @@ public class ModelComparator {
         return dest;
     }
     
-
 }
