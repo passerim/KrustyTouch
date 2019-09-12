@@ -13,7 +13,7 @@ public abstract class Bonus implements Runnable {
     private static final int LIMIT = 100;
     protected AnchorPane root;
     protected ImageView image;
-    private int bonusDuration;
+    private final int bonusDuration;
     
     public Bonus(final AnchorPane base, final int duration) {
         this.root = base;

@@ -6,17 +6,16 @@ import java.util.concurrent.TimeUnit;
 
 public class BonusSpawner extends Thread {
 
-    //this class randomly chooses between three types of bonus: Mr Krab, Patrick, Gary, and Krabby Patty
-    private AnchorPane root;
+    private final AnchorPane root;
     private static BonusSpawner SINGLETON = null;
     private final SpongebobGameController controller;
     
-    private BonusSpawner(AnchorPane base, SpongebobGameController controller){
+    private BonusSpawner(final AnchorPane base, final SpongebobGameController controller){
         this.root = base;
         this.controller = controller;
     }
     
-    public static synchronized BonusSpawner getBonusSpawner(AnchorPane base, SpongebobGameController controller) {
+    public static synchronized BonusSpawner getBonusSpawner(final AnchorPane base, final SpongebobGameController controller) {
         if (SINGLETON == null) {
             SINGLETON = new BonusSpawner(base, controller);
         }
@@ -46,7 +45,7 @@ public class BonusSpawner extends Thread {
             Patrick.start();
             break;
         case 2:
-            Thread KrabbyPatty = new Thread(new KrabbyPattyManager(root, this.controller.getModel().getBonusDuration()));
+            Thread KrabbyPatty = new Thread(new KrabbyPattyManager(root, this.controller.getModel()));
             KrabbyPatty.start();
             break;
         case 3:

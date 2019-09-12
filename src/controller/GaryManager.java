@@ -1,6 +1,5 @@
 package controller;
 
-
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,9 +10,9 @@ import javax.swing.Timer;
 
 public class GaryManager extends Bonus implements  Runnable {
     
+    private static final int BONUS_DURATION = 10000;
     private SpongebobGame model;
-
-
+    
     public GaryManager(AnchorPane base, SpongebobGame model){
         super(base, model.getBonusDuration());
         this.image = new ImageView(new Image(ClassLoader.getSystemResource("images/gary_finale.png").toString()));
@@ -32,11 +31,9 @@ public class GaryManager extends Bonus implements  Runnable {
 
     @Override
     public void action() {
-        /*SpawnerPlanktonManager.getPlanktonSpawner(root).setTime(10000);
-        Timer timer = new Timer(200000,(event)->SpawnerPlanktonManager.getPlanktonSpawner(root).setTime(1000));*/
-        final int oldTime = model.getPlanktonTime();
-        model.delayBonus(oldTime);
-        final Timer timer = new Timer(10000,(event)->model.delayBonus(oldTime));
+        final int oldTime = this.model.getPlanktonTime();
+        this.model.delayBonus(oldTime);
+        final Timer timer = new Timer(BONUS_DURATION,(event)->this.model.delayBonus(oldTime));
         timer.setRepeats(false);
         timer.start();
         Platform.runLater(()->root.getChildren().remove(this.image));
