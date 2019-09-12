@@ -1,15 +1,11 @@
 package view;
 
 public interface SpongebobGameView {
-	
-	void setObserver(SpongebobGameViewObserver observer);
-	
-	void start(); 
 
-	void numberIncorrect();
+    void setObserver(SpongebobGameViewObserver observer);
 
-	void limitsReached();
+    void start(); 
 
-	void result(/*DrawResult res*/);
+    void setScore(int val);
 
 }

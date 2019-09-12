@@ -94,6 +94,8 @@ public class ComparatorThread extends Thread {
             i++;
         }
         if (this.value.isPresent()) {
+            System.out.println(this.value.get());
+            //System.out.println(this.controller.getModel().getMap());
             final int k = (int) (Math.random()*this.controller.getModel().getMap().get(this.value.get()).size());
             if (this.controller.getModel().getMap().get(this.value.get()).size()!=0) {
                 PlanktonManager p = this.controller.getModel().getMap().get(this.value.get()).get(0);
@@ -101,6 +103,9 @@ public class ComparatorThread extends Thread {
                 this.controller.getModel().getMap().get(this.value.get()).remove(p);
                 Platform.runLater(() -> {
                     this.root.getChildren().remove(p.Plankton);
+                    if (!this.controller.getModel().getMap().get(this.value.get()).contains(p)) {
+                        System.out.println("removed: " + this.value.get());
+                    }
                 });
             }
         }

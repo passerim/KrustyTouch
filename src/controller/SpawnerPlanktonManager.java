@@ -31,7 +31,7 @@ public class SpawnerPlanktonManager extends Thread {
                 final int n = this.Random_Selector();
                 Thread.sleep(this.controller.getModel().getPlanktonRate());
                 PlanktonManager plankton = new PlanktonManager(root, this.controller.getModel().getPlanktonTime(), this.images.clone());
-                this.controller.getModel().addToMap(RefModels.values()[n-1], plankton);
+                this.controller.getModel().addToMap(RefModels.values()[n-2], plankton);
                 plankton.start();
                 Platform.runLater(() -> {
                     
@@ -45,7 +45,7 @@ public class SpawnerPlanktonManager extends Thread {
     }
     
     public int Random_Selector() {
-        final int choice = (int) (Math.random()*10) + 1;
+        final int choice = (int) (Math.random()*9) + 2;
         switch (choice) {
         case 1: 
             images[0]= new Image(ClassLoader.getSystemResource("images/plankton1_e_palloncino1.png").toString());

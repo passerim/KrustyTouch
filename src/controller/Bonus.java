@@ -6,7 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
 
-public abstract class Bonus {
+public abstract class Bonus implements Runnable {
     
     private static final int RIGHTOFFSET = 100;
     private static final int LEFTOFFSET = 0;

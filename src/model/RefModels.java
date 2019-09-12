@@ -5,7 +5,7 @@ import java.util.List;
 
 public enum RefModels {
     
-    OBLIQUE("oblique", new Integer[] {1}, false, new Double[] {1.}),
+    //OBLIQUE("oblique", new Integer[] {5}, false, new Double[] {1.}),
     VERTICAL("vertical", new Integer[] {2}, false, new Double[] {1.}),
     HORIZONTAL("horizontal", new Integer[] {4}, false, new Double[] {1.}),
     GRATERTHAN("greaterthan", new Integer[] {5,7}, false, new Double[] {1.,1.}),

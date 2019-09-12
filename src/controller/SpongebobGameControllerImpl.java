@@ -24,21 +24,8 @@ public class SpongebobGameControllerImpl implements SpongebobGameViewObserver, S
     }
 
     @Override
-    public void newAttempt(int n) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void resetGame() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public void quit() {
-        // TODO Auto-generated method stub
-
+        System.exit(0);
     }
 
     @Override
