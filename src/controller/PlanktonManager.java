@@ -35,8 +35,8 @@ public class PlanktonManager extends Thread {
     //main function, after waiting a couple of seconds it randomly spawn a plankton
     public void run() {
         RandomSpawn();
-        Plankton.setFitHeight(71);
-        Plankton.setFitWidth(81);
+        Plankton.setFitHeight(220);
+        Plankton.setFitWidth(120);
         SetTransition();
 
         while(true){

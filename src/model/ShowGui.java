@@ -50,7 +50,7 @@ public class ShowGui {
 
                     public void mousePressed(MouseEvent e) {
                         pressed = true;
-                        th = new ComparatorThread(400,400);
+                        //th = new ComparatorThread(400,400);
                         addMouseMotionListener(l);
                         i = 0;
                         points.add(e.getPoint());

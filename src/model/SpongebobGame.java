@@ -1,5 +1,10 @@
 package model;
 
+import java.util.List;
+import java.util.Map;
+
+import controller.PlanktonManager;
+
 public interface SpongebobGame {
 	
         void setStartTime() throws IllegalAccessException;
@@ -21,4 +26,8 @@ public interface SpongebobGame {
         int getPlanktonTime();
 
         void delayBonus(int oldTime);
+
+        void addToMap(RefModels model, PlanktonManager plank);
+
+        Map<RefModels, List<PlanktonManager>> getMap();
 }

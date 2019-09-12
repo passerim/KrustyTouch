@@ -2,6 +2,8 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+
+import controller.SpongebobGameController;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,8 +22,10 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
     private AnchorPane root;
     private Stage PrimaryStage;
     private Scene scene;
+    private SpongebobGameController controller;
 
     public SpongebobGameViewImpl(Stage PrimaryStage, SpongebobGameViewObserver observer) {
+        this.controller = (SpongebobGameController) observer;
         this.PrimaryStage = PrimaryStage;
         this.observer = observer;
         try {
@@ -35,7 +39,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
             background.fitWidthProperty().bind(root.widthProperty());
             background.fitHeightProperty().bind(root.heightProperty());
             root.getChildren().add(background);
-            root.addEventFilter(MouseEvent.DRAG_DETECTED, new SequencePainter(root));
+            root.addEventFilter(MouseEvent.DRAG_DETECTED, new SequencePainter(root, this.controller));
             this.observer.newGame(root);
             this.PrimaryStage.setTitle(FRAME_NAME);
             this.PrimaryStage.setResizable(false);

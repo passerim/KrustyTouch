@@ -6,14 +6,23 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import controller.PlanktonManager;
+import controller.SpongebobGameController;
+import javafx.application.Platform;
+import javafx.scene.layout.AnchorPane;
+
 public class ComparatorThread extends Thread {
 
     private final int x, y;
     private final int[][] matrix; // m for the y , n for the x ,, m by n matrix
     private final ArrayList<Point> points = new ArrayList<Point>();
-    private Optional<String> value = Optional.empty();
+    private Optional<RefModels> value = Optional.empty();
+    private SpongebobGameController controller;
+    private AnchorPane root;
 
-    public ComparatorThread(final int height, final int width) {
+    public ComparatorThread(final int height, final int width, final SpongebobGameController controller, final AnchorPane root) {
+        this.controller = controller;
+        this.root = root;
         this.x = width;
         this.y = height;
         this.matrix = new int[y][x];
@@ -75,11 +84,25 @@ public class ComparatorThread extends Thread {
         double v = 0;
         int i = 0;
         for (RefModels model: RefModels.values()) {
-            if (valList.get(i)>v) {
+            if (valList.get(i)>v && valList.get(i)>.5) {
                 v = valList.get(i);
-                this.value = Optional.of(model.getName());
+                this.value = Optional.of(model);
+                if (model.getName() == "circle") {
+                    System.out.println(valList.get(i));
+                }
             }
             i++;
+        }
+        if (this.value.isPresent()) {
+            final int k = (int) (Math.random()*this.controller.getModel().getMap().get(this.value.get()).size());
+            if (this.controller.getModel().getMap().get(this.value.get()).size()!=0) {
+                PlanktonManager p = this.controller.getModel().getMap().get(this.value.get()).get(0);
+                p.stop();
+                this.controller.getModel().getMap().get(this.value.get()).remove(p);
+                Platform.runLater(() -> {
+                    this.root.getChildren().remove(p.Plankton);
+                });
+            }
         }
     }
 
@@ -87,15 +110,15 @@ public class ComparatorThread extends Thread {
         final List<Double> ret = new ArrayList<Double>();
         Double sum = (double) 0;
         for (int i = 0; i < valList.size(); i++) {
-            sum += 1/Math.exp(10*valList.get(i));
+            sum += 1/Math.exp(1*valList.get(i));
         }
         for (int i = 0; i < valList.size(); i++) {
-            ret.add((1/Math.exp(10*valList.get(i))/sum));
+            ret.add((1/Math.exp(1*valList.get(i))/sum));
         }
         return ret;
     }
 
-    public String getValue() {
+    public RefModels getValue() {
         if (this.value.isPresent()) {
             return this.value.get();
         } else {

@@ -1,5 +1,6 @@
 package view;
 
+import controller.SpongebobGameController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -13,14 +14,16 @@ public class SequencePainter implements EventHandler<MouseEvent> {
     
     private AnchorPane root;
     private ComparatorThread comparator;
+    private SpongebobGameController controller;
 
-    public SequencePainter(final AnchorPane root) {
+    public SequencePainter(final AnchorPane root, final SpongebobGameController controller) {
         this.root = root;
+        this.controller = controller;
     }
 
     @Override
     public void handle(MouseEvent arg) {
-        comparator = new ComparatorThread((int) root.getHeight(), (int) root.getWidth());
+        comparator = new ComparatorThread((int) root.getHeight(), (int) root.getWidth(), this.controller, this.root);
         Path path = new Path();
         path.setStrokeWidth(5);
         path.setStroke(Color.RED);

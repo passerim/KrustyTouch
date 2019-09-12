@@ -1,6 +1,12 @@
 package model;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+
+import controller.PlanktonManager;
 
 public class SpongebobGameImpl implements SpongebobGame {
     
@@ -12,13 +18,20 @@ public class SpongebobGameImpl implements SpongebobGame {
 	private long bonusRate;
 	private long planktonRate;
 	private boolean delayBonus = false;
+	
+	private  Map<RefModels, List<PlanktonManager>> map = new HashMap<>();
+	{
+	    for (RefModels m : RefModels.values()) {
+	        map.put(m, new LinkedList<>());
+	    }
+	}
 
 	public SpongebobGameImpl() {
 	    this.points = 0;
 	    this.bonusDuration = 4000;
 	    this.bonusRate = 5000;
 	    this.planktonRate = 1000;
-	    this.planktonDuration = 1500;
+	    this.planktonDuration = 5000;
 	}
 	
 	@Override
@@ -101,6 +114,16 @@ public class SpongebobGameImpl implements SpongebobGame {
             this.delayBonus = false;
             this.planktonRate = oldTime;
         }
+    }
+    
+    @Override
+    public void addToMap(final RefModels model, final PlanktonManager plank) {
+        this.map.get(model).add(plank);
+    }
+    
+    @Override
+    public Map<RefModels, List<PlanktonManager>> getMap() {
+        return this.map;
     }
 
 }
