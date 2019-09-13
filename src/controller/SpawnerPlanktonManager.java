@@ -11,6 +11,8 @@ public class SpawnerPlanktonManager extends Thread {
     private static SpawnerPlanktonManager SINGLETON = null;
     private SpongebobGameController controller;
     private Image[] images= new Image[2];
+    private boolean bonus = false;
+    private int cached = -1;
     
     private SpawnerPlanktonManager(AnchorPane base, SpongebobGameController controller) {
         this.root = base;
@@ -29,6 +31,7 @@ public class SpawnerPlanktonManager extends Thread {
         while (true) {
             try {
                 final int n = this.Random_Selector();
+                
                 Thread.sleep(this.controller.getModel().getPlanktonRate());
                 PlanktonManager plankton = new PlanktonManager(root, this.controller, this.images.clone());
                 this.controller.getModel().addToMap(RefModels.values()[n], plankton);
@@ -42,8 +45,32 @@ public class SpawnerPlanktonManager extends Thread {
         }
     }
     
-    public int Random_Selector() {
-        final int choice = (int) (Math.random()*9);
+    public boolean onBonus() {
+        if (!this.bonus) {
+            this.bonus = true;
+            this.cached = -1;
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean offBonus() {
+        if (this.bonus) {
+           this.bonus = true;
+           return true;
+        }
+        return false;
+    }
+    
+    private int Random_Selector() {
+        int choice = (int) (Math.random()*9);
+        if (this.bonus) {
+            if (this.cached == -1) {
+                this.cached = choice;
+            } else {
+                choice = this.cached;
+            }
+        }
         switch (choice) {
         case 0: 
             images[0]= new Image(ClassLoader.getSystemResource("images/plankton1_e_palloncino2.png").toString());

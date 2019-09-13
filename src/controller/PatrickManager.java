@@ -1,15 +1,21 @@
 package controller;
 
+import javax.swing.Timer;
+
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public class PatrickManager extends Bonus implements Runnable{
+    
+    private static final int BONUS_DURATION = 5000;
+    private final SpongebobGameController controller;
 
     public PatrickManager(final AnchorPane base, final SpongebobGameController controller){
         super(base, controller.getModel().getBonusDuration());
         this.image = new ImageView(new Image(ClassLoader.getSystemResource("images/patrickstella.png").toString()));
+        this.controller = controller;
     }
 
     @Override
@@ -24,7 +30,15 @@ public class PatrickManager extends Bonus implements Runnable{
 
     @Override
     public void action() {
-        System.out.println("Ciao");
+        if (SpawnerPlanktonManager.getPlanktonSpawner(this.root, this.controller).onBonus()) {
+            final Timer timer = new Timer(BONUS_DURATION,(event)->SpawnerPlanktonManager.getPlanktonSpawner(this.root, this.controller).offBonus());
+            timer.setRepeats(false);
+            timer.start();
+        }
+        Platform.runLater(()-> {
+            this.root.getChildren().remove(this.image);
+            this.stopTransition();
+        });
     }
 
     @Override

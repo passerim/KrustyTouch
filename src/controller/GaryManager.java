@@ -31,10 +31,11 @@ public class GaryManager extends Bonus implements  Runnable {
     @Override
     public void action() {
         final int oldTime = this.controller.getModel().getPlanktonTime();
-        this.controller.getModel().delayBonus(oldTime);
-        final Timer timer = new Timer(BONUS_DURATION,(event)->this.controller.getModel().delayBonus(oldTime));
-        timer.setRepeats(false);
-        timer.start();
+        if (this.controller.getModel().onDelayBonus()) {
+            final Timer timer = new Timer(BONUS_DURATION,(event)->this.controller.getModel().offDelayBonus(oldTime));
+            timer.setRepeats(false);
+            timer.start();
+        }
         Platform.runLater(()->root.getChildren().remove(this.image));
         System.out.println("Ciao");
     }

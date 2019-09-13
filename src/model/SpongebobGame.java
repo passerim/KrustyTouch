@@ -21,8 +21,6 @@ public interface SpongebobGame {
 
     int getPlanktonTime();
 
-    void delayBonus(int oldTime);
-
     void addToMap(RefModels model, PlanktonManager plank);
 
     Map<RefModels, List<PlanktonManager>> getMap();
@@ -34,4 +32,8 @@ public interface SpongebobGame {
     void setScoreBonus();
 
     void freeze();
+
+    boolean offDelayBonus(int oldTime);
+
+    boolean onDelayBonus();
 }

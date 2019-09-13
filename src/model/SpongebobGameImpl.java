@@ -101,14 +101,23 @@ public class SpongebobGameImpl implements SpongebobGame {
     }
 
     @Override
-    public void delayBonus(final int oldTime) {
+    public boolean onDelayBonus() {
         if (!this.delayBonus) {
             this.delayBonus = true;
             this.planktonRate = DELAY_BONUS_RATE;
-        } else {
+            return true;
+        }
+        return false;
+    }
+    
+    @Override
+    public boolean offDelayBonus(final int oldTime) {
+        if (this.delayBonus) {
             this.delayBonus = false;
             this.planktonRate = oldTime;
+            return true;
         }
+        return false;
     }
 
     @Override
