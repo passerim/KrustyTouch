@@ -20,8 +20,8 @@ public class GaryManager extends Bonus implements  Runnable {
 
     @Override
     public void spawn() {
-        this.image.setFitWidth(98.7);
-        this.image.setFitHeight(83.3);
+        this.image.setFitHeight(this.root.getHeight()/7);
+        this.image.setFitWidth(this.root.getWidth()/3.5);
         this.image.setLayoutY(0);
         this.image.setLayoutX(this.randomPosition());
         this.image.setVisible(true);

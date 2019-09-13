@@ -14,9 +14,8 @@ public class PatrickManager extends Bonus implements Runnable{
 
     @Override
     public void spawn() {
-        this.image.setPreserveRatio(true);
-        this.image.setFitWidth(110);
-        this.image.setFitHeight(79);
+        this.image.setFitHeight(this.root.getHeight()/10);
+        this.image.setFitWidth(this.root.getWidth()/6);
         this.image.setLayoutY(0);
         this.image.setLayoutX(randomPosition());
         this.image.setVisible(true);

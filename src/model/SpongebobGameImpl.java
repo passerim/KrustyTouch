@@ -32,7 +32,7 @@ public class SpongebobGameImpl implements SpongebobGame {
 
     public SpongebobGameImpl() {
         this.bonusDuration = 4000;
-        this.bonusRate = 5000;
+        this.bonusRate = 500;
         this.planktonRate = 1000;
         this.planktonDuration = 5000;
     }

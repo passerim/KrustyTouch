@@ -17,8 +17,8 @@ public class MrKrabManager extends Bonus implements Runnable {
 
     @Override
     public void spawn() {
-        this.image.setFitWidth(74);
-        this.image.setFitHeight(62.5);
+        this.image.setFitHeight(this.root.getHeight()/10);
+        this.image.setFitWidth(this.root.getWidth()/5);
         this.image.setLayoutY(0);
         this.image.setLayoutX(randomPosition());
         this.image.setVisible(true);
@@ -29,9 +29,11 @@ public class MrKrabManager extends Bonus implements Runnable {
     public void action(){
         this.controller.getModel().getMap().entrySet().stream().flatMap(e->e.getValue().stream()).forEach(elem->{
             this.root.getChildren().remove(elem.Plankton);
+            this.controller.getModel().incrementScore();
             elem.stop();
             elem.stopTransition();
         });
+        this.controller.getModel().getMap().entrySet().stream().map(e->e.getValue()).forEach(l->l.clear());
         System.out.println("Ciao");
         Platform.runLater(()->root.getChildren().remove(this.image));
     }

@@ -1,8 +1,7 @@
 package controller;
 
 import javafx.animation.TranslateTransition;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.application.Platform;
 import javafx.geometry.Point3D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,20 +31,10 @@ public class SpongebobManager extends Thread {
         this.Spongebob.setImage(new Image(ClassLoader.getSystemResource("images/walking_spongebob_1.png").toString()));
         this.Spongebob.setPreserveRatio(true);
         this.Spongebob.setLayoutX(0);
-        this.Spongebob.setLayoutY((this.root.getPrefHeight()*75)/100);
+        this.Spongebob.setLayoutY((this.root.getHeight()*75)/100);
+        this.Spongebob.setFitHeight(this.root.getHeight()/4);
         this.Spongebob.setVisible(true);
-        this.root.getChildren().add(this.Spongebob);
-        this.root.heightProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                double height= (double) newValue;
-                double NewHeight = ((SpongebobManager.this.root.getHeight()/1000)*100);
-                double NewWidth = ((SpongebobManager.this.root.getWidth()/500)*100);
-                getSpongebob().setLayoutY((height*75)/100);
-                getSpongebob().setFitHeight(227*NewHeight/100);
-                getSpongebob().setFitWidth(188*NewWidth/100);
-            }
-        });
+        Platform.runLater(() -> this.root.getChildren().add(this.Spongebob));
         movements.setNode(this.Spongebob);
         firstMove();
         while(true) {

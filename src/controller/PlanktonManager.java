@@ -40,7 +40,6 @@ public class PlanktonManager extends Thread {
         Plankton.setFitHeight(220);
         Plankton.setFitWidth(120);
         SetTransition();
-
         while(true){
             try {
                 TimeUnit.MILLISECONDS.sleep(ANIMATION_TIME); // mantengo  questo per il momento

@@ -20,8 +20,8 @@ public class KrabbyPattyManager extends Bonus implements Runnable {
 
     @Override
     public void spawn() {
-        this.image.setFitHeight(61);
-        this.image.setFitWidth(61);
+        this.image.setFitHeight(this.root.getHeight()/11);
+        this.image.setFitWidth(this.root.getWidth()/5.5);
         this.image.setLayoutY(0);
         this.image.setLayoutX(randomPosition());
         this.image.setVisible(true);
