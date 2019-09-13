@@ -21,7 +21,7 @@ public class PlanktonManager extends Thread {
     private TranslateTransition transition = new TranslateTransition();
     private int duration;
     private static final int ANIMATION_TIME = 250;
-    private static final int LIMIT = 70;
+    private static final int LIMIT = 60;
     private final Image[] InterImages;
     private SpongebobGameController controller;
     
@@ -37,8 +37,8 @@ public class PlanktonManager extends Thread {
     //main function, after waiting a couple of seconds it randomly spawn a plankton
     public void run() {
         RandomSpawn();
-        Plankton.setFitHeight(220);
-        Plankton.setFitWidth(120);
+        Plankton.setFitHeight(this.root.getHeight()/3);
+        Plankton.setFitWidth(this.root.getWidth()/3);
         SetTransition();
         while(true){
             try {

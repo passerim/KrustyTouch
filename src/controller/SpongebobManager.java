@@ -29,10 +29,10 @@ public class SpongebobManager extends Thread {
 
     public void run() {
         this.Spongebob.setImage(new Image(ClassLoader.getSystemResource("images/walking_spongebob_1.png").toString()));
-        this.Spongebob.setPreserveRatio(true);
         this.Spongebob.setLayoutX(0);
         this.Spongebob.setLayoutY((this.root.getHeight()*75)/100);
         this.Spongebob.setFitHeight(this.root.getHeight()/4);
+        this.Spongebob.setFitWidth(this.root.getWidth()/2);
         this.Spongebob.setVisible(true);
         Platform.runLater(() -> this.root.getChildren().add(this.Spongebob));
         movements.setNode(this.Spongebob);

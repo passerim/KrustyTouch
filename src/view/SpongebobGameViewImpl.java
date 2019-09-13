@@ -37,6 +37,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
         this.PrimaryStage.setFullScreen(false);
         this.PrimaryStage.setOnCloseRequest(we->this.observer.quit());
         this.PrimaryStage.setResizable(true);
+        this.PrimaryStage.setMinHeight(480);
         this.SetMenuBackground(PrimaryStage, ScreenSize);
     }
     

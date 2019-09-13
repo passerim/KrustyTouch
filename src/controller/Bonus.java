@@ -8,9 +8,9 @@ import javafx.util.Duration;
 
 public abstract class Bonus implements Runnable {
     
-    private static final int RIGHTOFFSET = 100;
-    private static final int LEFTOFFSET = 0;
-    private static final int LIMIT = 100;
+    protected static final int RIGHTOFFSET = 80;
+    protected static final int LEFTOFFSET = 20;
+    protected static final int LIMIT = 100;
     protected AnchorPane root;
     protected ImageView image;
     private final int bonusDuration;

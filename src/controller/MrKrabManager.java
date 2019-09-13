@@ -29,7 +29,7 @@ public class MrKrabManager extends Bonus implements Runnable {
     public void action(){
         this.controller.getModel().getMap().entrySet().stream().flatMap(e->e.getValue().stream()).forEach(elem->{
             this.root.getChildren().remove(elem.Plankton);
-            this.controller.getModel().incrementScore();
+            this.controller.updateScore();
             elem.stop();
             elem.stopTransition();
         });
