@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import controller.ComparatorThread;
+
 public class ShowGui {
 
     private final JFrame frame = new JFrame();

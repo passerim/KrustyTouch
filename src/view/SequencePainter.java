@@ -1,5 +1,6 @@
 package view;
 
+import controller.ComparatorThread;
 import controller.SpongebobGameController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -8,7 +9,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-import model.ComparatorThread;
 
 public class SequencePainter implements EventHandler<MouseEvent> {
     

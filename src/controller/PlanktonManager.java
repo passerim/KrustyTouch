@@ -24,6 +24,7 @@ public class PlanktonManager extends Thread {
     private static final int LIMIT = 60;
     private final Image[] InterImages;
     private SpongebobGameController controller;
+    private boolean canRun = true;
     
     //constructor used in order to obtain the main panel.
     public PlanktonManager(final AnchorPane base, final SpongebobGameController controller, final Image[] images) {
@@ -40,7 +41,7 @@ public class PlanktonManager extends Thread {
         Plankton.setFitHeight(this.root.getHeight()/3);
         Plankton.setFitWidth(this.root.getWidth()/3);
         SetTransition();
-        while(true){
+        while(this.canRun){
             try {
                 TimeUnit.MILLISECONDS.sleep(ANIMATION_TIME); // mantengo  questo per il momento
                 if(interchanger==0){
@@ -53,6 +54,12 @@ public class PlanktonManager extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+    }
+    
+    public void disable() {
+        if (this.canRun) {
+           this.canRun = false; 
         }
     }
 
@@ -75,6 +82,7 @@ public class PlanktonManager extends Thread {
         transition.play();
         transition.setOnFinished((event)->Platform.runLater(()-> {
             this.controller.getModel().freeze();
+            this.disable();
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

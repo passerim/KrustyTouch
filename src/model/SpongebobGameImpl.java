@@ -11,7 +11,7 @@ import controller.PlanktonManager;
 
 public class SpongebobGameImpl implements SpongebobGame {
 
-    private static final int DELAY_BONUS_RATE = 3000;
+    private static final int DELAY_BONUS_RATE = 8000;
     private Optional<Long> startTime = Optional.empty();
     private Integer score = 0;
     private int bonusDuration;
@@ -31,9 +31,9 @@ public class SpongebobGameImpl implements SpongebobGame {
     }
 
     public SpongebobGameImpl() {
-        this.bonusDuration = 4000;
-        this.bonusRate = 500;
-        this.planktonRate = 1000;
+        this.bonusDuration = 5000;
+        this.bonusRate = 5000;
+        this.planktonRate = 2500;
         this.planktonDuration = 5000;
     }
 

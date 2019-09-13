@@ -23,7 +23,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
     private final SpongebobGameController controller;
     private final Label score = new Label();
     
-    public SpongebobGameViewImpl(Stage PrimaryStage, SpongebobGameViewObserver observer) {
+    public SpongebobGameViewImpl(final Stage PrimaryStage, final SpongebobGameViewObserver observer) {
         this.controller = (SpongebobGameController) observer;
         this.PrimaryStage = PrimaryStage;
         this.observer = observer;
@@ -41,7 +41,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
         this.SetMenuBackground(PrimaryStage, ScreenSize);
     }
     
-    private void SetMenuBackground(Stage PrimaryStage, Dimension ScreenSize) {
+    private void SetMenuBackground(final Stage PrimaryStage, final Dimension ScreenSize) {
         this.scene = new Scene(root, (ScreenSize.getHeight()*90)/100/16*9, (ScreenSize.getHeight()*90)/100);
         final ImageView Background= new ImageView();
         Background.setImage(new Image(ClassLoader.getSystemResource("images/Menu_di_Gioco.png").toString()));
@@ -67,7 +67,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
         this.root.prefWidthProperty().bind(this.root.heightProperty().divide(16).multiply(9));
     }
     
-    private void SetGameBackground(double height, double width) {
+    private void SetGameBackground(final double height, final double width) {
         this.root = new AnchorPane();
         this.scene = new Scene(this.root, width,height);
         final ImageView background = new ImageView(new Image(ClassLoader.getSystemResource("images/sfondo_FINALE.png").toString()));
@@ -104,16 +104,21 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
         System.out.println(root.getHeight() + "    " + root.getWidth());
         ChangeListener<Number> sceneSizeListener = (observable, oldValue, newValue) -> {
             if (observable.toString().contains("height")) {
-                PrimaryStage.setWidth(newValue.doubleValue()/16*9);
-                PrimaryStage.setMinWidth(PrimaryStage.getWidth());
-                PrimaryStage.setMaxWidth(PrimaryStage.getWidth());
+                this.PrimaryStage.setWidth(newValue.doubleValue()/16*9);
+                this.PrimaryStage.setMinWidth(PrimaryStage.getWidth());
+                this.PrimaryStage.setMaxWidth(PrimaryStage.getWidth());
             }
         };
-        this.scene.heightProperty().addListener(sceneSizeListener);
+        if (System.getProperty("os.name").toLowerCase().contains("win") || System.getProperty("os.name").toLowerCase().contains("mac")) {
+            this.scene.heightProperty().addListener(sceneSizeListener);
+        } else {
+            this.PrimaryStage.setMaxWidth(PrimaryStage.getWidth());
+            this.PrimaryStage.setMinWidth(480/16*9);
+        }
     }
 
     @Override
-    public void setObserver(SpongebobGameViewObserver observer){
+    public void setObserver(final SpongebobGameViewObserver observer){
         this.observer = observer;
     }
 

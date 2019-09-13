@@ -31,7 +31,6 @@ public class SpawnerPlanktonManager extends Thread {
         while (true) {
             try {
                 final int n = this.Random_Selector();
-                
                 Thread.sleep(this.controller.getModel().getPlanktonRate());
                 PlanktonManager plankton = new PlanktonManager(root, this.controller, this.images.clone());
                 this.controller.getModel().addToMap(RefModels.values()[n], plankton);
@@ -56,7 +55,7 @@ public class SpawnerPlanktonManager extends Thread {
     
     public boolean offBonus() {
         if (this.bonus) {
-           this.bonus = true;
+           this.bonus = false;
            return true;
         }
         return false;

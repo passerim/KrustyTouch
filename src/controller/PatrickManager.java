@@ -9,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class PatrickManager extends Bonus implements Runnable{
     
-    private static final int BONUS_DURATION = 5000;
+    private static final int BONUS_DURATION = 10000;
     private final SpongebobGameController controller;
 
     public PatrickManager(final AnchorPane base, final SpongebobGameController controller){

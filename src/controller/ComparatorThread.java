@@ -1,17 +1,16 @@
-package model;
+package controller;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
 
-import controller.PlanktonManager;
-import controller.SpongebobGameController;
 import javafx.application.Platform;
 import javafx.scene.layout.AnchorPane;
+import model.ModelComparator;
+import model.ModelUtils;
+import model.RefModels;
+import model.Sequencer;
 
 public class ComparatorThread extends Thread {
 
@@ -71,7 +70,7 @@ public class ComparatorThread extends Thread {
             //System.out.println(this.controller.getModel().getMap());
             if (this.controller.getModel().canRemove(this.value.get())) {
                 PlanktonManager p = this.controller.getModel().getMap().get(this.value.get()).get(0);
-                p.stop();
+                p.disable();
                 p.stopTransition();
                 this.controller.getModel().getMap().get(this.value.get()).remove(p);
                 Platform.runLater(() -> {
