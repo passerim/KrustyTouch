@@ -29,17 +29,17 @@ public class ComparatorThread extends Thread {
 
         // Computing average and filtering data points
         double avg = 0;
-        for (int i = 0; i<points.size()-1; i++) {
-            avg += ModelUtils.distance(points.get(i).x, points.get(i+1).x, points.get(i).y, points.get(i+1).y);
+        for (int i = 0; i < points.size() - 1; i++) {
+            avg += ModelUtils.distance(points.get(i).x, points.get(i + 1).x, points.get(i).y, points.get(i + 1).y);
         }
         avg = avg / points.size();
         boolean filtra = true;
         while (filtra) {
             filtra = false;
-            for (int i = 0; i<points.size()-2; i++) {
-                if (ModelUtils.distance(points.get(i).x, points.get(i+2).x, points.get(i).y, points.get(i+2).y) < 1.96*avg) {
-                    points.remove(i+1);
-                    if (ModelUtils.distance(points.get(i).x, points.get(i+1).x, points.get(i).y, points.get(i+1).y) < avg) {
+            for (int i = 0; i < points.size() - 2; i++) {
+                if (ModelUtils.distance(points.get(i).x, points.get(i + 2).x, points.get(i).y, points.get(i + 2).y) < 1.96 * avg) {
+                    points.remove(i + 1);
+                    if (ModelUtils.distance(points.get(i).x, points.get(i + 1).x, points.get(i).y, points.get(i + 1).y) < avg) {
                         filtra = true;
                     }
                 }
@@ -47,19 +47,19 @@ public class ComparatorThread extends Thread {
         }
 
         // Getting drawn points sequence
-        Sequencer pointsSeq = new Sequencer(points);
+        final Sequencer pointsSeq = new Sequencer(points);
         final Integer[] pointSequence = pointsSeq.computeSequence();
         //System.out.println(Arrays.deepToString(pointSequence));
         List<Double> valList = new ArrayList<>();
         //valList = Arrays.asList(RefModels.values()).stream().map(m->(double) new ModelComparator(pointSequence, m).getResult()).collect(Collectors.toList());
-        for (RefModels model: RefModels.values()) {
+        for (final RefModels model: RefModels.values()) {
             valList.add((double) new ModelComparator(pointSequence, model).getResult());
         }
         valList = ModelUtils.softmax(valList);
         double v = 0;
         int i = 0;
-        for (RefModels model: RefModels.values()) {
-            if (valList.get(i)>v && valList.get(i)>.5) {
+        for (final RefModels model: RefModels.values()) {
+            if (valList.get(i) > v && valList.get(i) > .5) {
                 v = valList.get(i);
                 this.value = Optional.of(model);
             }
@@ -69,7 +69,7 @@ public class ComparatorThread extends Thread {
             System.out.println(this.value.get());
             //System.out.println(this.controller.getModel().getMap());
             if (this.controller.getModel().canRemove(this.value.get())) {
-                PlanktonManager p = this.controller.getModel().getMap().get(this.value.get()).get(0);
+                final PlanktonManager p = this.controller.getModel().getMap().get(this.value.get()).get(0);
                 p.disable();
                 p.stopTransition();
                 this.controller.getModel().getMap().get(this.value.get()).remove(p);
@@ -92,8 +92,8 @@ public class ComparatorThread extends Thread {
         }
     }
 
-    public void add(int toX, int toY) {
-        Point p = new Point();
+    public void add(final int toX, final int toY) {
+        final Point p = new Point();
         p.x = toX;
         p.y = toY;
         points.add(p);

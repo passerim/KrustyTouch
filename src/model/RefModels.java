@@ -34,11 +34,11 @@ public enum RefModels {
     }
 
     public Integer[] getSeq() {
-        return this.seq;
+        return this.seq.clone();
     }
 
     public Double[] getProp() {
-        return prop;
+        return prop.clone();
     }
 
     public List<Pair<Integer, Double>> getMap() {
@@ -50,7 +50,7 @@ public enum RefModels {
     }
 
     public List<Pair<Integer, Double>> getFeaturesMapList() {
-        final List<Pair<Integer, Double>> ret = new LinkedList<Pair<Integer,Double>>();
+        final List<Pair<Integer, Double>> ret = new LinkedList<Pair<Integer, Double>>();
         for (int i = 0; i < this.seq.length; i++) {
             ret.add(new Pair<>(this.seq[i], this.prop[i]));
         }

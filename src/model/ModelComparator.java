@@ -49,7 +49,7 @@ public class ModelComparator {
             dest[j - 1] = src[i]; 
             j = j - 1; 
         }
-        for(int x = 0; x <= src.length-1; x++) {
+        for (int x = 0; x <= src.length - 1; x++) {
             dest[x] = ModelUtils.invertMod8(dest[x]);
         }
         
@@ -58,8 +58,8 @@ public class ModelComparator {
 
     private Integer[] rotateBy(final Integer[] src, final int n) {
         Integer[] dest = new Integer[src.length];
-        for(int x = 0; x <= src.length-1; x++) {
-            dest[(x+n) % src.length ] = src[x];
+        for (int x = 0; x <= src.length - 1; x++) {
+            dest[(x + n) % src.length ] = src[x];
         }
         return dest;
     }

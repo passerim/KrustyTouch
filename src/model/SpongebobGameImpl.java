@@ -20,21 +20,18 @@ public class SpongebobGameImpl implements SpongebobGame {
     private long planktonRate;
     private boolean delayBonus = false;
     private int scoreMultiplier = 1;
-    private Map<RefModels, List<PlanktonManager>> map = new HashMap<>();
+    private final Map<RefModels, List<PlanktonManager>> map = new HashMap<>();
     private boolean scoreBonus = false;
     private final List<Bonus> bonuses = new LinkedList<>();
-
-    {
-        for (RefModels m : RefModels.values()) {
-            map.put(m, new LinkedList<>());
-        }
-    }
 
     public SpongebobGameImpl() {
         this.bonusDuration = 5000;
         this.bonusRate = 5000;
         this.planktonRate = 2500;
         this.planktonDuration = 5000;
+        for (final RefModels m : RefModels.values()) {
+            map.put(m, new LinkedList<>());
+        }
     }
 
     @Override
@@ -131,12 +128,8 @@ public class SpongebobGameImpl implements SpongebobGame {
     }
 
     @Override
-    public boolean canRemove(RefModels model) {
-        if (this.map.get(model).isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+    public boolean canRemove(final RefModels model) {
+        return !this.map.get(model).isEmpty();
     }
 
     @Override
@@ -157,8 +150,8 @@ public class SpongebobGameImpl implements SpongebobGame {
     
     @Override
     public void freeze() {
-        this.map.entrySet().stream().flatMap(m->m.getValue().stream()).forEach(p->p.stopTransition());
-        this.bonuses.stream().forEach(b->b.stopTransition());
+        this.map.entrySet().stream().flatMap(m -> m.getValue().stream()).forEach(p -> p.stopTransition());
+        this.bonuses.stream().forEach(b -> b.stopTransition());
     }
 
 }

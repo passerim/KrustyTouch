@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -18,7 +19,7 @@ public class ImgToMatrixLoader {
 
     private final File[] files;
     private final int width, height;
-    private final ArrayList<int[][]> matrixList = new ArrayList<int[][]>();
+    private final List<int[][]> matrixList = new ArrayList<int[][]>();
 
     public ImgToMatrixLoader(final int width, final int height) {
         this.width = width;
@@ -26,12 +27,12 @@ public class ImgToMatrixLoader {
         final String pwd = System.getProperty("user.dir");
         final File dir = new File(pwd + "/images");
         this.files = dir.listFiles(new FilenameFilter() {
-            public boolean accept(File dir, String name) {
+            public boolean accept(final File dir, final String name) {
                 return name.toLowerCase().endsWith(".jpg");
             }
         });
         BufferedImage loadedImg = null;
-        for (File f : this.files) {
+        for (final File f : this.files) {
             try {
                 loadedImg = ImageIO.read(f);
             } catch (IOException e) {
@@ -45,9 +46,9 @@ public class ImgToMatrixLoader {
     }
 
     private BufferedImage resizeImg(final BufferedImage image, final int width, final int height) {
-        final ImageFilter colorfilter = new ReplicateScaleFilter(width,height);
+        final ImageFilter colorfilter = new ReplicateScaleFilter(width, height);
         final Image img = Toolkit.getDefaultToolkit().createImage(new FilteredImageSource(image.getSource(), colorfilter));
-        final BufferedImage bi = new BufferedImage(img.getWidth(null),img.getHeight(null),BufferedImage.TYPE_INT_RGB);
+        final BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
         final Graphics bg = bi.getGraphics();
         bg.drawImage(img, 0, 0, null);
         bg.dispose();
@@ -69,7 +70,7 @@ public class ImgToMatrixLoader {
     }
 
     public File[] getFiles() {
-        return this.files;
+        return this.files.clone();
     }
 
 }

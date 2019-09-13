@@ -23,7 +23,7 @@ public class SequencePainter implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(final MouseEvent arg) {
-        comparator = new ComparatorThread( this.controller, this.root);
+        comparator = new ComparatorThread(this.controller, this.root);
         final Path path = new Path();
         path.setStrokeWidth(5);
         path.setStroke(Color.RED);
@@ -69,8 +69,8 @@ public class SequencePainter implements EventHandler<MouseEvent> {
 
         @Override
         public void handle(final MouseEvent e) {
-            if (SequencePainter.this.comparator.getState()!=Thread.State.RUNNABLE 
-                    && SequencePainter.this.comparator.getState()!=Thread.State.TERMINATED) {
+            if (SequencePainter.this.comparator.getState() != Thread.State.RUNNABLE 
+                    && SequencePainter.this.comparator.getState() != Thread.State.TERMINATED) {
                 SequencePainter.this.root.removeEventFilter(MouseEvent.MOUSE_DRAGGED, listener);
                 SequencePainter.this.comparator.start();
             }

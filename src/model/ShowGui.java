@@ -7,6 +7,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,48 +20,47 @@ public class ShowGui {
     private final JFrame frame = new JFrame();
     private final JPanel panel = new JPanel();
 
-    ShowGui(){
+    ShowGui() {
         final JPanel panel = new JPanel() {
             private static final long serialVersionUID = -3881289804519169474L;
-            final ArrayList<Point> points = new ArrayList<Point>();
+            private final List<Point> points = new ArrayList<Point>();
             {
-                addMouseListener( new MouseListener(){
+                addMouseListener(new MouseListener() {
 
-                    ComparatorThread th;
-
+                    private ComparatorThread th;
                     private boolean pressed = false;
-                    final MouseMotionListener l = new MouseMotionListener() {
+                    private final MouseMotionListener l = new MouseMotionListener() {
 
                         @Override
-                        public void mouseDragged(MouseEvent e) {
+                        public void mouseDragged(final MouseEvent e) {
                             th.add(e.getX(), e.getY());
                             points.add(e.getPoint());
                             repaint();
                         }
 
                         @Override
-                        public void mouseMoved(MouseEvent e) {  
+                        public void mouseMoved(final MouseEvent e) {  
                         }
                     };
 
-                    public void mouseExited(MouseEvent e) {
+                    public void mouseExited(final MouseEvent e) {
                         if (pressed) {
                             mouseReleased(e);
                         }
                     }
 
-                    public void mousePressed(MouseEvent e) {
+                    public void mousePressed(final MouseEvent e) {
                         pressed = true;
                         //th = new ComparatorThread(400,400);
                         addMouseMotionListener(l);
                         points.add(e.getPoint());
                     }
 
-                    public void mouseReleased(MouseEvent e) {
-                        if (th.getState()!=Thread.State.RUNNABLE&&th.getState()!=Thread.State.TERMINATED) {
+                    public void mouseReleased(final MouseEvent e) {
+                        if (th.getState() != Thread.State.RUNNABLE && th.getState() != Thread.State.TERMINATED) {
                             removeMouseMotionListener(l);
                             th.start();
-                            while (th.getState()!=Thread.State.TERMINATED){
+                            while (th.getState() != Thread.State.TERMINATED) {
                                 try {
                                     Thread.sleep(200);
                                 } catch (InterruptedException ex) {
@@ -72,19 +73,19 @@ public class ShowGui {
                         points.clear();
                     }
 
-                    public void mouseClicked(MouseEvent e) {    
+                    public void mouseClicked(final MouseEvent e) {    
                     }
 
-                    public void mouseEntered(MouseEvent e) {
+                    public void mouseEntered(final MouseEvent e) {
                     }
                 });
             }
-            public void paint(Graphics g) {
+            public void paint(final Graphics g) {
                 super.paint(g);
                 if (points.size() >= 2) {
                     g.setColor(Color.RED);
-                    for (int i=0; i<points.size()-1; i++) {
-                        g.drawLine(points.get(i).x, points.get(i).y, points.get(i+1).x, points.get(i+1).y);
+                    for (int i = 0; i < points.size() - 1; i++) {
+                        g.drawLine(points.get(i).x, points.get(i).y, points.get(i + 1).x, points.get(i + 1).y);
                     }
                 }
             }
@@ -92,7 +93,7 @@ public class ShowGui {
 
         this.frame.setTitle("gui");
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.setSize(400,400);
+        this.frame.setSize(400, 400);
         this.frame.setResizable(false);
         this.frame.getContentPane().add(panel);
         this.frame.setLocationByPlatform(true);

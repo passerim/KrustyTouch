@@ -2,16 +2,17 @@ package model;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Sequencer {
 
-    private final ArrayList<Integer> pointsDirections = new ArrayList<Integer>();
+    private final List<Integer> pointsDirections = new ArrayList<Integer>();
     private final Point[] points;
 
     public Sequencer(final ArrayList<Point> inputPoints) {
         int i = 0;
         this.points = new Point[inputPoints.size()];
-        for (Point p : inputPoints) {
+        for (final Point p : inputPoints) {
             points[i] = p;
             i++;
         }
@@ -20,12 +21,16 @@ public class Sequencer {
     public Integer[] computeSequence() {
         Point lastP = null;
         int cost = 0;
-        for (int p = 1; p<points.length; p++) {
+        for (int p = 1; p < points.length; p++) {
             int dir = -1;
-            double thetaDeg = computeAngle(points[p-1], points[p]);
-            if ((thetaDeg < 360. && thetaDeg > 360. - 45./2.) || (thetaDeg >= 0. && thetaDeg <  45./2.)) dir = 0;
+            double thetaDeg = computeAngle(points[p - 1], points[p]);
+            if ((thetaDeg < 360. && thetaDeg > 360. - 45./2.) || (thetaDeg >= 0. && thetaDeg <  45./2.)) {
+                dir = 0;
+            }
             for (int a = 1; a < 8; a++) {
-                if ( ((45.*a - 45./2.)) <= thetaDeg && thetaDeg  < ((45.*a + 45./2.)) ) dir = a;
+                if (((45. * a - 45. / 2.)) <= thetaDeg && thetaDeg  < ((45. * a + 45. / 2.))) {
+                    dir = a;
+                }
             }
             if (dir == -1) {
                 throw new IllegalArgumentException("Direction not recognized!");
@@ -35,23 +40,22 @@ public class Sequencer {
                 lastP = points[p];
                 continue;
             }
-            if (dir == pointsDirections.get(pointsDirections.size()-1)) {
+            if (dir == pointsDirections.get(pointsDirections.size() - 1)) {
                 continue;
             }
             thetaDeg = computeAngle(lastP, points[p]);
-            int prevDir = pointsDirections.get(pointsDirections.size()-1);
-            if ((thetaDeg < 360. && thetaDeg > 360. - 45./2.) || (thetaDeg >= 0. && thetaDeg <  45./2.)) {
+            final int prevDir = pointsDirections.get(pointsDirections.size() - 1);
+            if ((thetaDeg < 360. && thetaDeg > 360. - 45. / 2.) || (thetaDeg >= 0. && thetaDeg <  45. / 2.)) {
                 continue;
-            } else if ((45.*prevDir - 45./2.) <= thetaDeg && thetaDeg < (45.*prevDir + 45./2.)) {
+            } else if ((45. * prevDir - 45. / 2.) <= thetaDeg && thetaDeg < (45. * prevDir + 45. / 2.)) {
                 continue;
             } else {
                 String currString = pointsDirections.toString();
                 currString = currString.replace("[", "");
                 currString = currString.replace("]", "");
                 currString = currString.replace(", ", "");
-                String nextString = new String();
-                nextString = currString.concat(Integer.toString(dir));
-                int gain = ModelUtils.computeLevenshteinDistance(currString, nextString);
+                final String nextString = currString.concat(Integer.toString(dir));
+                final int gain = ModelUtils.computeLevenshteinDistance(currString, nextString);
                 cost += distMod8(prevDir, dir);
                 if (cost > gain) {
                     cost = 0;
@@ -63,20 +67,19 @@ public class Sequencer {
         return listToArray(pointsDirections);
     }
 
-    private Integer[] listToArray(final ArrayList<Integer> directions) {
+    private Integer[] listToArray(final List<Integer> directions) {
         Integer[] intArray = new Integer[directions.size()]; 
         int i = 0;
-        for (Integer d : directions) {
+        for (final Integer d : directions) {
             intArray[i] = d;
             i++;
         }
         return intArray;
     }
 
-    private int distMod8(final int a, final int b)
-    {
-        int diff = Math.abs( b - a );
-        return ( diff < 4 ) ? diff : 8 - diff;
+    private int distMod8(final int a, final int b) {
+        final int diff = Math.abs(b - a);
+        return (diff < 4) ? diff : 8 - diff;
     }
     /*
     private int computeLevenshteinDistance(final CharSequence lhs, final CharSequence rhs) {      
@@ -98,10 +101,12 @@ public class Sequencer {
     }
      */
     private double computeAngle(final Point prec, final Point succ) {
-        int deltaX = prec.x - succ.x;
-        int deltaY = prec.y - succ.y;
+        final int deltaX = prec.x - succ.x;
+        final int deltaY = prec.y - succ.y;
         double thetaDeg = Math.toDegrees(Math.atan2(deltaY, deltaX));
-        if (thetaDeg < 0) thetaDeg =   180 + (180+thetaDeg);
+        if (thetaDeg < 0) {
+            thetaDeg =   180 + (180 + thetaDeg);
+        }
         return thetaDeg;
     }
 
