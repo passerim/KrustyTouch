@@ -10,7 +10,7 @@ import javax.swing.Timer;
 public class GaryManager extends Bonus implements  Runnable {
     
     private static final int BONUS_DURATION = 10000;
-    private SpongebobGameController controller;
+    private final SpongebobGameController controller;
     
     public GaryManager(AnchorPane base, SpongebobGameController controller){
         super(base, controller.getModel().getBonusDuration());
@@ -25,18 +25,18 @@ public class GaryManager extends Bonus implements  Runnable {
         this.image.setLayoutY(0);
         this.image.setLayoutX(this.randomPosition());
         this.image.setVisible(true);
-        Platform.runLater(()->root.getChildren().add(this.image));
+        Platform.runLater(() -> root.getChildren().add(this.image));
     }
 
     @Override
     public void action() {
         final int oldTime = this.controller.getModel().getPlanktonTime();
         if (this.controller.getModel().onDelayBonus()) {
-            final Timer timer = new Timer(BONUS_DURATION,(event)->this.controller.getModel().offDelayBonus(oldTime));
+            final Timer timer = new Timer(BONUS_DURATION, (event) -> this.controller.getModel().offDelayBonus(oldTime));
             timer.setRepeats(false);
             timer.start();
         }
-        Platform.runLater(()->root.getChildren().remove(this.image));
+        Platform.runLater(() -> root.getChildren().remove(this.image));
         System.out.println("Ciao");
     }
 
@@ -46,6 +46,6 @@ public class GaryManager extends Bonus implements  Runnable {
     public void run() {
         this.spawn();
         this.move();
-        this.image.setOnMouseClicked((event)->action());
+        this.image.setOnMouseClicked((event) -> action());
     }
 }

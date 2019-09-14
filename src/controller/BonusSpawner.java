@@ -34,7 +34,7 @@ public class BonusSpawner extends Thread {
     }
     
     private void RandomChoice() {
-        int bonusSelector = (int) (Math.random() * 4);
+        final int bonusSelector = (int) (Math.random() * 4);
         switch (bonusSelector) {
         case 0:
             Thread MrKrab = new Thread(new MrKrabManager(root, this.controller));

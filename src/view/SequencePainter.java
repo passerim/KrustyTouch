@@ -12,6 +12,7 @@ import javafx.scene.shape.Path;
 
 public class SequencePainter implements EventHandler<MouseEvent> {
     
+    private static final int STROKE_WIDTH = 5;
     private final AnchorPane root;
     private ComparatorThread comparator;
     private final SpongebobGameController controller;
@@ -25,7 +26,7 @@ public class SequencePainter implements EventHandler<MouseEvent> {
     public void handle(final MouseEvent arg) {
         comparator = new ComparatorThread(this.controller, this.root);
         final Path path = new Path();
-        path.setStrokeWidth(5);
+        path.setStrokeWidth(STROKE_WIDTH);
         path.setStroke(Color.RED);
         final MoveTo moveTo = new MoveTo(arg.getX(), arg.getY());
         path.getElements().add(moveTo);

@@ -16,6 +16,10 @@ import javafx.stage.Stage;
 public class SpongebobGameViewImpl implements SpongebobGameView {
 
     private static final String FRAME_NAME = "Krusty Touch";
+    private static final double ASPECT_RATIO = (9. / 16.);
+    private static final double DEFAULT_HEIGHT_TO_SCREEN_RATIO = (90. / 100.);
+    private static final int MINIMUM_SUPPORTED_HEIGHT_RES = 480;
+    private static final int FONT_SIZE = 25;
     private SpongebobGameViewObserver observer;
     private AnchorPane root;
     private final Stage PrimaryStage;
@@ -28,21 +32,21 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
         this.PrimaryStage = PrimaryStage;
         this.observer = observer;
         this.root = new AnchorPane();
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.PrimaryStage.setMaxHeight((screenSize.getHeight()*90)/100);
-        this.PrimaryStage.setMaxWidth((this.PrimaryStage.getMaxHeight()*9)/16);
+        final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.PrimaryStage.setMaxHeight(screenSize.getHeight() * DEFAULT_HEIGHT_TO_SCREEN_RATIO);
+        this.PrimaryStage.setMaxWidth(this.PrimaryStage.getMaxHeight() * ASPECT_RATIO);
         this.PrimaryStage.setTitle(FRAME_NAME);
         this.PrimaryStage.centerOnScreen();
         this.PrimaryStage.setMaximized(false);
         this.PrimaryStage.setFullScreen(false);
         this.PrimaryStage.setOnCloseRequest(we -> this.observer.quit());
         this.PrimaryStage.setResizable(true);
-        this.PrimaryStage.setMinHeight(480);
+        this.PrimaryStage.setMinHeight(MINIMUM_SUPPORTED_HEIGHT_RES);
         this.setMenuBackground(PrimaryStage, screenSize);
     }
 
-    private void setMenuBackground(final Stage PrimaryStage, final Dimension ScreenSize) {
-        this.scene = new Scene(root, (ScreenSize.getHeight()*90)/100/16*9, (ScreenSize.getHeight()*90)/100);
+    private void setMenuBackground(final Stage PrimaryStage, final Dimension screenSize) {
+        this.scene = new Scene(root, (screenSize.getHeight() * DEFAULT_HEIGHT_TO_SCREEN_RATIO * ASPECT_RATIO), screenSize.getHeight() * DEFAULT_HEIGHT_TO_SCREEN_RATIO);
         final ImageView background = new ImageView();
         background.setImage(new Image(ClassLoader.getSystemResource("images/Menu_di_Gioco.png").toString()));
         background.setVisible(true);
@@ -78,7 +82,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
         background.fitHeightProperty().bind(root.heightProperty());
         this.root.getChildren().add(background);
         this.score.setText("Score: 0");
-        this.score.setFont(new Font("Arial", this.root.getHeight()/25));
+        this.score.setFont(new Font("Arial", this.root.getHeight() / FONT_SIZE));
         AnchorPane.setRightAnchor(this.score, 0.);
         AnchorPane.setTopAnchor(this.score, 0.);
         this.root.getChildren().add(this.score);
@@ -99,12 +103,11 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
     @Override
     public void start() {
         this.PrimaryStage.setScene(scene);
-        this.PrimaryStage.sizeToScene();
         this.PrimaryStage.show();
         System.out.println(root.getHeight() + "    " + root.getWidth());
         final ChangeListener<Number> sceneSizeListener = (observable, oldValue, newValue) -> {
             if (observable.toString().contains("height")) {
-                this.PrimaryStage.setWidth(newValue.doubleValue()/16*9);
+                this.PrimaryStage.setWidth(newValue.doubleValue() * ASPECT_RATIO);
                 this.PrimaryStage.setMinWidth(PrimaryStage.getWidth());
                 this.PrimaryStage.setMaxWidth(PrimaryStage.getWidth());
             }
@@ -113,12 +116,12 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
             this.scene.heightProperty().addListener(sceneSizeListener);
         } else {
             this.PrimaryStage.setMaxWidth(PrimaryStage.getWidth());
-            this.PrimaryStage.setMinWidth(480/16*9);
+            this.PrimaryStage.setMinWidth(MINIMUM_SUPPORTED_HEIGHT_RES * ASPECT_RATIO);
         }
     }
 
     @Override
-    public void setObserver(final SpongebobGameViewObserver observer){
+    public void setObserver(final SpongebobGameViewObserver observer) {
         this.observer = observer;
     }
 
