@@ -11,37 +11,38 @@ import javafx.scene.layout.AnchorPane;
 
 public class MrKrabManager extends Bonus implements Runnable {
 
-    private SpongebobGameController controller;
-    /**
+  private SpongebobGameController controller;
+  
+  /**
      * this is the constructor method.
      * instantiate the image, and the controller
      * @param base AnchorPane root 
      * @param controller gameController interface, that manages all the functioning 
      */
-    public MrKrabManager(final AnchorPane base, final SpongebobGameController controller) {
-        super(base, controller.getModel().getBonusDuration());
-        this.image = new ImageView(new Image(ClassLoader.getSystemResource("images/mrkrab_finale.png").toString()));
-        this.controller = controller;
-    }
+  public MrKrabManager(final AnchorPane base, final SpongebobGameController controller) {
+    super(base, controller.getModel().getBonusDuration());
+    this.image = new ImageView(new Image(ClassLoader.getSystemResource("images/mrkrab_finale.png").toString()));
+    this.controller = controller;
+  }
 
-    @Override
-	public final void action() {
+  @Override
+public final void action() {
         this.controller.getModel().getMap().entrySet().stream().flatMap(e -> e.getValue().stream()).forEach(elem -> {
-            this.root.getChildren().remove(elem.Plankton);
-            this.controller.updateScore();
-            elem.disable();
-            elem.stopTransition();
+          this.root.getChildren().remove(elem.plankton);
+          this.controller.updateScore();
+          elem.disable();
+          elem.stopTransition();
         });
-        this.controller.getModel().getMap().entrySet().stream().map(e -> e.getValue()).forEach(l -> l.clear());
-        System.out.println("Ciao");
-        Platform.runLater(() -> root.getChildren().remove(this.image));
-    }
+    this.controller.getModel().getMap().entrySet().stream().map(e -> e.getValue()).forEach(l -> l.clear());
+    System.out.println("Ciao");
+    Platform.runLater(() -> root.getChildren().remove(this.image));
+  }
 
-    @Override
-	public final void run() {
-        spawn(10.0, 5.0);
-        move();
-        this.image.setOnMouseClicked((event) -> action());
-    }
+  @Override
+public final void run() {
+    spawn(10.0, 5.0);
+    move();
+    this.image.setOnMouseClicked((event) -> action());
+  }
 
 }

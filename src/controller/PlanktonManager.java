@@ -1,96 +1,112 @@
 package controller;
 
-
+import java.util.concurrent.TimeUnit;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
-import java.util.concurrent.TimeUnit;
+
 
 public class PlanktonManager extends Thread {
+  @FXML
+private AnchorPane root;
+  public ImageView plankton;
+  private int interchanger = 0;
+  private TranslateTransition transition = new TranslateTransition();
+  private int duration;
+  private static final int ANIMATION_TIME = 250;
+  private static final int LIMIT = 60;
+  private final Image[] interImages;
+  private SpongebobGameController controller;
+  private boolean canRun = true;
     
-    private AnchorPane root;
-    public ImageView Plankton = new ImageView(new Image(ClassLoader.getSystemResource("images/plankton4.png").toString()));
-    private int interchanger = 0;
-    private TranslateTransition transition = new TranslateTransition();
-    private int duration;
-    private static final int ANIMATION_TIME = 250;
-    private static final int LIMIT = 60;
-    private final Image[] InterImages;
-    private SpongebobGameController controller;
-    private boolean canRun = true;
-    
-    //constructor used in order to obtain the main panel.
-    public PlanktonManager(final AnchorPane base, final SpongebobGameController controller, final Image[] images) {
-        this.root = base;
-        this.duration = controller.getModel().getPlanktonTime();
-        this.InterImages = images;
-        this.Plankton = new ImageView(InterImages[0]);   
-        this.controller = controller;
-    }
+  /**this is a constructor.
+     * 
+     * @param base AnchorPane root
+     * @param controller SpongebobGameController controller
+     * @param images the 2 images of plankton walking
+     */
+  public PlanktonManager(final AnchorPane base, final SpongebobGameController controller, final Image[] images) {
+    this.root = base;
+    this.duration = controller.getModel().getPlanktonTime();
+    this.interImages = images;
+    this.plankton = new ImageView(interImages[0]);   
+    this.controller = controller;
+  }
 
-    //main function, after waiting a couple of seconds it randomly spawn a plankton
-    public void run() {
-        RandomSpawn();
-        Plankton.setFitHeight(this.root.getHeight()/3);
-        Plankton.setFitWidth(this.root.getWidth()/3);
-        SetTransition();
-        while(this.canRun){
-            try {
-                TimeUnit.MILLISECONDS.sleep(ANIMATION_TIME); // mantengo  questo per il momento
-                if(interchanger==0){
-                    Plankton.setImage(InterImages[0]);
-                    interchanger=1;
-                }else{
-                    Plankton.setImage(InterImages[1]);
-                    interchanger=0;
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+  @Override
+    public void run()  {
+    randomSpawn();
+    plankton.setFitHeight(this.root.getHeight() / 3);
+    plankton.setFitWidth(this.root.getWidth() / 3);
+    setTransition();
+    while (this.canRun) {
+      try {
+        TimeUnit.MILLISECONDS.sleep(ANIMATION_TIME); // mantengo  questo per il momento
+        if (interchanger == 0) {
+          plankton.setImage(interImages[0]);
+          interchanger = 1;
+        } else {
+          plankton.setImage(interImages[1]);
+          interchanger = 0;
         }
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
     }
-    
-    public void disable() {
-        if (this.canRun) {
-           this.canRun = false; 
-        }
+  }
+  
+  /**this method disables and stop thread.
+   */
+  public void disable() {
+    if (this.canRun) {
+      this.canRun = false; 
     }
+  }
 
-    //a function to set a random location of spawning
-    public void RandomSpawn() {
-        double lowerBound = (root.getWidth()*10)/100;
-        double upperBound = (root.getWidth()*70)/100;
-        int location = (int) ((Math.random()*(upperBound-lowerBound))+lowerBound);
-        this.Plankton.setLayoutX(location);
-        this.Plankton.setLayoutY(0);
-        this.Plankton.setVisible(true);
-    }
+  /**
+    * this method sets a random position to spawn the random enemy.
+    */
+  public void randomSpawn() {
+    double lowerBound = (root.getWidth() * 10) / 100;
+    double upperBound = (root.getWidth() * 70) / 100;
+    int location = (int) ((Math.random() * (upperBound - lowerBound)) + lowerBound);
+    this.plankton.setLayoutX(location);
+    this.plankton.setLayoutY(0);
+    this.plankton.setVisible(true);
+  }
     
-    //a function created in order to move plankton on the screen
-    public void SetTransition(){
-        transition.setNode(this.Plankton);
-        transition.setFromY(0);
-        transition.setToY((root.getHeight()*LIMIT)/100);
-        transition.setDuration(Duration.millis(this.duration));
-        transition.play();
-        transition.setOnFinished((event)->Platform.runLater(()-> {
-            this.controller.getModel().freeze();
-            this.disable();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println("exiting...");
-            this.controller.quit();
-        }));
-    }
+  /**this method set the transition for the enemy.
+   * 
+   */
+  public void setTransition() {
+    transition.setNode(this.plankton);
+    transition.setFromY(0);
+    transition.setToY((root.getHeight() * LIMIT) / 100);
+    transition.setDuration(Duration.millis(this.duration));
+    transition.play();
+    transition.setOnFinished((event) -> Platform.runLater(() -> {
+      this.controller.getModel().freeze();
+      this.disable();
+      try {
+        Thread.sleep(1000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      System.out.println("exiting...");
+      this.controller.quit();
+    }));
+  }
     
-    public void stopTransition() {
-        this.transition.stop();
-    }   
+  public void stopTransition() {
+    this.transition.stop();
+  } 
+    
+  public void stermination() {
+    Platform.runLater(() ->  this.root.getChildren().removeAll(this.plankton));
+  }
     
 }

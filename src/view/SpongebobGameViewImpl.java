@@ -126,7 +126,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
             this.primaryStage.setMinWidth(MINIMUM_SUPPORTED_HEIGHT_RES * ASPECT_RATIO);
         }
     }
-
+    
     @Override
     public void setObserver(final SpongebobGameViewObserver observer) {
         this.observer = observer;
