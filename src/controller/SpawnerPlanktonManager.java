@@ -43,7 +43,7 @@ public class SpawnerPlanktonManager extends Thread {
                 this.controller.getModel().addToMap(RefModels.values()[n], plankton);
                 plankton.start();
                 Platform.runLater(() -> {
-                    this.root.getChildren().add(plankton.Plankton);
+                    this.root.getChildren().add(plankton.plankton);
                 });
             } catch (InterruptedException e) {
                 e.printStackTrace();
