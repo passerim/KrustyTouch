@@ -8,18 +8,19 @@ import javafx.util.Duration;
 
 /**
  * This is an Abstract Class that works as "Model" to implemented by the other bonus. 
- * Since most of the methods were very similar, they all got implemented here, with the exception of action 
+ * Since most of the methods were very similar, 
+ * they all got implemented here, with the exception of action 
  * which varies depending on the specific bonus.
  */
 public abstract class Bonus implements Runnable {
     
-    private static final int RIGHTOFFSET = 80;
-    private static final int LEFTOFFSET = 20;
-    private static final int LIMIT = 100;
-    protected AnchorPane root;
-    protected ImageView image;
-    private final int bonusDuration;
-    private final TranslateTransition movement = new TranslateTransition();
+  private static final int RIGHTOFFSET = 80;
+  private static final int LEFTOFFSET = 20;
+  private static final int LIMIT = 100;
+  protected AnchorPane root;
+  protected ImageView image;
+  private final int bonusDuration;
+  private final TranslateTransition movement = new TranslateTransition();
     
     /**
      * the constructor method.
@@ -61,26 +62,26 @@ public abstract class Bonus implements Runnable {
         this.movement.stop();
     }
 
-    /**
+  /**
      * Method to manage bonus spawn with selected height and width proportions.
      * @param heightSetting
      *          height ratio relative to scene's height
      * @param widthSetting
      *          width ratio relative to scene's width
      */
-    protected final void spawn(final double heightSetting, final double widthSetting) {
-        this.image.setFitHeight(this.root.getHeight() / heightSetting);
-        this.image.setFitWidth(this.root.getWidth() / widthSetting);
-        this.image.setLayoutY(0);
-        this.image.setLayoutX(this.randomPosition());
-        this.image.setVisible(true);
-        Platform.runLater(() -> root.getChildren().add(this.image));
-    }
+  protected final void spawn(final double heightSetting, final double widthSetting) {
+    this.image.setFitHeight(this.root.getHeight() / heightSetting);
+    this.image.setFitWidth(this.root.getWidth() / widthSetting);
+    this.image.setLayoutY(0);
+    this.image.setLayoutX(this.randomPosition());
+    this.image.setVisible(true);
+    Platform.runLater(() -> root.getChildren().add(this.image));
+  }
     
-    /** 
+  /** 
      * this abstract method is implemented in the various bonus classes.
      * Basically, it active the bonus effect on  the click of the mouse. 
      */
-    protected abstract void action();
+  protected abstract void action();
 
 }
