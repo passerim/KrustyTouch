@@ -44,7 +44,15 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
         this.observer = observer;
         this.root = new AnchorPane();
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        SettingStage(screenSize);
+    	this.primaryStage.setMaxHeight(screenSize.getHeight() * DEFAULT_HEIGHT_TO_SCREEN_RATIO);
+    	this.primaryStage.setMaxWidth(this.primaryStage.getMaxHeight() * ASPECT_RATIO);
+    	this.primaryStage.setTitle(FRAME_NAME);
+    	this.primaryStage.centerOnScreen();
+    	this.primaryStage.setMaximized(false);
+    	this.primaryStage.setFullScreen(false);
+    	this.primaryStage.setOnCloseRequest(we -> this.observer.quit());
+    	this.primaryStage.setResizable(true);
+    	this.primaryStage.setMinHeight(MINIMUM_SUPPORTED_HEIGHT_RES);
         this.setMenuBackground(primaryStage, screenSize);
     }
 
@@ -139,16 +147,5 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
         this.root.getChildren().remove(e);
     }
 
-    
-    private void SettingStage(final Dimension screenSize) {
-    	this.primaryStage.setMaxHeight(screenSize.getHeight() * DEFAULT_HEIGHT_TO_SCREEN_RATIO);
-    	this.primaryStage.setMaxWidth(this.primaryStage.getMaxHeight() * ASPECT_RATIO);
-    	this.primaryStage.setTitle(FRAME_NAME);
-    	this.primaryStage.centerOnScreen();
-    	this.primaryStage.setMaximized(false);
-    	this.primaryStage.setFullScreen(false);
-    	this.primaryStage.setOnCloseRequest(we -> this.observer.quit());
-    	this.primaryStage.setResizable(true);
-    	this.primaryStage.setMinHeight(MINIMUM_SUPPORTED_HEIGHT_RES);
-    }
+  
 }
