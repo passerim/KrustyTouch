@@ -14,8 +14,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 	/**
-	 * this class has the duty of managing the view of the game,
-	 * which involves menu and game background
+	 * This class has the duty of managing the view of the game,
+	 * which involves menu and game background.
 	 */
 public class SpongebobGameViewImpl implements SpongebobGameView {
 
@@ -30,7 +30,11 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
     private Scene scene;
     private final SpongebobGameController controller;
     private final Label score = new Label();
-
+    /** this is the constructor method, which initiates the menu, first, and the game background right after.
+     * 
+     * @param PrimaryStage PrimaryStage is the window
+     * @param observer SpongebobGameViewObserver 
+     */
     public SpongebobGameViewImpl(final Stage PrimaryStage, final SpongebobGameViewObserver observer) {
         this.controller = (SpongebobGameController) observer;
         this.PrimaryStage = PrimaryStage;

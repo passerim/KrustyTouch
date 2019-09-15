@@ -4,10 +4,9 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import model.RefModels;
-	/**
-	 * this class-thread is an enemy spawner.
-	 * it randomly choose the type of balloon, it spawns enemies and collect all necessary information.
-	 */
+/** this class-thread is an enemy spawner.
+* it randomly choose the type of balloon, it spawns enemies and collect all necessary information.
+*/
 public class SpawnerPlanktonManager extends Thread {
 
     private AnchorPane root;
@@ -17,12 +16,17 @@ public class SpawnerPlanktonManager extends Thread {
     private boolean bonus = false;
     private int cached = -1;
     
-    private SpawnerPlanktonManager(AnchorPane base, SpongebobGameController controller) {
+    private SpawnerPlanktonManager(final AnchorPane base, final SpongebobGameController controller) {
         this.root = base;
         this.controller = controller;
     }
-
-    public static synchronized SpawnerPlanktonManager getPlanktonSpawner(AnchorPane base, SpongebobGameController controller) {
+    /**this is the singleton method to allow one only instance of it.
+     * 
+     * @param base AnchorPane root
+     * @param controller SpongebobGameController
+     * @return the instance of this class
+     */
+    public static synchronized SpawnerPlanktonManager getPlanktonSpawner(final AnchorPane base, final SpongebobGameController controller) {
         if (SINGLETON == null) {
             SINGLETON = new SpawnerPlanktonManager(base, controller);
         }
@@ -46,7 +50,9 @@ public class SpawnerPlanktonManager extends Thread {
             }
         }
     }
-    
+/**checks if bonus is active.
+* @return returns true o false
+*/
     public boolean onBonus() {
         if (!this.bonus) {
             this.bonus = true;
@@ -55,7 +61,9 @@ public class SpawnerPlanktonManager extends Thread {
         }
         return false;
     }
-    
+/**this method checks if bonus is deactivated.
+ * @return true or false
+ */
     public boolean offBonus() {
         if (this.bonus) {
            this.bonus = false;
