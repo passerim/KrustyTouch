@@ -1,27 +1,24 @@
 package controller;
 
 import javax.swing.Timer;
-
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-/**This Class extends Bonus and implements Runnable. 
- * This thread has the duty of multiply the points obtained, for a short period of time  
+
+/**
+ * This thread has the duty of multiply the points obtained, for a short period of time. 
  */
 public class KrabbyPattyManager extends Bonus implements Runnable {
     
     private static final int BONUS_DURATION = 5000;
-    private SpongebobGameController controller;
+    private final SpongebobGameController controller;
 
     /**
-     * the constructor method.
-     * it instantiate the image and the controller
-     * @param base AnchorPane root
+     * It instantiate the image and the controller.
      * @param controller  SPongebobGameController controller
      */
-    public KrabbyPattyManager(final AnchorPane base, final SpongebobGameController controller) {
-        super(base, controller.getModel().getBonusDuration());
+    public KrabbyPattyManager(final SpongebobGameController controller) {
+        super(controller);
         this.image = new ImageView(new Image(ClassLoader.getSystemResource("images/KrabbyPatty.png").toString()));
         this.controller = controller;
     }
@@ -32,7 +29,7 @@ public class KrabbyPattyManager extends Bonus implements Runnable {
         final Timer timer = new Timer(BONUS_DURATION, (event) -> this.controller.getModel().setScoreBonus());
         timer.setRepeats(false);
         timer.start();
-        Platform.runLater(() -> root.getChildren().remove(this.image));
+        Platform.runLater(() -> this.controller.removeNode(this.image));
     }
 
     @Override

@@ -98,7 +98,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
         AnchorPane.setTopAnchor(this.score, 0.);
         this.root.getChildren().add(this.score);
         this.root.addEventFilter(MouseEvent.DRAG_DETECTED, new SequencePainter(this.controller));
-        this.observer.newGame(this.root);
+        this.observer.newGame();
         primaryStage.setScene(this.scene);
     }
 

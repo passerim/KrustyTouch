@@ -5,7 +5,6 @@ import javafx.application.Platform;
 import javafx.geometry.Point3D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
 /**
@@ -17,35 +16,37 @@ public final class SpongebobManager extends Thread {
     
   private static SpongebobManager istanza = null;
   private final ImageView spongebob = new ImageView();
-  private final AnchorPane root;
+  private final SpongebobGameController controller;
   private int walkingPosition = 0;
   private final TranslateTransition movements = new TranslateTransition();
     
   /**the singleton method, used to allow only one instance of the class.
      * 
-     * @param base AnchorPane root
-     * @return the instance of the class
+     * @param controller 
+     *          game controller reference
+     * @return 
+     *          the instance of the class
      */
-  public static synchronized SpongebobManager getSpongebobManager(final AnchorPane base) {
+  public static synchronized SpongebobManager getSpongebobManager(final SpongebobGameController controller) {
     if (istanza == null) {
-      istanza = new SpongebobManager(base);
+      istanza = new SpongebobManager(controller);
     }
     return istanza;
   }
     
-    private SpongebobManager(final AnchorPane base) {
+    private SpongebobManager(final SpongebobGameController controller) {
         super();
-        this.root = base;
+        this.controller = controller;
     }
     @Override
     public void run() {
         this.spongebob.setImage(new Image(ClassLoader.getSystemResource("images/walking_spongebob_1.png").toString()));
         this.spongebob.setLayoutX(0);
-        this.spongebob.setLayoutY((this.root.getHeight()*75)/100);
-        this.spongebob.setFitHeight(this.root.getHeight()/4);
-        this.spongebob.setFitWidth(this.root.getWidth()/2);
+        this.spongebob.setLayoutY((this.controller.getRoot().getHeight()*75)/100);
+        this.spongebob.setFitHeight(this.controller.getRoot().getHeight()/4);
+        this.spongebob.setFitWidth(this.controller.getRoot().getWidth()/2);
         this.spongebob.setVisible(true);
-        Platform.runLater(() -> this.root.getChildren().add(this.spongebob));
+        Platform.runLater(() -> this.controller.getRoot().getChildren().add(this.spongebob));
         movements.setNode(this.spongebob);
         firstMove();
         while (true) {
@@ -78,7 +79,7 @@ public final class SpongebobManager extends Thread {
         this.spongebob.setRotate(0);
         this.spongebob.setRotationAxis(new Point3D(0, 0, 1));
         this.movements.setFromX(0);
-        this.movements.setToX(this.root.getWidth() - this.spongebob.getFitWidth());
+        this.movements.setToX(this.controller.getRoot().getWidth() - this.spongebob.getFitWidth());
         this.movements.setDuration(Duration.millis(10000));
         this.movements.setOnFinished((event) -> moveLeft());
         this.movements.play();
@@ -87,7 +88,7 @@ public final class SpongebobManager extends Thread {
     private void moveLeft() {
         this.spongebob.setRotate(180);
         this.spongebob.setRotationAxis(new Point3D(0, 180, 1));
-        this.movements.setFromX(this.root.getWidth() - this.spongebob.getFitWidth());
+        this.movements.setFromX(this.controller.getRoot().getWidth() - this.spongebob.getFitWidth());
         this.movements.setToX(0);
         this.movements.setDuration(Duration.millis(10000));
         this.movements.setOnFinished((event) -> moveRight());
