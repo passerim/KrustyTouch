@@ -118,4 +118,6 @@ public class ComparatorThread extends Thread {
         p.y = toY;
         points.add(p);
     }
+    
+    
 }

@@ -2,33 +2,32 @@ package controller;
 
 import javafx.application.Platform;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import model.RefModels;
-/** this class-thread is an enemy spawner.
-* it randomly choose the type of balloon, it spawns enemies and collect all necessary information.
-*/
+
+/** 
+ * This class-thread is an enemy spawner.
+ *  it randomly choose the type of balloon, it spawns enemies and collect all necessary information.
+ */
 public class SpawnerPlanktonManager extends Thread {
 
-    private AnchorPane root;
     private static SpawnerPlanktonManager SINGLETON = null;
-    private SpongebobGameController controller;
-    private Image[] images= new Image[2];
+    private final SpongebobGameController controller;
+    private Image[] images = new Image[2];
     private boolean bonus = false;
     private int cached = -1;
     
-    private SpawnerPlanktonManager(final AnchorPane base, final SpongebobGameController controller) {
-        this.root = base;
+    private SpawnerPlanktonManager(final SpongebobGameController controller) {
+        super();
         this.controller = controller;
     }
-    /**this is the singleton method to allow one only instance of it.
-     * 
-     * @param base AnchorPane root
+    
+    /**
      * @param controller SpongebobGameController
      * @return the instance of this class
      */
-    public static synchronized SpawnerPlanktonManager getPlanktonSpawner(final AnchorPane base, final SpongebobGameController controller) {
+    public static synchronized SpawnerPlanktonManager getPlanktonSpawner(final SpongebobGameController controller) {
         if (SINGLETON == null) {
-            SINGLETON = new SpawnerPlanktonManager(base, controller);
+            SINGLETON = new SpawnerPlanktonManager(controller);
         }
         return SINGLETON;
     }
@@ -37,22 +36,25 @@ public class SpawnerPlanktonManager extends Thread {
     public void run() {
         while (true) {
             try {
-                final int n = this.Random_Selector();
+                final int n = this.randomSelector();
                 Thread.sleep(this.controller.getModel().getPlanktonRate());
-                PlanktonManager plankton = new PlanktonManager(root, this.controller, this.images.clone());
+                final PlanktonManager plankton = new PlanktonManager(this.controller, this.images.clone());
                 this.controller.getModel().addToMap(RefModels.values()[n], plankton);
                 plankton.start();
                 Platform.runLater(() -> {
-                    this.root.getChildren().add(plankton.plankton);
+                    this.controller.addNode(plankton.plankton);
                 });
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
-/**checks if bonus is active.
-* @return returns true o false
-*/
+    
+    /**
+     * Checks if bonus is active.
+     * @return 
+     *          returns true o false
+     */
     public boolean onBonus() {
         if (!this.bonus) {
             this.bonus = true;
@@ -61,9 +63,12 @@ public class SpawnerPlanktonManager extends Thread {
         }
         return false;
     }
-/**this method checks if bonus is deactivated.
- * @return true or false
- */
+
+    /**
+     * This method checks if bonus is deactivated.
+     * @return 
+     *          true or false
+     */
     public boolean offBonus() {
         if (this.bonus) {
            this.bonus = false;
@@ -72,8 +77,8 @@ public class SpawnerPlanktonManager extends Thread {
         return false;
     }
     
-    private int Random_Selector()  {
-        int choice = (int) (Math.random()*9);
+    private int randomSelector()  {
+        int choice = (int) (Math.random() * 9);
         if (this.bonus) {
             if (this.cached == -1) {
                 this.cached = choice;

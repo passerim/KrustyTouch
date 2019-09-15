@@ -44,15 +44,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
         this.observer = observer;
         this.root = new AnchorPane();
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.primaryStage.setMaxHeight(screenSize.getHeight() * DEFAULT_HEIGHT_TO_SCREEN_RATIO);
-        this.primaryStage.setMaxWidth(this.primaryStage.getMaxHeight() * ASPECT_RATIO);
-        this.primaryStage.setTitle(FRAME_NAME);
-        this.primaryStage.centerOnScreen();
-        this.primaryStage.setMaximized(false);
-        this.primaryStage.setFullScreen(false);
-        this.primaryStage.setOnCloseRequest(we -> this.observer.quit());
-        this.primaryStage.setResizable(true);
-        this.primaryStage.setMinHeight(MINIMUM_SUPPORTED_HEIGHT_RES);
+        SettingStage(screenSize);
         this.setMenuBackground(primaryStage, screenSize);
     }
 
@@ -98,7 +90,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
         AnchorPane.setTopAnchor(this.score, 0.);
         this.root.getChildren().add(this.score);
         this.root.addEventFilter(MouseEvent.DRAG_DETECTED, new SequencePainter(this.controller));
-        this.observer.newGame(this.root);
+        this.observer.newGame();
         primaryStage.setScene(this.scene);
     }
 
@@ -147,4 +139,16 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
         this.root.getChildren().remove(e);
     }
 
+    
+    private void SettingStage(final Dimension screenSize) {
+    	this.primaryStage.setMaxHeight(screenSize.getHeight() * DEFAULT_HEIGHT_TO_SCREEN_RATIO);
+    	this.primaryStage.setMaxWidth(this.primaryStage.getMaxHeight() * ASPECT_RATIO);
+    	this.primaryStage.setTitle(FRAME_NAME);
+    	this.primaryStage.centerOnScreen();
+    	this.primaryStage.setMaximized(false);
+    	this.primaryStage.setFullScreen(false);
+    	this.primaryStage.setOnCloseRequest(we -> this.observer.quit());
+    	this.primaryStage.setResizable(true);
+    	this.primaryStage.setMinHeight(MINIMUM_SUPPORTED_HEIGHT_RES);
+    }
 }

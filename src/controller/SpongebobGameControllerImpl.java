@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.scene.Node;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.SpongebobGame;
@@ -29,10 +28,10 @@ public class SpongebobGameControllerImpl implements SpongebobGameViewObserver, S
         this.view.start();
     }
 
-    private void startCharacters(final AnchorPane root) {
-        SpawnerPlanktonManager.getPlanktonSpawner(root, this).start();
-        SpongebobManager.getSpongebobManager(root).start();
-        BonusSpawner.getBonusSpawner(root, this).start();
+    private void startCharacters() {
+        SpawnerPlanktonManager.getPlanktonSpawner(this).start();
+        SpongebobManager.getSpongebobManager(this).start();
+        BonusSpawner.getBonusSpawner(this).start();
 
     }
 
@@ -42,8 +41,8 @@ public class SpongebobGameControllerImpl implements SpongebobGameViewObserver, S
     }
 
     @Override
-    public void newGame(final AnchorPane root) {
-        this.startCharacters(root);
+    public void newGame() {
+        this.startCharacters();
     }
 
     @Override

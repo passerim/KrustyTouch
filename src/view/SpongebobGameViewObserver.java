@@ -1,7 +1,5 @@
 package view;
 
-import javafx.scene.layout.AnchorPane;
-
 /**
  * This is an interface implemented by the controller, to allow controller-view communication.
  */
@@ -14,7 +12,7 @@ public interface SpongebobGameViewObserver {
      * @throws IllegalAccessException
      *          If game is bad started
      */
-    void newGame(AnchorPane root);
+    void newGame();
 
     /**
      * Game is quit.
