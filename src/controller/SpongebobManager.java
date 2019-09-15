@@ -33,11 +33,11 @@ public final class SpongebobManager extends Thread {
     return istanza;
   }
     
-  private SpongebobManager(final AnchorPane base) {
-    this.root = base;
-  }
-  
-  @Override
+    private SpongebobManager(final AnchorPane base) {
+        super();
+        this.root = base;
+    }
+    @Override
     public void run() {
     this.spongebob.setImage(new Image(ClassLoader.getSystemResource("images/walking_spongebob_1.png").toString()));
     this.spongebob.setLayoutX(0);

@@ -3,6 +3,9 @@ package model;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Enumeration containing all the supported models for recognition.
+ */
 public enum RefModels {
     
     VERTICAL("vertical", new Integer[] {2}, false, new Double[] {1.}),
@@ -21,7 +24,7 @@ public enum RefModels {
     private final List<Pair<Integer, Double>> map;
     private final boolean circular;
 
-    private RefModels(final String name,final Integer[] seq, final boolean circular, final Double[] prop) {
+    RefModels(final String name, final Integer[] seq, final boolean circular, final Double[] prop) {
         this.name = name;
         this.seq = seq;
         this.prop = prop;
@@ -29,26 +32,56 @@ public enum RefModels {
         this.map = getFeaturesMapList();
     }
 
+    /**
+     * 
+     * @return
+     *          weather or not this model can be rotated in space without changing its meaning
+     */
     public boolean isCircular() {
         return this.circular;
     }
 
+    /**
+     * 
+     * @return
+     *          directions sequence for this model
+     */
     public Integer[] getSeq() {
         return this.seq.clone();
     }
 
+    /**
+     * 
+     * @return
+     *          proportions for this model (not implemented in this version)
+     */
     public Double[] getProp() {
         return prop.clone();
     }
 
+    /**
+     * 
+     * @return
+     *          direction-proportion map (not implemented in this version)
+     */
     public List<Pair<Integer, Double>> getMap() {
         return map;
     }
     
+    /**
+     * 
+     * @return
+     *          name of this model
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * 
+     * @return
+     *          stores direction-proportion map
+     */
     public List<Pair<Integer, Double>> getFeaturesMapList() {
         final List<Pair<Integer, Double>> ret = new LinkedList<Pair<Integer, Double>>();
         for (int i = 0; i < this.seq.length; i++) {

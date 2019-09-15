@@ -30,7 +30,7 @@ public class ShowGui {
                 addMouseListener(new MouseListener() {
 
                     private ComparatorThread th;
-                    private boolean pressed = false;
+                    private boolean pressed;
                     private final MouseMotionListener l = new MouseMotionListener() {
 
                         @Override

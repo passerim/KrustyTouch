@@ -35,6 +35,7 @@ public class KrabbyPattyManager extends Bonus implements Runnable {
     Platform.runLater(() -> root.getChildren().remove(this.image));
   }
 
+
   @Override
   public final void run() {
     spawn(11.0,5.5);
@@ -42,3 +43,4 @@ public class KrabbyPattyManager extends Bonus implements Runnable {
     this.image.setOnMouseClicked((event) -> action());
   }
 }
+

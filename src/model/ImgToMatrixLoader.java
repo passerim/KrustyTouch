@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
  */
 public class ImgToMatrixLoader {
 
+    private static final int TRESHOLD = 250;
     private final File[] files;
     private final int width, height;
     private final List<int[][]> matrixList = new ArrayList<int[][]>();
@@ -69,7 +70,9 @@ public class ImgToMatrixLoader {
         final int[][] matr = new int[loadedImg.getHeight()][loadedImg.getWidth()];
         for (int i = 0; i < matr.length; i++) {
             for (int j = 0; j < matr[0].length; j++) {
-                if (((loadedImg.getRGB(j, i)>>16)&0xff) > 250) matr[i][j] = 1;
+                if (((loadedImg.getRGB(j, i) >> 16) & 0xff) > TRESHOLD) {
+                    matr[i][j] = 1;
+                }
             }
         }
         return matr;

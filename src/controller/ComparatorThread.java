@@ -4,9 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import javafx.application.Platform;
-import javafx.scene.layout.AnchorPane;
 import model.ModelComparatorImpl;
 import model.ModelUtils;
 import model.RefModels;
@@ -21,21 +19,20 @@ public class ComparatorThread extends Thread {
     private final List<Point> points = new ArrayList<Point>();
     private Optional<RefModels> value = Optional.empty();
     private final SpongebobGameController controller;
-    private final AnchorPane root;
 
     /**
      * 
      * @param controller
      *          reference to controller
-     * @param root
-     *          reference to root node of view
      */
-    public ComparatorThread(final SpongebobGameController controller, final AnchorPane root) {
+    public ComparatorThread(final SpongebobGameController controller) {
         super();
-        this.controller = controller;
-        this.root = root;       
+        this.controller = controller;     
     }
 
+    /**
+     * 
+     */
     @Override
     public void run() {
 
@@ -89,7 +86,7 @@ public class ComparatorThread extends Thread {
                 this.controller.getModel().getMap().get(this.value.get()).remove(p);
                 Platform.runLater(() -> {
                     this.controller.updateScore();
-                    this.root.getChildren().remove(p.Plankton);
+                    this.controller.removeNode(p.plankton);
                 });
             }
         }
