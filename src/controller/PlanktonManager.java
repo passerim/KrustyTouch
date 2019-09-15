@@ -3,18 +3,14 @@ package controller;
 
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
-import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-
 import javafx.util.Duration;
-
 import java.util.concurrent.TimeUnit;
 
-
 public class PlanktonManager extends Thread {
-    @FXML	
+    
     private AnchorPane root;
     public ImageView Plankton = new ImageView(new Image(ClassLoader.getSystemResource("images/plankton4.png").toString()));
     private int interchanger = 0;
@@ -96,9 +92,5 @@ public class PlanktonManager extends Thread {
     public void stopTransition() {
         this.transition.stop();
     }   
-    
-    public void Stermination(){
-        Platform.runLater(()-> this.root.getChildren().removeAll(this.Plankton));
-    }
     
 }

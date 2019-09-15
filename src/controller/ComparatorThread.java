@@ -12,14 +12,26 @@ import model.ModelUtils;
 import model.RefModels;
 import model.SequencerImpl;
 
+/**
+ * 
+ */
 public class ComparatorThread extends Thread {
 
-    private final ArrayList<Point> points = new ArrayList<Point>();
+    private static final double FILTER_COEFF = 1.96;
+    private final List<Point> points = new ArrayList<Point>();
     private Optional<RefModels> value = Optional.empty();
     private final SpongebobGameController controller;
     private final AnchorPane root;
 
+    /**
+     * 
+     * @param controller
+     *          reference to controller
+     * @param root
+     *          reference to root node of view
+     */
     public ComparatorThread(final SpongebobGameController controller, final AnchorPane root) {
+        super();
         this.controller = controller;
         this.root = root;       
     }
@@ -37,7 +49,7 @@ public class ComparatorThread extends Thread {
         while (filtra) {
             filtra = false;
             for (int i = 0; i < points.size() - 2; i++) {
-                if (ModelUtils.distance(points.get(i).x, points.get(i + 2).x, points.get(i).y, points.get(i + 2).y) < 1.96 * avg) {
+                if (ModelUtils.distance(points.get(i).x, points.get(i + 2).x, points.get(i).y, points.get(i + 2).y) < FILTER_COEFF * avg) {
                     points.remove(i + 1);
                     if (ModelUtils.distance(points.get(i).x, points.get(i + 1).x, points.get(i).y, points.get(i + 1).y) < avg) {
                         filtra = true;
@@ -49,12 +61,14 @@ public class ComparatorThread extends Thread {
         // Getting drawn points sequence
         final SequencerImpl pointsSeq = new SequencerImpl(points);
         final Integer[] pointSequence = pointsSeq.computeSequence();
-        //System.out.println(Arrays.deepToString(pointSequence));
+        
+        // Comparing reference models to drawn points directions sequence
         List<Double> valList = new ArrayList<>();
-        //valList = Arrays.asList(RefModels.values()).stream().map(m->(double) new ModelComparator(pointSequence, m).getResult()).collect(Collectors.toList());
         for (final RefModels model: RefModels.values()) {
             valList.add((double) new ModelComparatorImpl(pointSequence, model).getResult());
         }
+        
+        // Getting highest probability reference model
         valList = ModelUtils.softmax(valList);
         double v = 0;
         int i = 0;
@@ -65,9 +79,9 @@ public class ComparatorThread extends Thread {
             }
             i++;
         }
+        
+        // Removing reference model
         if (this.value.isPresent()) {
-            System.out.println(this.value.get());
-            //System.out.println(this.controller.getModel().getMap());
             if (this.controller.getModel().canRemove(this.value.get())) {
                 final PlanktonManager p = this.controller.getModel().getMap().get(this.value.get()).get(0);
                 p.disable();
@@ -76,14 +90,16 @@ public class ComparatorThread extends Thread {
                 Platform.runLater(() -> {
                     this.controller.updateScore();
                     this.root.getChildren().remove(p.Plankton);
-                    if (!this.controller.getModel().getMap().get(this.value.get()).contains(p)) {
-                        System.out.println("removed: " + this.value.get());
-                    }
                 });
             }
         }
     }
 
+    /**
+     * Get recognized symbol if any.
+     * @return
+     *          recognized symbol
+     */
     public RefModels getValue() {
         if (this.value.isPresent()) {
             return this.value.get();
@@ -92,6 +108,13 @@ public class ComparatorThread extends Thread {
         }
     }
 
+    /**
+     * Adds a point to be processed.
+     * @param toX
+     *          x coordinate of point
+     * @param toY
+     *          y coordinate of point
+     */
     public void add(final int toX, final int toY) {
         final Point p = new Point();
         p.x = toX;

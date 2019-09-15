@@ -13,13 +13,14 @@ import javafx.util.Duration;
  */
 public abstract class Bonus implements Runnable {
     
-    protected static final int RIGHTOFFSET = 80;
-    protected static final int LEFTOFFSET = 20;
-    protected static final int LIMIT = 100;
+    private static final int RIGHTOFFSET = 80;
+    private static final int LEFTOFFSET = 20;
+    private static final int LIMIT = 100;
     protected AnchorPane root;
     protected ImageView image;
     private final int bonusDuration;
     private final TranslateTransition movement = new TranslateTransition();
+    
     /**
      * the constructor method.
      * @param base AnchorPane base
@@ -30,14 +31,21 @@ public abstract class Bonus implements Runnable {
         this.bonusDuration = duration;
     }
 
+    /**
+     * Computes random position on x coordinate of scene.
+     * @return
+     *          random position on x coordinate of scene
+     */
     protected final double randomPosition() {
-        final double MaxBound = (this.root.getWidth() * RIGHTOFFSET) / 100;
-        final double MinBound = (this.root.getWidth() * LEFTOFFSET) / 100;
-        final double location = (Math.random() * (MaxBound - MinBound)) + MinBound;
-        return location;
+        final double maxBound = (this.root.getWidth() * RIGHTOFFSET) / 100;
+        final double minBound = (this.root.getWidth() * LEFTOFFSET) / 100;
+        return (Math.random() * (maxBound - minBound)) + minBound;
     }
 
-    protected void move() {
+    /**
+     * Sets up and starts bonus transition.
+     */
+    protected final void move() {
         this.movement.setNode(this.image);
         this.movement.setDuration(Duration.millis(this.bonusDuration));
         this.movement.setFromY(0);
@@ -46,21 +54,32 @@ public abstract class Bonus implements Runnable {
         this.movement.play();
     }
     
-    public void stopTransition() {
+    /**
+     * Stops bonus transition.
+     */
+    public final void stopTransition() {
         this.movement.stop();
     }
 
-    protected void spawn(double HeightSetting, double WidthSetting) {
-    	this.image.setFitHeight(this.root.getHeight()/HeightSetting);
-        this.image.setFitWidth(this.root.getWidth()/WidthSetting);
+    /**
+     * Method to manage bonus spawn with selected height and width proportions.
+     * @param heightSetting
+     *          height ratio relative to scene's height
+     * @param widthSetting
+     *          width ratio relative to scene's width
+     */
+    protected final void spawn(final double heightSetting, final double widthSetting) {
+        this.image.setFitHeight(this.root.getHeight() / heightSetting);
+        this.image.setFitWidth(this.root.getWidth() / widthSetting);
         this.image.setLayoutY(0);
         this.image.setLayoutX(this.randomPosition());
         this.image.setVisible(true);
-        Platform.runLater(()->root.getChildren().add(this.image));
+        Platform.runLater(() -> root.getChildren().add(this.image));
     }
-    /** this abstract method is implemented in the various bonus classes.
+    
+    /** 
+     * this abstract method is implemented in the various bonus classes.
      * Basically, it active the bonus effect on  the click of the mouse. 
-     * 
      */
     protected abstract void action();
 

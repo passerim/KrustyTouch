@@ -14,6 +14,7 @@ public final class BonusSpawner extends Thread {
     private final SpongebobGameController controller;
     
     private BonusSpawner(final AnchorPane base, final SpongebobGameController controller) {
+        super();
         this.root = base;
         this.controller = controller;
     }
@@ -34,33 +35,34 @@ public final class BonusSpawner extends Thread {
         while (true) {
             try {
                 TimeUnit.MILLISECONDS.sleep(this.controller.getModel().getBonusRate());
-                this.RandomChoice();
+                this.randomChoice();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
     
-    private void RandomChoice() {
+    private void randomChoice() {
         final int bonusSelector = (int) (Math.random() * 4);
         switch (bonusSelector) {
         case 0:
-            final Thread  MrKrab = new Thread(new MrKrabManager(root, this.controller));
-            MrKrab.start();
+            final Thread  mrKrab = new Thread(new MrKrabManager(root, this.controller));
+            mrKrab.start();
             break;
         case 1:
-            final Thread Patrick = new Thread(new PatrickManager(root, this.controller));
-            Patrick.start();
+            final Thread patrick = new Thread(new PatrickManager(root, this.controller));
+            patrick.start();
             break;
         case 2:
-            final Thread KrabbyPatty = new Thread(new KrabbyPattyManager(root, this.controller));
-            KrabbyPatty.start();
+            final Thread krabbyPatty = new Thread(new KrabbyPattyManager(root, this.controller));
+            krabbyPatty.start();
             break;
         case 3:
-            final Thread Gary = new Thread(new GaryManager(root, this.controller));
-            Gary.start();
+            final Thread gary = new Thread(new GaryManager(root, this.controller));
+            gary.start();
             break;
-        default: throw new IllegalStateException();    
+        default: 
+            throw new IllegalStateException();
         }
     }
 }

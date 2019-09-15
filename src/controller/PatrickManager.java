@@ -14,13 +14,14 @@ public class PatrickManager extends Bonus implements Runnable {
     
     private static final int BONUS_DURATION = 10000;
     private final SpongebobGameController controller;
+    
     /**
      * the constructor method.
      * it instantiate the image and the controller
      * @param base AnchorPane root
      * @param controller SPongebobGameController controller
      */
-    public PatrickManager(final AnchorPane base, final SpongebobGameController controller){
+    public PatrickManager(final AnchorPane base, final SpongebobGameController controller) {
         super(base, controller.getModel().getBonusDuration());
         this.image = new ImageView(new Image(ClassLoader.getSystemResource("images/patrickstella.png").toString()));
         this.controller = controller;

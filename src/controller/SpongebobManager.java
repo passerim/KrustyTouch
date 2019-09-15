@@ -14,10 +14,11 @@ import javafx.util.Duration;
 public final class SpongebobManager extends Thread {
     
     private static SpongebobManager istanza = null;
-    private final ImageView Spongebob = new ImageView();
+    private final ImageView spongebob = new ImageView();
     private final AnchorPane root;
-    private int walking_position = 0;
+    private int walkingPosition = 0;
     private final TranslateTransition movements = new TranslateTransition();
+    
     /**the singleton method, used to allow only one instance of the class.
      * 
      * @param base AnchorPane root
@@ -35,24 +36,24 @@ public final class SpongebobManager extends Thread {
     }
     @Override
     public void run() {
-        this.Spongebob.setImage(new Image(ClassLoader.getSystemResource("images/walking_spongebob_1.png").toString()));
-        this.Spongebob.setLayoutX(0);
-        this.Spongebob.setLayoutY((this.root.getHeight()*75)/100);
-        this.Spongebob.setFitHeight(this.root.getHeight()/4);
-        this.Spongebob.setFitWidth(this.root.getWidth()/2);
-        this.Spongebob.setVisible(true);
-        Platform.runLater(() -> this.root.getChildren().add(this.Spongebob));
-        movements.setNode(this.Spongebob);
+        this.spongebob.setImage(new Image(ClassLoader.getSystemResource("images/walking_spongebob_1.png").toString()));
+        this.spongebob.setLayoutX(0);
+        this.spongebob.setLayoutY((this.root.getHeight()*75)/100);
+        this.spongebob.setFitHeight(this.root.getHeight()/4);
+        this.spongebob.setFitWidth(this.root.getWidth()/2);
+        this.spongebob.setVisible(true);
+        Platform.runLater(() -> this.root.getChildren().add(this.spongebob));
+        movements.setNode(this.spongebob);
         firstMove();
         while (true) {
             try {
                 sleep(250);
-                if (this.walking_position == 0) {
-                    this.Spongebob.setImage(new Image(ClassLoader.getSystemResource("images/walking_spongebob_2.png").toString()));
-                    this.walking_position = 1;
+                if (this.walkingPosition == 0) {
+                    this.spongebob.setImage(new Image(ClassLoader.getSystemResource("images/walking_spongebob_2.png").toString()));
+                    this.walkingPosition = 1;
                 } else {
-                    this.Spongebob.setImage(new Image(ClassLoader.getSystemResource("images/walking_spongebob_1.png").toString()));
-                    this.walking_position = 0;
+                    this.spongebob.setImage(new Image(ClassLoader.getSystemResource("images/walking_spongebob_1.png").toString()));
+                    this.walkingPosition = 0;
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -61,8 +62,8 @@ public final class SpongebobManager extends Thread {
     }
     
     private void firstMove() {
-        this.Spongebob.setRotate(0);
-        this.Spongebob.setRotationAxis(new Point3D(0, 0, 1));
+        this.spongebob.setRotate(0);
+        this.spongebob.setRotationAxis(new Point3D(0, 0, 1));
         this.movements.setFromX(0);
         this.movements.setToX(0);
         this.movements.setDuration(Duration.millis(1000));
@@ -71,19 +72,19 @@ public final class SpongebobManager extends Thread {
     }
     
     private void moveRight() {
-        this.Spongebob.setRotate(0);
-        this.Spongebob.setRotationAxis(new Point3D(0, 0, 1));
+        this.spongebob.setRotate(0);
+        this.spongebob.setRotationAxis(new Point3D(0, 0, 1));
         this.movements.setFromX(0);
-        this.movements.setToX(this.root.getWidth() - this.Spongebob.getFitWidth());
+        this.movements.setToX(this.root.getWidth() - this.spongebob.getFitWidth());
         this.movements.setDuration(Duration.millis(10000));
         this.movements.setOnFinished((event) -> moveLeft());
         this.movements.play();
     }
     
     private void moveLeft() {
-        this.Spongebob.setRotate(180);
-        this.Spongebob.setRotationAxis(new Point3D(0, 180, 1));
-        this.movements.setFromX(this.root.getWidth() - this.Spongebob.getFitWidth());
+        this.spongebob.setRotate(180);
+        this.spongebob.setRotationAxis(new Point3D(0, 180, 1));
+        this.movements.setFromX(this.root.getWidth() - this.spongebob.getFitWidth());
         this.movements.setToX(0);
         this.movements.setDuration(Duration.millis(10000));
         this.movements.setOnFinished((event) -> moveRight());
@@ -95,7 +96,7 @@ public final class SpongebobManager extends Thread {
      * @return the ImageView of Spongebob
      */
     public ImageView getSpongebob() {
-        return this.Spongebob;
+        return this.spongebob;
     }
 
 }
