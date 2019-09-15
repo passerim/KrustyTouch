@@ -49,7 +49,7 @@ public class SpongebobGameImpl implements SpongebobGame {
 
     @Override
     public long getElapsedTime() throws IllegalAccessException {
-        if (this.startTime.isEmpty()) {
+        if (!this.startTime.isPresent()) {
             throw new IllegalAccessException();
         }
         return ((System.currentTimeMillis() - this.startTime.get()) / 1000);

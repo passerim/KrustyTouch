@@ -13,6 +13,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+	/**
+	 * this class has the duty of managing the view of the game,
+	 * which involves menu and game background
+	 */
 public class SpongebobGameViewImpl implements SpongebobGameView {
 
     private static final String FRAME_NAME = "Krusty Touch";

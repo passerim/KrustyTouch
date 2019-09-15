@@ -7,7 +7,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
-
+/**
+ * This Class, called SpongebobManager, is in charged of managing the Spongebob image moving on the screen. 
+ * It implements a singleton in order to keep, and allow only an instance of it.
+ */
 public class SpongebobManager extends Thread {
     
     private static SpongebobManager istanza = null;
@@ -16,7 +19,7 @@ public class SpongebobManager extends Thread {
     private int walking_position = 0;
     private final TranslateTransition movements = new TranslateTransition();
 
-    public static synchronized SpongebobManager getSpongebobManager(final AnchorPane base){
+    public static synchronized SpongebobManager getSpongebobManager(final AnchorPane base) {
         if(istanza == null){
             istanza= new SpongebobManager(base);
         }
@@ -53,7 +56,7 @@ public class SpongebobManager extends Thread {
         }
     }
     
-    private void firstMove(){
+    private void firstMove() {
         this.Spongebob.setRotate(0);
         this.Spongebob.setRotationAxis(new Point3D(0, 0, 1));
         this.movements.setFromX(0);
@@ -63,7 +66,7 @@ public class SpongebobManager extends Thread {
         this.movements.play();
     }
     
-    private void moveRight(){
+    private void moveRight() {
         this.Spongebob.setRotate(0);
         this.Spongebob.setRotationAxis(new Point3D(0, 0, 1));
         this.movements.setFromX(0);
@@ -73,7 +76,7 @@ public class SpongebobManager extends Thread {
         this.movements.play();
     }
     
-    private void moveLeft(){
+    private void moveLeft() {
         this.Spongebob.setRotate(180);
         this.Spongebob.setRotationAxis(new Point3D(0, 180, 1));
         this.movements.setFromX(this.root.getWidth()-this.Spongebob.getFitWidth());
@@ -83,6 +86,10 @@ public class SpongebobManager extends Thread {
         this.movements.play();
     }
 
+    /** this method, is quite self-explanatory
+     * 
+     * @return the ImageView of Spongebob
+     */
     public ImageView getSpongebob() {
         return this.Spongebob;
     }

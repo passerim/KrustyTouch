@@ -9,21 +9,25 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-
+/** this class is in charged of listening the mouse_drag event and drawing red "dots" on it.
+ */
 public class SequencePainter implements EventHandler<MouseEvent> {
     
     private static final int STROKE_WIDTH = 5;
     private final AnchorPane root;
     private ComparatorThread comparator;
     private final SpongebobGameController controller;
-
+    /**this is the constructor method.
+     * @param root AnchorPane root
+     * @param controller SpongebobGameController controller
+     */
     public SequencePainter(final AnchorPane root, final SpongebobGameController controller) {
         this.root = root;
         this.controller = controller;
     }
 
     @Override
-    public void handle(final MouseEvent arg) {
+    public final void handle(final MouseEvent arg) {
         comparator = new ComparatorThread(this.controller, this.root);
         final Path path = new Path();
         path.setStrokeWidth(STROKE_WIDTH);
@@ -42,7 +46,7 @@ public class SequencePainter implements EventHandler<MouseEvent> {
         
         private final Path path;
 
-        public DrawGesture(final Path path) {
+        DrawGesture(final Path path) {
             this.path = path;
         }
 
@@ -63,7 +67,7 @@ public class SequencePainter implements EventHandler<MouseEvent> {
         private final Path path;
         private final DrawGesture listener;
 
-        public GestureEndHandler(final Path path, final DrawGesture listener) {
+        GestureEndHandler(final Path path, final DrawGesture listener) {
             this.path = path;
             this.listener = listener;
         }

@@ -3,14 +3,17 @@ package controller;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.concurrent.TimeUnit;
-
-public class BonusSpawner extends Thread {
+/**
+ * this class extending thread is in charged of selecting randomly bonuses, and making them spawn.
+ * it also implements a singleton to allow one and only instance of it to exist.
+ */
+public final class BonusSpawner extends Thread {
 
     private final AnchorPane root;
     private static BonusSpawner SINGLETON = null;
     private final SpongebobGameController controller;
     
-    private BonusSpawner(final AnchorPane base, final SpongebobGameController controller){
+    private BonusSpawner(final AnchorPane base, final SpongebobGameController controller) {
         this.root = base;
         this.controller = controller;
     }
@@ -22,7 +25,7 @@ public class BonusSpawner extends Thread {
         return SINGLETON;
     }
 
-    public void run(){
+    public void run() {
         while(true) {
             try {
                 TimeUnit.MILLISECONDS.sleep(this.controller.getModel().getBonusRate());
