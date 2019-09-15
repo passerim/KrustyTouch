@@ -3,27 +3,35 @@ package controller;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.concurrent.TimeUnit;
-
-public class BonusSpawner extends Thread {
+/**
+ * this class extending thread is in charged of selecting randomly bonuses, and making them spawn.
+ * it also implements a singleton to allow one and only instance of it to exist.
+ */
+public final class BonusSpawner extends Thread {
 
     private final AnchorPane root;
     private static BonusSpawner SINGLETON = null;
     private final SpongebobGameController controller;
     
-    private BonusSpawner(final AnchorPane base, final SpongebobGameController controller){
+    private BonusSpawner(final AnchorPane base, final SpongebobGameController controller) {
         this.root = base;
         this.controller = controller;
     }
-    
+    /** this is the singleton method to allow one only instance of this class.
+     * 
+     * @param base AnchorPane root
+     * @param controller  SpongebobGameController
+     * @return the instance of this class
+     */
     public static synchronized BonusSpawner getBonusSpawner(final AnchorPane base, final SpongebobGameController controller) {
         if (SINGLETON == null) {
             SINGLETON = new BonusSpawner(base, controller);
         }
         return SINGLETON;
     }
-
-    public void run(){
-        while(true) {
+    @Override
+    public void run() {
+        while (true) {
             try {
                 TimeUnit.MILLISECONDS.sleep(this.controller.getModel().getBonusRate());
                 this.RandomChoice();
@@ -37,21 +45,22 @@ public class BonusSpawner extends Thread {
         final int bonusSelector = (int) (Math.random() * 4);
         switch (bonusSelector) {
         case 0:
-            Thread MrKrab = new Thread(new MrKrabManager(root, this.controller));
+            final Thread  MrKrab = new Thread(new MrKrabManager(root, this.controller));
             MrKrab.start();
             break;
         case 1:
-            Thread Patrick = new Thread(new PatrickManager(root, this.controller));
+            final Thread Patrick = new Thread(new PatrickManager(root, this.controller));
             Patrick.start();
             break;
         case 2:
-            Thread KrabbyPatty = new Thread(new KrabbyPattyManager(root, this.controller));
+            final Thread KrabbyPatty = new Thread(new KrabbyPattyManager(root, this.controller));
             KrabbyPatty.start();
             break;
         case 3:
-            Thread Gary = new Thread(new GaryManager(root, this.controller));
+            final Thread Gary = new Thread(new GaryManager(root, this.controller));
             Gary.start();
             break;
+        default: throw new IllegalStateException();    
         }
     }
 }
