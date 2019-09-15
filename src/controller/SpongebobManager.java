@@ -7,34 +7,37 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+
 /**
- * This Class, called SpongebobManager, is in charged of managing the Spongebob image moving on the screen. 
+ * This Class, called SpongebobManager,
+ * is in charged of managing the Spongebob image moving on the screen. 
  * It implements a singleton in order to keep, and allow only an instance of it.
  */
 public final class SpongebobManager extends Thread {
     
-    private static SpongebobManager istanza = null;
-    private final ImageView spongebob = new ImageView();
-    private final AnchorPane root;
-    private int walkingPosition = 0;
-    private final TranslateTransition movements = new TranslateTransition();
+  private static SpongebobManager istanza = null;
+  private final ImageView spongebob = new ImageView();
+  private final AnchorPane root;
+  private int walkingPosition = 0;
+  private final TranslateTransition movements = new TranslateTransition();
     
-    /**the singleton method, used to allow only one instance of the class.
+  /**the singleton method, used to allow only one instance of the class.
      * 
      * @param base AnchorPane root
      * @return the instance of the class
      */
-    public static synchronized SpongebobManager getSpongebobManager(final AnchorPane base) {
-        if (istanza == null) {
-            istanza = new SpongebobManager(base);
-        }
-        return istanza;
+  public static synchronized SpongebobManager getSpongebobManager(final AnchorPane base) {
+    if (istanza == null) {
+      istanza = new SpongebobManager(base);
     }
+    return istanza;
+  }
     
-    private SpongebobManager(final AnchorPane base) {
-        this.root = base;
-    }
-    @Override
+  private SpongebobManager(final AnchorPane base) {
+    this.root = base;
+  }
+  
+  @Override
     public void run() {
         this.spongebob.setImage(new Image(ClassLoader.getSystemResource("images/walking_spongebob_1.png").toString()));
         this.spongebob.setLayoutX(0);

@@ -13,10 +13,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-	/**
-	 * This class has the duty of managing the view of the game,
-	 * which involves menu and game background.
-	 */
+/**
+* This class has the duty of managing the view of the game,
+* which involves menu and game background.
+*/
 public class SpongebobGameViewImpl implements SpongebobGameView {
 
     private static final String FRAME_NAME = "Krusty Touch";
@@ -127,7 +127,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
             this.PrimaryStage.setMinWidth(MINIMUM_SUPPORTED_HEIGHT_RES * ASPECT_RATIO);
         }
     }
-
+    
     @Override
     public void setObserver(final SpongebobGameViewObserver observer) {
         this.observer = observer;
