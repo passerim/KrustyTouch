@@ -7,10 +7,10 @@ import java.util.Optional;
 
 import javafx.application.Platform;
 import javafx.scene.layout.AnchorPane;
-import model.ModelComparator;
+import model.ModelComparatorImpl;
 import model.ModelUtils;
 import model.RefModels;
-import model.Sequencer;
+import model.SequencerImpl;
 
 public class ComparatorThread extends Thread {
 
@@ -47,13 +47,13 @@ public class ComparatorThread extends Thread {
         }
 
         // Getting drawn points sequence
-        final Sequencer pointsSeq = new Sequencer(points);
+        final SequencerImpl pointsSeq = new SequencerImpl(points);
         final Integer[] pointSequence = pointsSeq.computeSequence();
         //System.out.println(Arrays.deepToString(pointSequence));
         List<Double> valList = new ArrayList<>();
         //valList = Arrays.asList(RefModels.values()).stream().map(m->(double) new ModelComparator(pointSequence, m).getResult()).collect(Collectors.toList());
         for (final RefModels model: RefModels.values()) {
-            valList.add((double) new ModelComparator(pointSequence, model).getResult());
+            valList.add((double) new ModelComparatorImpl(pointSequence, model).getResult());
         }
         valList = ModelUtils.softmax(valList);
         double v = 0;

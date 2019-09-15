@@ -15,17 +15,27 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Test class for debug only. It loads images in res/images/ as matrices.
+ */
 public class ImgToMatrixLoader {
 
     private final File[] files;
     private final int width, height;
     private final List<int[][]> matrixList = new ArrayList<int[][]>();
 
+    /**
+     * 
+     * @param width
+     *          required matrix width
+     * @param height
+     *          required matrix height
+     */
     public ImgToMatrixLoader(final int width, final int height) {
         this.width = width;
         this.height = height;
         final String pwd = System.getProperty("user.dir");
-        final File dir = new File(pwd + "/images");
+        final File dir = new File(pwd + "/res/images");
         this.files = dir.listFiles(new FilenameFilter() {
             public boolean accept(final File dir, final String name) {
                 return name.toLowerCase().endsWith(".jpg");
@@ -65,10 +75,22 @@ public class ImgToMatrixLoader {
         return matr;
     }
 
+    /**
+     * 
+     * @param index
+     *          matrix index
+     * @return
+     *          matrix with index @index
+     */
     public int[][] getMatrix(final int index) {
         return matrixList.get(index);
     }
 
+    /**
+     * 
+     * @return
+     *          list of jpg files under res/images/
+     */
     public File[] getFiles() {
         return this.files.clone();
     }

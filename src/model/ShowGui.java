@@ -8,13 +8,15 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import controller.ComparatorThread;
 
+/**
+* Test class for testing and debugging {@link ComparatorThread}, some magic numbers are present due to the purpose of the class.
+* This was made to test the recognition system as a standalone, this doesnt'work with the full version of the game.
+*/
 public class ShowGui {
 
     private final JFrame frame = new JFrame();
