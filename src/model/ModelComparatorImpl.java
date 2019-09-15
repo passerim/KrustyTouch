@@ -48,9 +48,7 @@ public class ModelComparatorImpl implements ModelComparator {
         }
     }
     
-    /**
-     * 
-     */
+    @Override
     public Integer getResult() {
         return this.result;
     }

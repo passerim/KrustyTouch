@@ -32,6 +32,7 @@ public final class SpongebobManager extends Thread {
     }
     
     private SpongebobManager(final AnchorPane base) {
+        super();
         this.root = base;
     }
     @Override

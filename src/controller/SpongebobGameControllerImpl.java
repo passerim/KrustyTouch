@@ -1,6 +1,8 @@
 package controller;
 
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.SpongebobGame;
 import model.SpongebobGameImpl;
@@ -8,14 +10,22 @@ import view.SpongebobGameView;
 import view.SpongebobGameViewImpl;
 import view.SpongebobGameViewObserver;
 
+/**
+ * Controller implementation.
+ */
 public class SpongebobGameControllerImpl implements SpongebobGameViewObserver, SpongebobGameController {
     
     private final SpongebobGame model;
     private final SpongebobGameView view;
 
-    public SpongebobGameControllerImpl(final Stage PrimaryStage) {
+    /**
+     * 
+     * @param primaryStage
+     *          game stage
+     */
+    public SpongebobGameControllerImpl(final Stage primaryStage) {
         this.model = new SpongebobGameImpl();
-        this.view = new SpongebobGameViewImpl(PrimaryStage, (SpongebobGameViewObserver) this);
+        this.view = new SpongebobGameViewImpl(primaryStage, (SpongebobGameViewObserver) this);
         this.view.start();
     }
 
@@ -32,8 +42,7 @@ public class SpongebobGameControllerImpl implements SpongebobGameViewObserver, S
     }
 
     @Override
-    public void newGame(final AnchorPane root) throws IllegalAccessException {
-        this.model.setStartTime();
+    public void newGame(final AnchorPane root) {
         this.startCharacters(root);
     }
 
@@ -46,6 +55,21 @@ public class SpongebobGameControllerImpl implements SpongebobGameViewObserver, S
     public void updateScore() {
         this.model.incrementScore();
         this.view.setScore(this.model.getScore());
+    }
+
+    @Override
+    public Pane getRoot() {
+        return this.view.getRoot();
+    }
+
+    @Override
+    public void removeNode(final Node e) {
+        this.view.removeChildren(e);
+    }
+
+    @Override
+    public void addNode(final Node e) {
+        this.view.addChildren(e);
     }
 
 }

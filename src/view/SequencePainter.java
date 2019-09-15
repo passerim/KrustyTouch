@@ -4,42 +4,42 @@ import controller.ComparatorThread;
 import controller.SpongebobGameController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+
 /** this class is in charged of listening the mouse_drag event and drawing red "dots" on it.
  */
 public class SequencePainter implements EventHandler<MouseEvent> {
     
     private static final int STROKE_WIDTH = 5;
-    private final AnchorPane root;
     private ComparatorThread comparator;
     private final SpongebobGameController controller;
-    /**this is the constructor method.
-     * @param root AnchorPane root
-     * @param controller SpongebobGameController controller
+    
+    /**
+     * This is the constructor method.
+     * @param controller 
+     *          SpongebobGameController controller
      */
-    public SequencePainter(final AnchorPane root, final SpongebobGameController controller) {
-        this.root = root;
+    public SequencePainter(final SpongebobGameController controller) {
         this.controller = controller;
     }
 
     @Override
     public final void handle(final MouseEvent arg) {
-        comparator = new ComparatorThread(this.controller, this.root);
+        comparator = new ComparatorThread(this.controller);
         final Path path = new Path();
         path.setStrokeWidth(STROKE_WIDTH);
         path.setStroke(Color.RED);
         final MoveTo moveTo = new MoveTo(arg.getX(), arg.getY());
         path.getElements().add(moveTo);
-        SequencePainter.this.root.getChildren().add(path);
+        SequencePainter.this.controller.addNode(path);
         final DrawGesture listener = new DrawGesture(path);
         final GestureEndHandler handler = new GestureEndHandler(path, listener);
-        this.root.addEventFilter(MouseEvent.MOUSE_RELEASED, handler);
-        this.root.addEventFilter(MouseEvent.MOUSE_EXITED, handler);
-        this.root.addEventFilter(MouseEvent.MOUSE_DRAGGED, listener);
+        this.controller.getRoot().addEventFilter(MouseEvent.MOUSE_RELEASED, handler);
+        this.controller.getRoot().addEventFilter(MouseEvent.MOUSE_EXITED, handler);
+        this.controller.getRoot().addEventFilter(MouseEvent.MOUSE_DRAGGED, listener);
     }
     
     private class DrawGesture implements EventHandler<MouseEvent> {
@@ -52,12 +52,12 @@ public class SequencePainter implements EventHandler<MouseEvent> {
 
         @Override
         public void handle(final MouseEvent e) {
-            if (e.getX() > 0 && e.getX() < root.getWidth() && e.getY() > 0 && e.getY() < root.getHeight()) {
+            if (e.getX() > 0 && e.getX() < SequencePainter.this.controller.getRoot().getWidth() && e.getY() > 0 && e.getY() < SequencePainter.this.controller.getRoot().getHeight()) {
                 final LineTo line = new LineTo(e.getX(), e.getY());
-                SequencePainter.this.root.getChildren().remove(path);
+                SequencePainter.this.controller.removeNode(path);
                 path.getElements().add(line);
                 SequencePainter.this.comparator.add((int) e.getX(), (int) e.getY());
-                SequencePainter.this.root.getChildren().add(path);
+                SequencePainter.this.controller.addNode(path);
             }
         }
     }
@@ -76,13 +76,13 @@ public class SequencePainter implements EventHandler<MouseEvent> {
         public void handle(final MouseEvent e) {
             if (SequencePainter.this.comparator.getState() != Thread.State.RUNNABLE 
                     && SequencePainter.this.comparator.getState() != Thread.State.TERMINATED) {
-                SequencePainter.this.root.removeEventFilter(MouseEvent.MOUSE_DRAGGED, listener);
+                SequencePainter.this.controller.getRoot().removeEventFilter(MouseEvent.MOUSE_DRAGGED, listener);
                 SequencePainter.this.comparator.start();
             }
-            SequencePainter.this.root.getChildren().remove(path);
+            SequencePainter.this.controller.removeNode(path);
             path.getElements().clear();
-            SequencePainter.this.root.removeEventFilter(MouseEvent.MOUSE_RELEASED, this);
-            SequencePainter.this.root.removeEventFilter(MouseEvent.MOUSE_EXITED, this);
+            SequencePainter.this.controller.getRoot().removeEventFilter(MouseEvent.MOUSE_RELEASED, this);
+            SequencePainter.this.controller.getRoot().removeEventFilter(MouseEvent.MOUSE_EXITED, this);
         }
     }
 }

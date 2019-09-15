@@ -14,7 +14,7 @@ public interface SpongebobGameViewObserver {
      * @throws IllegalAccessException
      *          If game is bad started
      */
-    void newGame(AnchorPane root) throws IllegalAccessException;
+    void newGame(AnchorPane root);
 
     /**
      * Game is quit.

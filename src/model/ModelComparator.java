@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Compares ref models with passed dirctions sequence, computes score and stores lower.
+ * Compares reference models with passed directions sequence, computes score and stores lower.
  */
 public interface ModelComparator {
     

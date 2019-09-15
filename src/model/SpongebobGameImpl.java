@@ -4,15 +4,15 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-
 import controller.Bonus;
 import controller.PlanktonManager;
 
+/**
+ * Game model implementation.
+ */
 public class SpongebobGameImpl implements SpongebobGame {
 
     private static final int DELAY_BONUS_RATE = 8000;
-    private Optional<Long> startTime = Optional.empty();
     private Integer score = 0;
     private int bonusDuration;
     private int planktonDuration;
@@ -24,6 +24,9 @@ public class SpongebobGameImpl implements SpongebobGame {
     private boolean scoreBonus = false;
     private final List<Bonus> bonuses = new LinkedList<>();
 
+    /**
+     * 
+     */
     public SpongebobGameImpl() {
         this.bonusDuration = 5000;
         this.bonusRate = 5000;
@@ -37,22 +40,6 @@ public class SpongebobGameImpl implements SpongebobGame {
     @Override
     public Integer getScore() {
         return this.score;
-    }
-
-    @Override
-    public void setStartTime() throws IllegalAccessException {
-        if (this.startTime.isPresent()) {
-            throw new IllegalAccessException();
-        }
-        this.startTime = Optional.of(System.currentTimeMillis());
-    }
-
-    @Override
-    public long getElapsedTime() throws IllegalAccessException {
-        if (!this.startTime.isPresent()) {
-            throw new IllegalAccessException();
-        }
-        return ((System.currentTimeMillis() - this.startTime.get()) / 1000);
     }
 
     @Override

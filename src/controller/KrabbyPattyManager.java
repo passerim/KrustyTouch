@@ -37,7 +37,7 @@ public class KrabbyPattyManager extends Bonus implements Runnable {
 
     @Override
     public final void run() {
-        spawn(11.0,5.5);
+        spawn(11.0, 5.5);
         move();
         this.image.setOnMouseClicked((event) -> action());
     }
