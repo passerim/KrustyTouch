@@ -20,7 +20,7 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import model.Pair;
+import util.Pair;
 
 /**
  * This class has the duty of managing the view of the game,
@@ -155,7 +155,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
     public void removeChildren(final Node e) {
         this.root.getChildren().remove(e);
     }
-    
+
     private void dragDetected(final MouseEvent arg) {
         this.points = new LinkedList<>();
         this.points.add(new Pair<>((int) arg.getX(), (int) arg.getY()));
@@ -169,9 +169,9 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
         final GestureEndHandler handler = new GestureEndHandler();
         this.root.addEventFilter(MouseEvent.MOUSE_RELEASED, handler);
         this.root.addEventFilter(MouseEvent.MOUSE_EXITED, handler);
-        this.root.addEventFilter(MouseEvent.MOUSE_DRAGGED, listener);
+        this.root.addEventFilter(MouseEvent.MOUSE_DRAGGED, this.listener);
     }
-    
+
     private void dragged(final MouseEvent e) {
         if (e.getX() > 0 && e.getX() < this.root.getWidth() && e.getY() > 0 && e.getY() < this.root.getHeight()) {
             final LineTo line = new LineTo(e.getX(), e.getY());
@@ -181,16 +181,16 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
             this.root.getChildren().add(this.path);
         }
     }
-    
+
     private void endDrag(final EventHandler<MouseEvent> myself) {
-        this.root.removeEventFilter(MouseEvent.MOUSE_DRAGGED, listener);
+        this.root.removeEventFilter(MouseEvent.MOUSE_DRAGGED, this.listener);
         this.observer.compare(this.points);
-        this.root.getChildren().remove(path);
+        this.root.getChildren().remove(this.path);
         this.path.getElements().clear();
         this.root.removeEventFilter(MouseEvent.MOUSE_RELEASED, myself);
         this.root.removeEventFilter(MouseEvent.MOUSE_EXITED, myself);
     }
-    
+
     private class SequencePainter implements EventHandler<MouseEvent> {
 
         @Override
@@ -198,7 +198,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
             SpongebobGameViewImpl.this.dragDetected(arg);
         }
     }
-    
+
     private class DrawGesture implements EventHandler<MouseEvent> {
 
         @Override
@@ -206,7 +206,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
             SpongebobGameViewImpl.this.dragged(e);
         }
     }
-        
+
     private class GestureEndHandler implements EventHandler<MouseEvent> {
 
         @Override

@@ -3,6 +3,8 @@ package model;
 import java.util.LinkedList;
 import java.util.List;
 
+import util.Pair;
+
 /**
  * Enumeration containing all the supported models for recognition.
  */
