@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import javafx.application.Platform;
 import model.ModelComparatorImpl;
 import model.ModelUtils;
 import model.RefModels;
@@ -18,17 +17,6 @@ public class ComparatorThread extends Thread {
     private static final double FILTER_COEFF = 1.96;
     private final List<Point> points = new ArrayList<Point>();
     private Optional<RefModels> value = Optional.empty();
-    //private final SpongebobGameController controller;
-
-    /**
-     * 
-     * @param controller
-     *          reference to controller
-     */
-    public ComparatorThread(/*final SpongebobGameController controller*/) {
-        super();
-        //this.controller = controller;     
-    }
 
     /**
      * 
@@ -76,20 +64,6 @@ public class ComparatorThread extends Thread {
             }
             i++;
         }
-        /*
-        // Removing reference model
-        if (this.value.isPresent()) {
-            if (this.controller.getModel().canRemove(this.value.get())) {
-                final Plankton p = this.controller.getModel().getMap().get(this.value.get()).get(0);
-                p.disable();
-                p.stopTransition();
-                this.controller.getModel().getMap().get(this.value.get()).remove(p);
-                Platform.runLater(() -> {
-                    this.controller.updateScore();
-                    this.controller.removeNode(p.getPlankton());
-                });
-            }
-        }*/
     }
 
     /**
@@ -98,11 +72,7 @@ public class ComparatorThread extends Thread {
      *          recognized symbol
      */
     public Optional<RefModels> getValue() {
-        //if (this.value.isPresent()) {
-            return this.value;
-        /*} else {
-            throw new IllegalStateException("ComparatorThread: " + this.getId() + ", value is not available!");
-        }*/
+        return this.value;
     }
 
     /**
