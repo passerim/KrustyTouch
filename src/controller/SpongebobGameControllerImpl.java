@@ -1,8 +1,14 @@
 package controller;
 
+import java.util.List;
+import java.util.Optional;
+
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Pair;
+import model.RefModels;
 import model.SpongebobGame;
 import model.SpongebobGameImpl;
 import view.SpongebobGameView;
@@ -67,6 +73,34 @@ public class SpongebobGameControllerImpl implements SpongebobGameViewObserver, S
     @Override
     public void addNode(final Node e) {
         this.view.addChildren(e);
+    }
+
+    @Override
+    public void compare(final List<Pair<Integer, Integer>> points) {
+        final ComparatorThread th = new ComparatorThread();
+        points.stream().forEach(p -> th.add(p.getX(), p.getY()));
+        th.start();
+        if (th.getState() != Thread.State.RUNNABLE && th.getState() != Thread.State.TERMINATED) {
+            th.start();
+        }
+        try {
+            th.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        final Optional<RefModels> m = th.getValue();
+        if (m.isPresent()) {
+            if (this.model.canRemove(m.get())) {
+                final Plankton p = this.model.getMap().get(m.get()).get(0);
+                p.disable();
+                p.stopTransition();
+                this.model.getMap().get(m.get()).remove(p);
+                Platform.runLater(() -> {
+                    this.updateScore();
+                    this.removeNode(p.getPlankton());
+                });
+            }
+        }
     }
 
 }

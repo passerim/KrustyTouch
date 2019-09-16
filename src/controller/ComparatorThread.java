@@ -18,16 +18,16 @@ public class ComparatorThread extends Thread {
     private static final double FILTER_COEFF = 1.96;
     private final List<Point> points = new ArrayList<Point>();
     private Optional<RefModels> value = Optional.empty();
-    private final SpongebobGameController controller;
+    //private final SpongebobGameController controller;
 
     /**
      * 
      * @param controller
      *          reference to controller
      */
-    public ComparatorThread(final SpongebobGameController controller) {
+    public ComparatorThread(/*final SpongebobGameController controller*/) {
         super();
-        this.controller = controller;     
+        //this.controller = controller;     
     }
 
     /**
@@ -76,7 +76,7 @@ public class ComparatorThread extends Thread {
             }
             i++;
         }
-        
+        /*
         // Removing reference model
         if (this.value.isPresent()) {
             if (this.controller.getModel().canRemove(this.value.get())) {
@@ -89,7 +89,7 @@ public class ComparatorThread extends Thread {
                     this.controller.removeNode(p.getPlankton());
                 });
             }
-        }
+        }*/
     }
 
     /**
@@ -97,12 +97,12 @@ public class ComparatorThread extends Thread {
      * @return
      *          recognized symbol
      */
-    public RefModels getValue() {
-        if (this.value.isPresent()) {
-            return this.value.get();
-        } else {
+    public Optional<RefModels> getValue() {
+        //if (this.value.isPresent()) {
+            return this.value;
+        /*} else {
             throw new IllegalStateException("ComparatorThread: " + this.getId() + ", value is not available!");
-        }
+        }*/
     }
 
     /**

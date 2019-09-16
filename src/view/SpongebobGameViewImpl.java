@@ -2,8 +2,10 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import controller.SpongebobGameController;
+import java.util.LinkedList;
+import java.util.List;
 import javafx.beans.value.ChangeListener;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -12,8 +14,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import model.Pair;
 
 /**
  * This class has the duty of managing the view of the game,
@@ -30,8 +37,11 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
     private AnchorPane root;
     private final Stage primaryStage;
     private Scene scene;
-    private final SpongebobGameController controller;
     private final Label score = new Label();
+    private static final int STROKE_WIDTH = 5;
+    private List<Pair<Integer, Integer>> points;
+    private Path path;
+    private DrawGesture listener;
 
     /** this is the constructor method, which initiates the menu, first, and the game background right after.
      * 
@@ -39,7 +49,6 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
      * @param observer SpongebobGameViewObserver 
      */
     public SpongebobGameViewImpl(final Stage primaryStage, final SpongebobGameViewObserver observer) {
-        this.controller = (SpongebobGameController) observer;
         this.primaryStage = primaryStage;
         this.observer = observer;
         this.root = new AnchorPane();
@@ -97,7 +106,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
         AnchorPane.setRightAnchor(this.score, 0.);
         AnchorPane.setTopAnchor(this.score, 0.);
         this.root.getChildren().add(this.score);
-        this.root.addEventFilter(MouseEvent.DRAG_DETECTED, new SequencePainter(this.controller));
+        this.root.addEventFilter(MouseEvent.DRAG_DETECTED, new SequencePainter());
         this.observer.newGame();
         primaryStage.setScene(this.scene);
     }
@@ -145,6 +154,65 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
     @Override
     public void removeChildren(final Node e) {
         this.root.getChildren().remove(e);
+    }
+    
+    private void dragDetected(final MouseEvent arg) {
+        this.points = new LinkedList<>();
+        this.points.add(new Pair<>((int) arg.getX(), (int) arg.getY()));
+        this.path = new Path();
+        this.path.setStrokeWidth(STROKE_WIDTH);
+        this.path.setStroke(Color.RED);
+        final MoveTo moveTo = new MoveTo(arg.getX(), arg.getY());
+        this.path.getElements().add(moveTo);
+        this.root.getChildren().add(this.path);
+        this.listener = new DrawGesture();
+        final GestureEndHandler handler = new GestureEndHandler();
+        this.root.addEventFilter(MouseEvent.MOUSE_RELEASED, handler);
+        this.root.addEventFilter(MouseEvent.MOUSE_EXITED, handler);
+        this.root.addEventFilter(MouseEvent.MOUSE_DRAGGED, listener);
+    }
+    
+    private void dragged(final MouseEvent e) {
+        if (e.getX() > 0 && e.getX() < this.root.getWidth() && e.getY() > 0 && e.getY() < this.root.getHeight()) {
+            final LineTo line = new LineTo(e.getX(), e.getY());
+            this.root.getChildren().remove(this.path);
+            this.path.getElements().add(line);
+            this.points.add(new Pair<Integer, Integer>((int) e.getX(), (int) e.getY()));
+            this.root.getChildren().add(this.path);
+        }
+    }
+    
+    private void endDrag(final EventHandler<MouseEvent> myself) {
+        this.root.removeEventFilter(MouseEvent.MOUSE_DRAGGED, listener);
+        this.observer.compare(this.points);
+        this.root.getChildren().remove(path);
+        this.path.getElements().clear();
+        this.root.removeEventFilter(MouseEvent.MOUSE_RELEASED, myself);
+        this.root.removeEventFilter(MouseEvent.MOUSE_EXITED, myself);
+    }
+    
+    private class SequencePainter implements EventHandler<MouseEvent> {
+
+        @Override
+        public final void handle(final MouseEvent arg) {
+            SpongebobGameViewImpl.this.dragDetected(arg);
+        }
+    }
+    
+    private class DrawGesture implements EventHandler<MouseEvent> {
+
+        @Override
+        public void handle(final MouseEvent e) {
+            SpongebobGameViewImpl.this.dragged(e);
+        }
+    }
+        
+    private class GestureEndHandler implements EventHandler<MouseEvent> {
+
+        @Override
+        public void handle(final MouseEvent e) {
+            SpongebobGameViewImpl.this.endDrag(this);
+        }
     }
 
 }
