@@ -37,7 +37,7 @@ public class GaryManager extends Bonus implements  Runnable {
     }
 
     @Override
-    public final  void run() {
+    public final void run() {
         this.spawn(HEIGHT, WIDTH);
         this.move();
         this.image.setOnMouseClicked((event) -> action());

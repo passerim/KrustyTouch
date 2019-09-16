@@ -4,7 +4,6 @@ import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import controller.Bonus;
 import controller.Plankton;
 
 /**
@@ -27,7 +26,6 @@ public class SpongebobGameImpl implements SpongebobGame {
     private int scoreMultiplier = 1;
     private final Map<RefModels, List<Plankton>> map = new EnumMap<>(RefModels.class);
     private boolean scoreBonus = false;
-    private final List<Bonus> bonuses = new LinkedList<>();
 
     /**
      * 
@@ -144,7 +142,6 @@ public class SpongebobGameImpl implements SpongebobGame {
     @Override
     public void freeze() {
         this.map.entrySet().stream().flatMap(m -> m.getValue().stream()).forEach(p -> p.stopTransition());
-        this.bonuses.stream().forEach(b -> b.stopTransition());
     }
 
 }

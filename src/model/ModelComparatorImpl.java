@@ -21,15 +21,15 @@ public class ModelComparatorImpl implements ModelComparator {
     public ModelComparatorImpl(final Integer[] pointsSeq, final RefModels refModel) {
         this.pointsSeq = pointsSeq;
         this.refModelSeq = refModel.getSeq();
-        this.result = ModelUtils.DTWDistance(this.pointsSeq, this.refModelSeq);
-        Integer res = ModelUtils.DTWDistance(this.pointsSeq, invert(this.refModelSeq));
+        this.result = ModelUtils.dtwDistance(this.pointsSeq, this.refModelSeq);
+        Integer res = ModelUtils.dtwDistance(this.pointsSeq, invert(this.refModelSeq));
         if (res < this.result) {
             this.result = res;
         }
         if (refModel.isCircular()) {
             Integer[] rotated = rotateBy(this.refModelSeq, 1);
             while (!Arrays.equals(this.refModelSeq, rotated)) {
-                res = ModelUtils.DTWDistance(this.pointsSeq, rotated);
+                res = ModelUtils.dtwDistance(this.pointsSeq, rotated);
                 if (res < this.result) {
                     this.result = res;
                 }
@@ -39,7 +39,7 @@ public class ModelComparatorImpl implements ModelComparator {
             final Integer[] inverted = rotated.clone();
             rotated = rotateBy(rotated, 1);
             while (!Arrays.equals(inverted, rotated)) {
-                res = ModelUtils.DTWDistance(this.pointsSeq, rotated);
+                res = ModelUtils.dtwDistance(this.pointsSeq, rotated);
                 if (res < this.result) {
                     this.result = res;
                 }

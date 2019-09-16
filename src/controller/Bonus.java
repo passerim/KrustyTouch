@@ -11,7 +11,7 @@ import javafx.util.Duration;
  * they all got implemented here, with the exception of action 
  * which varies depending on the specific bonus.
  */
-public abstract class Bonus implements Runnable {
+public abstract class Bonus {
 
     private static final int RIGHTOFFSET = 80;
     private static final int LEFTOFFSET = 20;
@@ -21,12 +21,13 @@ public abstract class Bonus implements Runnable {
     private final TranslateTransition movement = new TranslateTransition();
     private final SpongebobGameController controller;
 
-    /**the constructor method.
+    /**
+     * The constructor method.
      * Sets bonusDuration and controller.
      * @param controller
      *          reference to controller
      */
-    public Bonus(final SpongebobGameController controller) {
+    protected Bonus(final SpongebobGameController controller) {
         this.bonusDuration = controller.getModel().getBonusDuration();
         this.controller = controller;
     }

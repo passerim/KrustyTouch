@@ -18,7 +18,6 @@ public class SpongebobGameControllerImpl implements SpongebobGameViewObserver, S
     private final SpongebobGameView view;
 
     /**
-     * 
      * @param primaryStage
      *          game stage
      */
@@ -32,7 +31,6 @@ public class SpongebobGameControllerImpl implements SpongebobGameViewObserver, S
         SpawnerPlanktonManager.getPlanktonSpawner(this).start();
         SpongebobManager.getSpongebobManager(this).start();
         BonusSpawner.getBonusSpawner(this).start();
-
     }
 
     @Override

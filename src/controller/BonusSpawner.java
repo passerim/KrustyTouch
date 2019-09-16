@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
  */
 public final class BonusSpawner extends Thread {
 
-    private static BonusSpawner SINGLETON = null;
+    private static BonusSpawner singleton = null;
     private final SpongebobGameController controller;
 
     private BonusSpawner(final SpongebobGameController controller) {
@@ -16,15 +16,16 @@ public final class BonusSpawner extends Thread {
         this.controller = controller;
     }
 
-    /**this is the SINGLETON method that allows one and only instance of this class.
+    /**
+     * This is the singleton method that allows one and only instance of this class.
      * @param controller  SpongebobGameController
      * @return the instance of this class
      */
     public static synchronized BonusSpawner getBonusSpawner(final SpongebobGameController controller) {
-        if (SINGLETON == null) {
-            SINGLETON = new BonusSpawner(controller);
+        if (singleton == null) {
+            singleton = new BonusSpawner(controller);
         }
-        return SINGLETON;
+        return singleton;
     }
 
     @Override

@@ -89,22 +89,22 @@ public final class ModelUtils {
      * @return
      *          dynamic time warping cost
      */
-    public static Integer DTWDistance(final Integer[] a, final Integer[] b) {
+    public static Integer dtwDistance(final Integer[] a, final Integer[] b) {
         final int n = a.length, m = b.length;
-        Integer[][] DTW = new Integer[n + 1][m + 1];
+        Integer[][] dtw = new Integer[n + 1][m + 1];
         for (int i = 0; i <= n; i++) {
             for (int j = 0; j <= m; j++) {
-                DTW[i][j] = Integer.MAX_VALUE;
+                dtw[i][j] = Integer.MAX_VALUE;
             }
         }
-        DTW[0][0] = 0;
+        dtw[0][0] = 0;
         for (int i = 1; i <= n; i++) {
             for  (int j = 1; j <= m; j++) {
                 final Integer cost = distMod8(a[i - 1], b[j - 1]);
-                DTW[i][j] = cost + Math.min(DTW[i - 1][j], Math.min(DTW[i][j - 1], DTW[i - 1][j - 1]));
+                dtw[i][j] = cost + Math.min(dtw[i - 1][j], Math.min(dtw[i][j - 1], dtw[i - 1][j - 1]));
             }
         }
-        return DTW[n][m];
+        return dtw[n][m];
     }
 
     /**

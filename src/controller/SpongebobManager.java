@@ -44,12 +44,13 @@ public final class SpongebobManager extends Thread {
         super();
         this.controller = controller;
     }
+    
     @Override
     public void run() {
-        settingImage();
+        this.settingImage();
         Platform.runLater(() -> this.controller.getRoot().getChildren().add(this.spongebob));
-        movements.setNode(this.spongebob);
-        firstMove();
+        this.movements.setNode(this.spongebob);
+        this.firstMove();
         while (true) {
             try {
                 Thread.sleep(MOVE_ANIMATION_TIME);
@@ -104,14 +105,6 @@ public final class SpongebobManager extends Thread {
         this.movements.setDuration(Duration.millis(ANIMATION_TIME));
         this.movements.setOnFinished((event) -> moveRight());
         this.movements.play();
-    }
-
-    /** this method, is quite self-explanatory.
-     * 
-     * @return the ImageView of Spongebob
-     */
-    public ImageView getSpongebob() {
-        return this.spongebob;
     }
 
 }

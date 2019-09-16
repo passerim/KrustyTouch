@@ -8,9 +8,9 @@ import model.RefModels;
  * This class-thread is an enemy spawner.
  *  it randomly choose the type of balloon, it spawns enemies and collect all necessary information.
  */
-public class SpawnerPlanktonManager extends Thread {
+public final class SpawnerPlanktonManager extends Thread {
 
-    private static SpawnerPlanktonManager SINGLETON = null;
+    private static SpawnerPlanktonManager singleton = null;
     private final SpongebobGameController controller;
     private Image[] images = new Image[2];
     private boolean bonus = false;
@@ -26,10 +26,10 @@ public class SpawnerPlanktonManager extends Thread {
      * @return the instance of this class
      */
     public static synchronized SpawnerPlanktonManager getPlanktonSpawner(final SpongebobGameController controller) {
-        if (SINGLETON == null) {
-            SINGLETON = new SpawnerPlanktonManager(controller);
+        if (singleton == null) {
+            singleton = new SpawnerPlanktonManager(controller);
         }
-        return SINGLETON;
+        return singleton;
     }
 
     @Override

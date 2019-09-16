@@ -9,7 +9,8 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 
-/** this class is in charged of listening the mouse_drag event and drawing red "dots" on it.
+/** 
+ * This class is in charged of listening the mouse_drag event and drawing red "dots" on it.
  */
 public class SequencePainter implements EventHandler<MouseEvent> {
     
