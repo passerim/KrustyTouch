@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 /**
  * Interface for interacting with planktons.
  */
-public interface Plankton {
+public interface Plankton extends Runnable {
     
     /**
      * 
@@ -18,5 +18,10 @@ public interface Plankton {
      * Stops plankton transition.
      */
     void stopTransition();
+
+    /**
+     * This method disables and stop thread.
+     */
+    void disable();
 
 }

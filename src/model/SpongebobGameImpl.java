@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import controller.Bonus;
-import controller.PlanktonManager;
+import controller.Plankton;
 
 /**
  * Game model implementation.
@@ -25,7 +25,7 @@ public class SpongebobGameImpl implements SpongebobGame {
     private long planktonRate;
     private boolean delayBonus = false;
     private int scoreMultiplier = 1;
-    private final Map<RefModels, List<PlanktonManager>> map = new EnumMap<>(RefModels.class);
+    private final Map<RefModels, List<Plankton>> map = new EnumMap<>(RefModels.class);
     private boolean scoreBonus = false;
     private final List<Bonus> bonuses = new LinkedList<>();
 
@@ -111,12 +111,12 @@ public class SpongebobGameImpl implements SpongebobGame {
     }
 
     @Override
-    public void addToMap(final RefModels model, final PlanktonManager plank) {
+    public void addToMap(final RefModels model, final Plankton plank) {
         this.map.get(model).add(plank);
     }
 
     @Override
-    public Map<RefModels, List<PlanktonManager>> getMap() {
+    public Map<RefModels, List<Plankton>> getMap() {
         return this.map;
     }
 

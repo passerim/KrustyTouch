@@ -10,7 +10,7 @@ import javafx.util.Duration;
 /**
  *  This class is in charged of managing the enemies.
  */
-public class PlanktonManager extends Thread implements Plankton {
+public class PlanktonManager implements Plankton {
 
     private static final int DIMENSION_RATIO = 3;
     private static final int RIGHTOFFSET = 70;
@@ -59,9 +59,7 @@ public class PlanktonManager extends Thread implements Plankton {
         }
     }
 
-    /**
-     * This method disables and stop thread.
-     */
+    @Override
     public void disable() {
         if (this.canRun) {
             this.canRun = false; 

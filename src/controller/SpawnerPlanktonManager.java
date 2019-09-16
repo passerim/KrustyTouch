@@ -38,9 +38,9 @@ public class SpawnerPlanktonManager extends Thread {
             try {
                 final int n = this.randomSelector();
                 Thread.sleep(this.controller.getModel().getPlanktonRate());
-                final PlanktonManager plankton = new PlanktonManager(this.controller, this.images.clone());
+                final Plankton plankton = new PlanktonManager(this.controller, this.images.clone());
                 this.controller.getModel().addToMap(RefModels.values()[n], plankton);
-                plankton.start();
+                new Thread(plankton).start();
                 Platform.runLater(() -> {
                     this.controller.addNode(plankton.getPlankton());
                 });

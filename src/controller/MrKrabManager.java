@@ -31,7 +31,7 @@ public class MrKrabManager extends Bonus implements Runnable {
         Platform.runLater(() -> this.controller.removeNode(this.image));
     }
 
-    private void enemyDefeated(final PlanktonManager elem) {
+    private void enemyDefeated(final Plankton elem) {
         this.controller.removeNode(elem.getPlankton());
         this.controller.updateScore();
         elem.disable();

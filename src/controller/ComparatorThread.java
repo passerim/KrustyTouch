@@ -80,7 +80,7 @@ public class ComparatorThread extends Thread {
         // Removing reference model
         if (this.value.isPresent()) {
             if (this.controller.getModel().canRemove(this.value.get())) {
-                final PlanktonManager p = this.controller.getModel().getMap().get(this.value.get()).get(0);
+                final Plankton p = this.controller.getModel().getMap().get(this.value.get()).get(0);
                 p.disable();
                 p.stopTransition();
                 this.controller.getModel().getMap().get(this.value.get()).remove(p);

@@ -2,8 +2,7 @@ package model;
 
 import java.util.List;
 import java.util.Map;
-
-import controller.PlanktonManager;
+import controller.Plankton;
 
 /**
  * Interface for game's model.
@@ -49,17 +48,17 @@ public interface SpongebobGame {
      * 
      * @param model
      *          {@link RefModels} to be added to
-     * @param plank
+     * @param plankton
      *          {@link PlanktonManager} plankton
      */
-    void addToMap(RefModels model, PlanktonManager plank);
+    void addToMap(RefModels model, Plankton plankton);
 
     /**
      * 
      * @return
      *          on screen planktons map
      */
-    Map<RefModels, List<PlanktonManager>> getMap();
+    Map<RefModels, List<Plankton>> getMap();
 
     /**
      * 
