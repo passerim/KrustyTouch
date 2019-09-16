@@ -28,6 +28,8 @@ public class SequencerImpl implements Sequencer {
 
     /**
      * Note: 45 is not a magic number! it is the angular ratio needed to devide a 360 degree angle in 8 directions.
+     * @return
+     *          array of directions computed from points
      */
     public Integer[] computeSequence() {
         Point lastP = null;

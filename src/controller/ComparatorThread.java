@@ -86,7 +86,7 @@ public class ComparatorThread extends Thread {
                 this.controller.getModel().getMap().get(this.value.get()).remove(p);
                 Platform.runLater(() -> {
                     this.controller.updateScore();
-                    this.controller.removeNode(p.plankton);
+                    this.controller.removeNode(p.getPlankton());
                 });
             }
         }
@@ -118,6 +118,5 @@ public class ComparatorThread extends Thread {
         p.y = toY;
         points.add(p);
     }
-    
     
 }

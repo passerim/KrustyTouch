@@ -7,12 +7,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
-/** this class is in charged of managing the enemies
+/**
+ *  This class is in charged of managing the enemies.
  */
-public class PlanktonManager extends Thread {
+public class PlanktonManager extends Thread implements Plankton {
 
-	private static final int DIMENSION_RATIO=3;
-    public ImageView plankton;
+    private static final int DIMENSION_RATIO = 3;
+    private static final int RIGHTOFFSET = 70;
+    private static final int LEFTOFFSET = 10;
+    private final ImageView plankton;
     private int interchanger = 0;
     private final TranslateTransition transition = new TranslateTransition();
     private final int duration;
@@ -36,19 +39,19 @@ public class PlanktonManager extends Thread {
 
     @Override
     public void run()  {
-        randomSpawn();
-        plankton.setFitHeight(this.controller.getRoot().getHeight() / DIMENSION_RATIO);
-        plankton.setFitWidth(this.controller.getRoot().getWidth() / DIMENSION_RATIO);
-        setTransition();
+        this.randomSpawn();
+        this.plankton.setFitHeight(this.controller.getRoot().getHeight() / DIMENSION_RATIO);
+        this.plankton.setFitWidth(this.controller.getRoot().getWidth() / DIMENSION_RATIO);
+        this.setTransition();
         while (this.canRun) {
             try {
                 TimeUnit.MILLISECONDS.sleep(ANIMATION_TIME); // mantengo  questo per il momento
-                if (interchanger == 0) {
-                    plankton.setImage(interImages[0]);
-                    interchanger = 1;
+                if (this.interchanger == 0) {
+                    this.plankton.setImage(this.interImages[0]);
+                    this.interchanger = 1;
                 } else {
-                    plankton.setImage(interImages[1]);
-                    interchanger = 0;
+                    this.plankton.setImage(this.interImages[1]);
+                    this.interchanger = 0;
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -56,7 +59,8 @@ public class PlanktonManager extends Thread {
         }
     }
 
-    /**this method disables and stop thread.
+    /**
+     * This method disables and stop thread.
      */
     public void disable() {
         if (this.canRun) {
@@ -65,41 +69,46 @@ public class PlanktonManager extends Thread {
     }
 
     /**
-     * this method sets a random position to spawn the random enemy.
+     * This method sets a random position to spawn the random enemy.
      */
-    public void randomSpawn() {
-        final double lowerBound = (this.controller.getRoot().getWidth() * 10) / 100;
-        final double upperBound = (this.controller.getRoot().getWidth() * 70) / 100;
+    private void randomSpawn() {
+        final double lowerBound = (this.controller.getRoot().getWidth() * LEFTOFFSET) / 100;
+        final double upperBound = (this.controller.getRoot().getWidth() * RIGHTOFFSET) / 100;
         final int location = (int) ((Math.random() * (upperBound - lowerBound)) + lowerBound);
         this.plankton.setLayoutX(location);
         this.plankton.setLayoutY(0);
         this.plankton.setVisible(true);
     }
 
-    /**this method set the transition for the enemy.
-     * 
+    /** 
+     * This method set the transition for the enemy.
      */
-    public void setTransition() {
+    private void setTransition() {
         transition.setNode(this.plankton);
         transition.setFromY(0);
         transition.setToY((this.controller.getRoot().getHeight() * LIMIT) / 100);
         transition.setDuration(Duration.millis(this.duration));
         transition.play();
-        transition.setOnFinished((event) -> Platform.runLater(() -> EndingSequence()));
+        transition.setOnFinished((event) -> Platform.runLater(() -> endingSequence()));
     }
 
-	private void EndingSequence() {
-		this.controller.getModel().freeze();
-		this.disable();
-		try {
-		    Thread.sleep(1000);
-		} catch (InterruptedException e) {
-		    e.printStackTrace();
-		}
-		System.out.println("exiting...");
-		this.controller.quit();
-	}
+    private void endingSequence() {
+        this.controller.getModel().freeze();
+        this.disable();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        this.controller.quit();
+    }
+    
+    @Override
+    public ImageView getPlankton() {
+        return plankton;
+    }
 
+    @Override
     public void stopTransition() {
         this.transition.stop();
     } 

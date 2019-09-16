@@ -68,7 +68,6 @@ public abstract class Bonus implements Runnable {
      * @param widthSetting
      *          width ratio relative to scene's width
      */
-
     protected final void spawn(final double heightSetting, final double widthSetting) {
         this.image.setFitHeight(this.controller.getRoot().getHeight() / heightSetting);
         this.image.setFitWidth(this.controller.getRoot().getWidth() / widthSetting);
@@ -78,10 +77,10 @@ public abstract class Bonus implements Runnable {
         Platform.runLater(() -> this.controller.addNode(this.image));
     }
 
-  /** 
+    /** 
      * this abstract method is implemented in the various bonus classes.
      * Basically, it active the bonus effect on  the click of the mouse. 
      */
-  protected abstract void action();
+    protected abstract void action();
 
 }

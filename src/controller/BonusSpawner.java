@@ -7,15 +7,15 @@ import java.util.concurrent.TimeUnit;
  * it also implements a singleton to allow one and only instance of it to exist.
  */
 public final class BonusSpawner extends Thread {
+
     private static BonusSpawner SINGLETON = null;
     private final SpongebobGameController controller;
-    
-    
+
     private BonusSpawner(final SpongebobGameController controller) {
         super();
         this.controller = controller;
     }
-    
+
     /**this is the SINGLETON method that allows one and only instance of this class.
      * @param controller  SpongebobGameController
      * @return the instance of this class
@@ -26,20 +26,19 @@ public final class BonusSpawner extends Thread {
         }
         return SINGLETON;
     }
- 
-  
-  @Override
-  public void run() {
-    while (true) {
-      try {
-        TimeUnit.MILLISECONDS.sleep(this.controller.getModel().getBonusRate());
-        this.randomChoice();
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                TimeUnit.MILLISECONDS.sleep(this.controller.getModel().getBonusRate());
+                this.randomChoice();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
-  }
-   
+
     private void randomChoice() {
         final int bonusSelector = (int) (Math.random() * 4);
         switch (bonusSelector) {
@@ -63,5 +62,5 @@ public final class BonusSpawner extends Thread {
             throw new IllegalStateException();
         }
     }
-  }
+}
 

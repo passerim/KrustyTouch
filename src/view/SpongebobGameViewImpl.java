@@ -32,7 +32,7 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
     private Scene scene;
     private final SpongebobGameController controller;
     private final Label score = new Label();
-    
+
     /** this is the constructor method, which initiates the menu, first, and the game background right after.
      * 
      * @param primaryStage primaryStage is the window
@@ -44,15 +44,15 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
         this.observer = observer;
         this.root = new AnchorPane();
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    	this.primaryStage.setMaxHeight(screenSize.getHeight() * DEFAULT_HEIGHT_TO_SCREEN_RATIO);
-    	this.primaryStage.setMaxWidth(this.primaryStage.getMaxHeight() * ASPECT_RATIO);
-    	this.primaryStage.setTitle(FRAME_NAME);
-    	this.primaryStage.centerOnScreen();
-    	this.primaryStage.setMaximized(false);
-    	this.primaryStage.setFullScreen(false);
-    	this.primaryStage.setOnCloseRequest(we -> this.observer.quit());
-    	this.primaryStage.setResizable(true);
-    	this.primaryStage.setMinHeight(MINIMUM_SUPPORTED_HEIGHT_RES);
+        this.primaryStage.setMaxHeight(screenSize.getHeight() * DEFAULT_HEIGHT_TO_SCREEN_RATIO);
+        this.primaryStage.setMaxWidth(this.primaryStage.getMaxHeight() * ASPECT_RATIO);
+        this.primaryStage.setTitle(FRAME_NAME);
+        this.primaryStage.centerOnScreen();
+        this.primaryStage.setMaximized(false);
+        this.primaryStage.setFullScreen(false);
+        this.primaryStage.setOnCloseRequest(we -> this.observer.quit());
+        this.primaryStage.setResizable(true);
+        this.primaryStage.setMinHeight(MINIMUM_SUPPORTED_HEIGHT_RES);
         this.setMenuBackground(primaryStage, screenSize);
     }
 
@@ -126,26 +126,25 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
             this.primaryStage.setMinWidth(MINIMUM_SUPPORTED_HEIGHT_RES * ASPECT_RATIO);
         }
     }
-    
+
     @Override
     public void setObserver(final SpongebobGameViewObserver observer) {
         this.observer = observer;
     }
-    
+
     @Override
     public Pane getRoot() {
         return this.root;
     }
-    
+
     @Override
     public void addChildren(final Node e) {
         this.root.getChildren().add(e);
     }
-    
+
     @Override
     public void removeChildren(final Node e) {
         this.root.getChildren().remove(e);
     }
 
-  
 }

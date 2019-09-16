@@ -7,8 +7,6 @@ public interface SpongebobGameViewObserver {
     
     /**
      * Starts a new game, loading spawner threads and setting up the model.
-     * @param root
-     *          Root pane of the game scene
      * @throws IllegalAccessException
      *          If game is bad started
      */

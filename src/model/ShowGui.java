@@ -102,10 +102,20 @@ public class ShowGui {
         this.frame.setVisible(true);
     }
 
+    /**
+     * 
+     * @return
+     *          test class gui frame
+     */
     public JFrame getFrame() {
         return this.frame;
     }
 
+    /**
+     * 
+     * @return
+     *          test class gui panel
+     */
     public JPanel getPanel() {
         return this.panel;
     }

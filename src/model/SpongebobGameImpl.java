@@ -1,6 +1,6 @@
 package model;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +12,12 @@ import controller.PlanktonManager;
  */
 public class SpongebobGameImpl implements SpongebobGame {
 
+    private static final double COEFF = 0.435;
+    private static final int SCORE_MULTIPLIER = 5;
     private static final int DELAY_BONUS_RATE = 8000;
+    private static final int HIGHSCORE = 150;
+    private static final int MIN_RATE = 500;
+    private static final int INIT_RATE = 2500;
     private Integer score = 0;
     private int bonusDuration;
     private int planktonDuration;
@@ -20,7 +25,7 @@ public class SpongebobGameImpl implements SpongebobGame {
     private long planktonRate;
     private boolean delayBonus = false;
     private int scoreMultiplier = 1;
-    private final Map<RefModels, List<PlanktonManager>> map = new HashMap<>();
+    private final Map<RefModels, List<PlanktonManager>> map = new EnumMap<>(RefModels.class);
     private boolean scoreBonus = false;
     private final List<Bonus> bonuses = new LinkedList<>();
 
@@ -30,7 +35,7 @@ public class SpongebobGameImpl implements SpongebobGame {
     public SpongebobGameImpl() {
         this.bonusDuration = 5000;
         this.bonusRate = 5000;
-        this.planktonRate = 2500;
+        this.planktonRate = INIT_RATE;
         this.planktonDuration = 5000;
         for (final RefModels m : RefModels.values()) {
             map.put(m, new LinkedList<>());
@@ -69,7 +74,8 @@ public class SpongebobGameImpl implements SpongebobGame {
     }
 
     private void computePlanktonRate() {
-        this.planktonRate *= 1;
+        this.planktonRate = (int) (Math.exp((-Math.pow(this.score, 2)) / (COEFF * Math.pow(HIGHSCORE, 2))) 
+                * (INIT_RATE - MIN_RATE)) + MIN_RATE;
     }
 
     @Override
@@ -128,7 +134,7 @@ public class SpongebobGameImpl implements SpongebobGame {
     public void setScoreBonus() {
         if (!this.scoreBonus) {
             this.scoreBonus  = true;
-            this.scoreMultiplier = 5;
+            this.scoreMultiplier = SCORE_MULTIPLIER;
         } else {
             this.scoreBonus = false;
             this.scoreMultiplier = 1;
