@@ -128,12 +128,11 @@ public class SpongebobGameViewImpl implements SpongebobGameView {
                 this.primaryStage.setMaxWidth(primaryStage.getWidth());
             }
         };
-        if (System.getProperty("os.name").toLowerCase().contains("win") || System.getProperty("os.name").toLowerCase().contains("mac")) {
-            this.scene.heightProperty().addListener(sceneSizeListener);
-        } else {
-            this.primaryStage.setMaxWidth(primaryStage.getWidth());
-            this.primaryStage.setMinWidth(MINIMUM_SUPPORTED_HEIGHT_RES * ASPECT_RATIO);
-        }
+        // Attivare il listener, che mantiene la finestra con aspect ratio 16:9 genera bug su Linux
+        // si è quindi scelto di lasciarlo disattivato.
+        //this.scene.heightProperty().addListener(sceneSizeListener);
+        this.primaryStage.setMaxWidth(primaryStage.getWidth());
+        this.primaryStage.setMinWidth(MINIMUM_SUPPORTED_HEIGHT_RES * ASPECT_RATIO);
     }
 
     @Override

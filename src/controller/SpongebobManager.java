@@ -19,7 +19,7 @@ public final class SpongebobManager extends Thread {
     private static final int MOVE_ANIMATION_TIME = 250;
     private static final int WIDTH_RATIO = 2;
     private static final int HEIGHT_RATIO = 4;
-    private static SpongebobManager istanza = null;
+    private static SpongebobManager singleton = null;
     private final ImageView spongebob = new ImageView();
     private final SpongebobGameController controller;
     private int walkingPosition = 0;
@@ -34,10 +34,10 @@ public final class SpongebobManager extends Thread {
      *          the instance of the class
      */
     public static synchronized SpongebobManager getSpongebobManager(final SpongebobGameController controller) {
-        if (istanza == null) {
-            istanza = new SpongebobManager(controller);
+        if (singleton == null) {
+            singleton = new SpongebobManager(controller);
         }
-        return istanza;
+        return singleton;
     }
 
     private SpongebobManager(final SpongebobGameController controller) {
