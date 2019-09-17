@@ -1,14 +1,9 @@
-package controller;
+package model;
 
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import model.Comparator;
-import model.ModelComparatorImpl;
-import model.ModelUtils;
-import model.RefModels;
-import model.SequencerImpl;
 
 /**
  * 

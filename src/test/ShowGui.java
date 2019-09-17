@@ -11,7 +11,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import controller.ComparatorThread;
+import model.Comparator;
 
 /**
 * Test class for testing and debugging {@link ComparatorThread}, some magic numbers are present due to the purpose of the class.
@@ -29,13 +29,14 @@ public class ShowGui {
             {
                 addMouseListener(new MouseListener() {
 
-                    private ComparatorThread th;
+                    private Comparator cmp;
+                    private Thread th;
                     private boolean pressed;
                     private final MouseMotionListener l = new MouseMotionListener() {
 
                         @Override
                         public void mouseDragged(final MouseEvent e) {
-                            th.add(e.getX(), e.getY());
+                            cmp.add(e.getX(), e.getY());
                             points.add(e.getPoint());
                             repaint();
                         }
@@ -53,7 +54,7 @@ public class ShowGui {
 
                     public void mousePressed(final MouseEvent e) {
                         pressed = true;
-                        //th = new ComparatorThread(400,400);
+                        th = new Thread(cmp);
                         addMouseMotionListener(l);
                         points.add(e.getPoint());
                     }
@@ -69,7 +70,7 @@ public class ShowGui {
                                     ex.printStackTrace();
                                 }
                             }
-                            JOptionPane.showMessageDialog(getFrame(), ((th.getValue())));
+                            JOptionPane.showMessageDialog(getFrame(), ((cmp.getValue())));
                         }
                         pressed = false;
                         points.clear();
