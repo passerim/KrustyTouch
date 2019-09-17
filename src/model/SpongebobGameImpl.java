@@ -4,6 +4,8 @@ import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import controller.ComparatorThread;
 import controller.Plankton;
 
 /**
@@ -142,6 +144,11 @@ public class SpongebobGameImpl implements SpongebobGame {
     @Override
     public void freeze() {
         this.map.entrySet().stream().flatMap(m -> m.getValue().stream()).forEach(p -> p.stopTransition());
+    }
+
+    @Override
+    public Comparator getComparator() {
+        return new ComparatorThread();
     }
 
 }

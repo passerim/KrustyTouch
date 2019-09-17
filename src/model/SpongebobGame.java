@@ -99,4 +99,6 @@ public interface SpongebobGame {
      *          weather this bonus was set up or not
      */
     boolean onDelayBonus();
+
+    Comparator getComparator();
 }

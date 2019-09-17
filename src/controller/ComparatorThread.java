@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import model.Comparator;
 import model.ModelComparatorImpl;
 import model.ModelUtils;
 import model.RefModels;
@@ -12,7 +13,7 @@ import model.SequencerImpl;
 /**
  * 
  */
-public class ComparatorThread extends Thread {
+public class ComparatorThread implements Comparator {
 
     private static final double FILTER_COEFF = 1.96;
     private final List<Point> points = new ArrayList<Point>();
@@ -66,21 +67,17 @@ public class ComparatorThread extends Thread {
     }
 
     /**
-     * Get recognized symbol if any.
-     * @return
-     *          recognized symbol
+     * 
      */
+    @Override
     public Optional<RefModels> getValue() {
         return this.value;
     }
 
     /**
-     * Adds a point to be processed.
-     * @param toX
-     *          x coordinate of point
-     * @param toY
-     *          y coordinate of point
+     * 
      */
+    @Override
     public void add(final int toX, final int toY) {
         final Point p = new Point();
         p.x = toX;
