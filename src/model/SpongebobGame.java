@@ -77,7 +77,7 @@ public interface SpongebobGame {
     /**
      * Sets score bonus.
      */
-    void setScoreBonus();
+//    void setScoreBonus();
 
     /**
      * Freezes game.
@@ -89,7 +89,7 @@ public interface SpongebobGame {
      * @param oldTime
      *          old plankton rate
      * @return
-     *          weather this bonus was disabled up or not
+     *          weather this bonus was disabled or not
      */
     boolean offDelayBonus(int oldTime);
 
@@ -100,5 +100,24 @@ public interface SpongebobGame {
      */
     boolean onDelayBonus();
 
+    /**
+     * Return a new instance of {@link Comparator}.
+     * @return
+     *          new {@link Comparator}
+     */
     Comparator getComparator();
+
+    /**
+     * Sets score bonus on.
+     * @return
+     *          weather this bonus was enabled or not
+     */
+    boolean scoreBonusOn();
+
+    /**
+     * Sets score bonus off.
+     * @return
+     *          weather this bonus was disabled or not
+     */
+    boolean scoreBonusOff();
 }

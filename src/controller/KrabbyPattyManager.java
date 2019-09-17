@@ -27,10 +27,11 @@ public class KrabbyPattyManager extends Bonus implements Runnable {
 
     @Override
     public final void action() {
-        this.controller.getModel().setScoreBonus();
-        final Timer timer = new Timer(BONUS_DURATION, (event) -> this.controller.getModel().setScoreBonus());
-        timer.setRepeats(false);
-        timer.start();
+        if (this.controller.getModel().scoreBonusOn()) {
+            final Timer timer = new Timer(BONUS_DURATION, (event) -> this.controller.getModel().scoreBonusOff());
+            timer.setRepeats(false);
+            timer.start();
+        }
         Platform.runLater(() -> this.controller.removeNode(this.image));
     }
 

@@ -68,7 +68,9 @@ public class SpongebobGameImpl implements SpongebobGame {
 
     @Override
     public long getPlanktonRate() {
-        computePlanktonRate();
+        if (!this.delayBonus) {
+            computePlanktonRate();
+        }
         return this.planktonRate;
     }
 
@@ -128,7 +130,27 @@ public class SpongebobGameImpl implements SpongebobGame {
     public void incrementScore() {
         this.score = this.score + 1 * this.scoreMultiplier;
     }
-
+    
+    @Override
+    public boolean scoreBonusOn() {
+        if (!this.scoreBonus) {
+            this.scoreBonus  = true;
+            this.scoreMultiplier = SCORE_MULTIPLIER;
+            return true;
+        } 
+        return false;
+    }
+    
+    @Override
+    public boolean scoreBonusOff() {
+        if (this.scoreBonus) {
+            this.scoreBonus = false;
+            this.scoreMultiplier = 1;
+            return true;
+        } 
+        return false;
+    }
+/*
     @Override
     public void setScoreBonus() {
         if (!this.scoreBonus) {
@@ -139,7 +161,7 @@ public class SpongebobGameImpl implements SpongebobGame {
             this.scoreMultiplier = 1;
         }
     }
-    
+*/
     @Override
     public void freeze() {
         this.map.entrySet().stream().flatMap(m -> m.getValue().stream()).forEach(p -> p.stopTransition());
