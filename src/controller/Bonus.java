@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 /**
- * This is an Abstract Class that works as "Model" to implemented by the other bonus. 
+ * This is an Abstract Class to be extended by the other bonus. 
  * Since most of the methods were very similar, 
  * they all got implemented here, with the exception of action 
  * which varies depending on the specific bonus.

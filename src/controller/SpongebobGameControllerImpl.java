@@ -2,7 +2,6 @@ package controller;
 
 import java.util.List;
 import java.util.Optional;
-
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;

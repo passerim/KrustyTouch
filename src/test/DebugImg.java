@@ -1,4 +1,4 @@
-package model;
+package test;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;

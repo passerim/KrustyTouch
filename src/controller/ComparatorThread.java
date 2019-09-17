@@ -44,8 +44,7 @@ public class ComparatorThread extends Thread {
         }
 
         // Getting drawn points sequence
-        final SequencerImpl pointsSeq = new SequencerImpl(points);
-        final Integer[] pointSequence = pointsSeq.computeSequence();
+        final Integer[] pointSequence = new SequencerImpl(points).computeSequence();
         
         // Comparing reference models to drawn points directions sequence
         List<Double> valList = new ArrayList<>();

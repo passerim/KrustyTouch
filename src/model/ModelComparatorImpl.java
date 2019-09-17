@@ -3,7 +3,7 @@ package model;
 import java.util.Arrays;
 
 /**
- * 
+ * Compares reference models with passed directions sequence, computes score and stores lower.
  */
 public class ModelComparatorImpl implements ModelComparator {
     
@@ -48,6 +48,11 @@ public class ModelComparatorImpl implements ModelComparator {
         }
     }
     
+    /**
+     * 
+     * @return
+     *          returns lower dtw cost
+     */
     @Override
     public Integer getResult() {
         return this.result;
