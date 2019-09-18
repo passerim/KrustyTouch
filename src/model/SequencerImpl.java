@@ -7,15 +7,14 @@ import java.util.List;
 /**
  * This class computes the sequence of directions associated with input data points.
  */
-public class SequencerImpl implements Sequencer {
+public class SequencerImpl {
 
     private final List<Integer> pointsDirections = new ArrayList<Integer>();
     private final Point[] points;
 
     /**
      * 
-     * @param inputPoints
-     *          input points to be processed
+     * @param inputPoints input points to be processed
      */
     public SequencerImpl(final List<Point> inputPoints) {
         int i = 0;
@@ -29,8 +28,7 @@ public class SequencerImpl implements Sequencer {
     /**
      * Computes directions sequence.
      * Note: 45 is not a magic number! it is the angular ratio needed to devide a 360 degree angle in 8 directions.
-     * @return
-     *          array of directions computed from points
+     * @return array of directions computed from points
      */
     public Integer[] computeSequence() {
         Point lastP = null;

@@ -9,8 +9,7 @@ public interface Plankton extends Runnable {
     
     /**
      * 
-     * @return
-     *          plankton image
+     * @return plankton image
      */
     ImageView getPlankton();
     

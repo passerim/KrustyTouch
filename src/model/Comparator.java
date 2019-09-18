@@ -16,10 +16,8 @@ public interface Comparator extends Runnable {
 
     /**
      * Adds a point to be processed.
-     * @param toX
-     *          x coordinate of point
-     * @param toY
-     *          y coordinate of point
+     * @param toX x coordinate of point
+     * @param toY y coordinate of point
      */
     void add(int toX, int toY);
     

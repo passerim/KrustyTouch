@@ -150,18 +150,7 @@ public class SpongebobGameImpl implements SpongebobGame {
         } 
         return false;
     }
-/*
-    @Override
-    public void setScoreBonus() {
-        if (!this.scoreBonus) {
-            this.scoreBonus  = true;
-            this.scoreMultiplier = SCORE_MULTIPLIER;
-        } else {
-            this.scoreBonus = false;
-            this.scoreMultiplier = 1;
-        }
-    }
-*/
+
     @Override
     public void freeze() {
         this.map.entrySet().stream().flatMap(m -> m.getValue().stream()).forEach(p -> p.stopTransition());

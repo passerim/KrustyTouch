@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Compares reference models with passed directions sequence, computes score and stores lower.
  */
-public class ModelComparatorImpl implements ModelComparator {
+public class ModelComparatorImpl {
     
     private final Integer[] pointsSeq;
     private final Integer[] refModelSeq;
@@ -13,10 +13,8 @@ public class ModelComparatorImpl implements ModelComparator {
 
     /**
      * 
-     * @param pointsSeq
-     *          directions sequence for input points
-     * @param refModel
-     *          {@link RefModels} to be compared to
+     * @param pointsSeq directions sequence for input points
+     * @param refModel {@link RefModels} to be compared to
      */
     public ModelComparatorImpl(final Integer[] pointsSeq, final RefModels refModel) {
         this.pointsSeq = pointsSeq;
@@ -50,10 +48,8 @@ public class ModelComparatorImpl implements ModelComparator {
     
     /**
      * 
-     * @return
-     *          returns lower dtw cost
+     * @return returns lower dtw cost
      */
-    @Override
     public Integer getResult() {
         return this.result;
     }

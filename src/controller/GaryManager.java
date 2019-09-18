@@ -10,8 +10,8 @@ import javax.swing.Timer;
  */
 public class GaryManager extends Bonus implements  Runnable {
 
-    private static final double HEIGHT = 7.0;
-    private static final double WIDTH = 3.5;
+    private static final double HEIGHT = 5.0;
+    private static final double WIDTH = 2.5;
     private static final int BONUS_DURATION = 10000;
     private final SpongebobGameController controller;
 

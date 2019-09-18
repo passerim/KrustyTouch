@@ -11,9 +11,10 @@ import javafx.scene.image.ImageView;
  *  and maintaining, for a short period of time  
  */
 public class PatrickManager extends Bonus implements Runnable {
+    
     private static final double HEIGHT = 10.0;
     private static final double WIDTH = 6.0;  
-    private static final int BONUS_DURATION = 10000;
+    private static final int BONUS_DURATION = 15000;
     private final SpongebobGameController controller;
 
     /**

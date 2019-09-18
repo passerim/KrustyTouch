@@ -10,8 +10,7 @@ public interface SpongebobGameViewObserver {
     
     /**
      * Starts a new game, loading spawner threads and setting up the model.
-     * @throws IllegalAccessException
-     *          If game is bad started
+     * @throws IllegalAccessException If game is bad started
      */
     void newGame();
 
@@ -22,8 +21,7 @@ public interface SpongebobGameViewObserver {
 
     /**
      * Starts {@link ComparatorThread} on argument points.
-     * @param points
-     *          list of points to be processed
+     * @param points list of points to be processed
      */
     void compare(List<Pair<Integer, Integer>> points);
     

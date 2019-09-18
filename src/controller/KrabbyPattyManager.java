@@ -10,8 +10,8 @@ import javax.swing.Timer;
  */
 public class KrabbyPattyManager extends Bonus implements Runnable {
 
-    private static final double HEIGHT = 11.0;
-    private static final double WIDTH = 5.5;
+    private static final double HEIGHT = 16.0;
+    private static final double WIDTH = 8;
     private static final int BONUS_DURATION = 5000;
     private final SpongebobGameController controller;
 
