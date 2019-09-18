@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 /**
  * Vecchia classe di test manuale utilizzata da Stefanini per testare le prime versioni dell'interfaccia.
  */
+ /*
 public class MainTest extends Application {
 
 	public static SpawnerPlanktonManager SpawnerManager;
@@ -89,5 +90,6 @@ public class MainTest extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	*/
+	
 }
+*/
